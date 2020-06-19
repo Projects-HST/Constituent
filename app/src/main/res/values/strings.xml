@@ -1,3 +1,141 @@
 <resources>
+    <!--App Strings-->
     <string name="app_name">Constituent</string>
+    <string name="app_title">GMS</string>
+
+
+    <!--General Strings-->
+    <string name="progress_loading">Loading…</string>
+    <string name="alert_button_ok">OK</string>
+    <string name="alert_button_cancel">Cancel</string>
+    <string name="alert_button_yes">Yes</string>
+    <string name="alert_button_no">No</string>
+    <string name="empty" />
+    <string name="error_no_net">No internet access. Please check your connection and try again.</string>
+    <string name="error_occurred">Failed to connect to the server. Please try again.</string>
+    <string name="error_entry">Entry Invalid</string>
+    <string name="empty_entry">Field cannot be empty</string>
+    <string name="error_number">Enter vaild phone number</string>
+
+    <!--Dashboard Strings-->
+    <string name="menu_home">Home</string>
+    <string name="menu_news">News</string>
+    <string name="menu_profile">Profile</string>
+    <string name="title_notifications">Notifications</string>
+
+    <!--Welcome Strings-->
+    <string name="welcome_next">Next</string>
+    <string name="welcome_start">Get Started</string>
+    <string name="welcome_skip">Skip</string>
+
+    <string name="slide_1_title">Grievance</string>
+    <string name="slide_1_desc">Resolve constituent\'s complaints</string>
+
+    <string name="slide_2_title">Constituency</string>
+    <string name="slide_2_desc">See more content related to constituency</string>
+
+    <string name="slide_3_title">Stay Connected</string>
+    <string name="slide_3_desc">Stay in touch with your local representative</string>
+
+    <!--Login Page Strings-->
+    <string name="login_title">Login</string>
+    <string name="select_constituency">Select Constituency</string>
+    <string name="select_constituency_alert">Please select constituency before proceeding</string>
+    <string name="country_code">+91</string>
+    <string name="login_text_one">Enter your phone number</string>
+    <string name="login_text_two">We will send you the 4 digit verification code</string>
+
+
+    <!--OTP Page Strings-->
+    <string name="verification_title">Verification Code</string>
+    <string name="verification_heading">Enter the Verification code</string>
+    <string name="not_received">Didn\'t receive OTP?</string>
+    <string name="verify">Verify &amp; Continue</string>
+    <string name="resend">Resend</string>
+
+
+    <!--User Selection Strings-->
+    <string name="user_selection_title">Select Constituent</string>
+    <string name="user_serial_number_txt">Serial number - </string>
+    <string name="user_dob_txt">Date of birth - </string>
+
+
+    <!--Home Page Strings-->
+    <string name="dashboard_grievance">Grievances</string>
+    <string name="dashboard_meeting">Meetings</string>
+    <string name="dashboard_plant_donation">Plant Donation</string>
+
+
+    <!--Plant Donation Page Strings-->
+    <string name="plant_donation_title">Plant Donation</string>
+    <string name="plant_name_txt">Plant Name</string>
+    <string name="plant_count_txt">Plant Count</string>
+    <string name="plant_date_txt">Received On</string>
+
+
+    <!--User Selection Strings-->
+    <string name="news_detail_title">News</string>
+
+
+    <!--Grievance Page Strings-->
+    <string name="grievance_title">Grievances</string>
+    <string name="grievance_detail_title">Details of Grievance</string>
+    <string name="no_grievance">No grievance found</string>
+    <string name="seeker_type">Seeker Type</string>
+    <string name="description">Description</string>
+    <string name="reference">Reference Note</string>
+    <string name="petition">Petition</string>
+    <string name="enquiry">Enquiry</string>
+
+    <!--Notification Page Strings-->
+    <string name="meeting_title">Meetings</string>
+    <string name="meeting_detail_title">Details of Meeting</string>
+
+
+    <!--Notification Page Strings-->
+    <string name="notification_title">Notification</string>
+    <string name="notification_sent_on">Notification sent on</string>
+
+
+    <!--Profile Page Strings-->
+    <string name="profile_title">User Profile</string>
+    <string name="profile">Profile Info</string>
+    <string name="constituency">Constituency Info</string>
+    <string name="father_or_husband">Father or husband Name</string>
+    <string name="guardian">Guardian name</string>
+    <string name="email">Email ID</string>
+    <string name="phone">Phone Number</string>
+    <string name="whatsapp">Whatsapp Number</string>
+    <string name="dob">Date of Birth</string>
+    <string name="gender">Gender</string>
+    <string name="religion">Religion</string>
+    <string name="address">Address</string>
+    <string name="pin">Pincode</string>
+    <string name="voterid">Voter ID</string>
+    <string name="aadhaar">Aadhaar Number</string>
+    <string name="general">General Setting</string>
+    <string name="change_user">Change Users</string>
+    <string name="about">About us</string>
+    <string name="terms">Terms and condition</string>
+    <string name="share">Share app</string>
+    <string name="sign_out">Sign out</string>
+    <string name="sign_out_alert">Do you really want to signout?</string>
+
+    <!--Constituency Page Strings-->
+    <string name="constituency_name">Constituency Name</string>
+    <string name="ward">Ward</string>
+    <string name="booth">Booth Name</string>
+    <string name="booth_address">Booth Address</string>
+    <string name="serial">Serial Number</string>
+
+    <!--About Us Page Strings-->
+    <string name="about_us_title">About Us</string>
+    <string name="about_us_content">About Us content yet to be finalised</string>
+
+    <!--Terms and Conditions Page Strings-->
+    <string name="terms_title">Terms and Conditions</string>
+    <string name="terms_content">About Us content yet to be finalised</string>
+
+
+
 </resources>

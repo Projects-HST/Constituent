@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="constituency_name" type="id" />
+    <item name="radio_constituency" type="id" />
+
+</resources>

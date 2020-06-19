@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_grey"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/select_constituency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/shadow_round"
+        android:elevation="10dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="15dp"
+            android:src="@drawable/ic_loacation" />
+
+        <TextView
+            android:id="@+id/text_constituency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/list_petition"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/background_grey"
+        android:dividerHeight="0dp" />
+
+    <TextView
+        android:id="@+id/no_grievance"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/no_grievance"
+        android:textColor="@color/text_grey"
+        android:gravity="center"
+        android:textSize="18sp"/>
+
+</LinearLayout>
+
