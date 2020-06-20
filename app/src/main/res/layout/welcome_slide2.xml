@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="250dp"
             android:layout_height="250dp"
-            android:src="@drawable/ic_onboarding_screen_two" />
+            android:src="@drawable/ic_onboarding_icon_02" />
 
         <TextView
             android:layout_width="wrap_content"
