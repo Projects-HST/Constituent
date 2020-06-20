@@ -16,7 +16,7 @@
     <string name="error_occurred">Failed to connect to the server. Please try again.</string>
     <string name="error_entry">Entry Invalid</string>
     <string name="empty_entry">Field cannot be empty</string>
-    <string name="error_number">Enter vaild phone number</string>
+    <string name="error_number">Enter valid phone number</string>
 
     <!--Dashboard Strings-->
     <string name="menu_home">Home</string>
