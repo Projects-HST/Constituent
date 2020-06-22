@@ -141,6 +141,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (v == selectConstituency) {
             getConstituencyList();
         } else if (v == constituencyCancel) {
+            layoutSpinner.removeAllViews();
             findViewById(R.id.spinner_layout).setVisibility(View.GONE);
         } else if (v == constituencyOK) {
             sendSelectedConstituency();
@@ -240,6 +241,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     PreferenceStorage.saveConstituencyName(this, constituencyName);
                     PreferenceStorage.saveClientUrl(this, clientURL);
                     contistuencyText.setText(constituencyName);
+                    layoutSpinner.removeAllViews();
                     findViewById(R.id.spinner_layout).setVisibility(View.GONE);
                 }
             } catch (JSONException e) {
