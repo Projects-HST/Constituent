@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.gms.constituent.R;
 import com.gms.constituent.bean.support.Meeting;
@@ -22,7 +23,7 @@ public class MeetingDetailActivity extends AppCompatActivity implements View.OnC
 
     private Meeting meeting;
     private ImageView newsImage;
-    private TextView meetingTitle, meetingDetail, meetingDate;
+    private TextView meetingTitle, meetingDetail, meetingDate, meetingStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +41,19 @@ public class MeetingDetailActivity extends AppCompatActivity implements View.OnC
         meetingTitle = (TextView) findViewById(R.id.meeting_title);
         meetingDetail = (TextView) findViewById(R.id.meeting_details);
         meetingDate = (TextView) findViewById(R.id.meeting_date);
+        meetingStatus = (TextView) findViewById(R.id.meeting_status);
 
 
         meetingTitle.setText(meeting.getmeeting_title());
         meetingDetail.setText(meeting.getmeeting_detail());
         meetingDate.setText(meeting.getmeeting_date());
+        meetingStatus.setText(meeting.getmeeting_status());
+        if (meeting.getmeeting_status().equalsIgnoreCase("COMPLETED")) {
+            meetingStatus.setTextColor(ContextCompat.getColor(this, R.color.completed));
+        } else {
+            meetingStatus.setTextColor(ContextCompat.getColor(this, R.color.requested));
+        }
+
 
     }
 

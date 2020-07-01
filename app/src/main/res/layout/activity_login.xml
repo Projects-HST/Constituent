@@ -137,7 +137,7 @@
                     android:layout_height="25dp"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/text_number"
-                    android:background="@color/text_grey" />
+                    android:background="@color/vline" />
 
                 <EditText
                     android:id="@+id/edittext_number"

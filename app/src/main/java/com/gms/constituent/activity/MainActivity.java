@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
             if (!status.equalsIgnoreCase("success")) {
                 android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(MainActivity.this);
                 alertDialogBuilder.setTitle("Update");
-                alertDialogBuilder.setMessage("A new version of SkilEx is available!");
+                alertDialogBuilder.setMessage("A new version of GMS is available!");
                 alertDialogBuilder.setPositiveButton("Get it", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {

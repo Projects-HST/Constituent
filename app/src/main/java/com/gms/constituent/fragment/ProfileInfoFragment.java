@@ -117,15 +117,13 @@ public class ProfileInfoFragment extends Fragment implements DialogClickListener
     public void onClick(View v) {
         if (v == changeUser) {
             Intent homeIntent = new Intent(getActivity(), SelectUserActivity.class);
-            homeIntent.putExtra("page", "verify");
+            homeIntent.putExtra("page", "profile");
             startActivity(homeIntent);
         }if (v == aboutUs) {
             Intent homeIntent = new Intent(getActivity(), AboutUsActivity.class);
-            homeIntent.putExtra("page", "verify");
             startActivity(homeIntent);
         }if (v == terms) {
             Intent homeIntent = new Intent(getActivity(), TermsAndConditions.class);
-            homeIntent.putExtra("page", "verify");
             startActivity(homeIntent);
         }if (v == shareApp) {
             Intent i = new Intent(android.content.Intent.ACTION_SEND);

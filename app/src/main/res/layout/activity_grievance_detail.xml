@@ -88,7 +88,7 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     android:layout_margin="10dp"
                     android:orientation="vertical"
@@ -117,7 +117,7 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     android:orientation="vertical"
                     android:layout_margin="10dp"
@@ -227,7 +227,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="1dp"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="10dp">
+                    app:cardCornerRadius="5dp">
 
                     <TextView
                         android:id="@+id/grievance_status"

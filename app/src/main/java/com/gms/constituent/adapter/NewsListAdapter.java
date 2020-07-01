@@ -91,15 +91,10 @@ public class NewsListAdapter extends BaseAdapter {
             holder.newsImage = (ImageView) convertView.findViewById(R.id.img_logo);
 
         }
-        Long dateDiff = getDateDiff(new SimpleDateFormat("dd-MM-yyyy"), news.get(position).getnews_date());
         holder.txtNewsTitle.setText(news.get(position).gettitle());
         holder.txtNewsTitle.setEllipsize(TextUtils.TruncateAt.END);
 
-        if (dateDiff == 0) {
-            holder.txtDaysAgo.setText("Today");
-        } else {
-            holder.txtDaysAgo.setText(dateDiff + " days ago");
-        }
+        holder.txtDaysAgo.setText(getDateDiff(new SimpleDateFormat("dd-MM-yyyy"), news.get(position).getnews_date()));
         holder.txtDaysAgo.setCompoundDrawables(ContextCompat.getDrawable(context, R.drawable.ic_clock), null, null, null);
         if (GMSValidator.checkNullString(news.get(position).getimage_file_name())) {
             Picasso.get().load(news.get(position).getimage_file_name()).into(holder.newsImage);
@@ -164,16 +159,56 @@ public class NewsListAdapter extends BaseAdapter {
 
     }
 
-    public static long getDateDiff(SimpleDateFormat format, String oldDate) {
+    public static String getDateDiff(SimpleDateFormat format, String oldDate) {
         try {
             Date newDateFormat = new Date();
             String newDate = format.format(newDateFormat);
-            return TimeUnit.DAYS.convert(format.parse(newDate).getTime() - format.parse(oldDate).getTime(), TimeUnit.MILLISECONDS);
+            String dateshow = "";
+            long finaldays;
+            long days = TimeUnit.DAYS.convert(format.parse(newDate).getTime() - format.parse(oldDate).getTime(), TimeUnit.MILLISECONDS);
+            if (days >= 0 ) {
+                if (days >= 365) {
+                    finaldays = (days / 365);
+                    dateshow = finaldays + " Years Ago";
+                } else {
+                    if (days >= 30) {
+                        finaldays = (days / 30);
+                        dateshow = finaldays + " Months Ago";
+                    } else {
+                        if (days >= 7) {
+                            finaldays = (days / 7);
+                            dateshow = finaldays + " Weeks Ago";
+                        } else if (days == 0) {
+                            dateshow = "Today";
+                        } else {
+                            dateshow = days + " Days Ago";
+                        }
+                    }
+                }
+            } else {
+                if (days <= -365) {
+                    finaldays = (days / -365);
+                    dateshow = "In "+ finaldays + " Years";
+                } else {
+                    if (days <= -30) {
+                        finaldays = (days / -30);
+                        dateshow = "In "+ finaldays + " Months";
+                    } else {
+                        if (days <= -7) {
+                            finaldays = (days / -7);
+                            dateshow = "In "+ finaldays + " Weeks";
+                        } else {
+                            finaldays = (days / -1);
+                            dateshow = "In "+ finaldays + " Days";
+                        }
+                    }
+                }
+            }
+            return dateshow;
         } catch (Exception e) {
             e.printStackTrace();
-            return 0;
+            return "error";
         }
     }
-
 
 }

@@ -167,7 +167,7 @@ public class MeetingActivity extends AppCompatActivity implements View.OnClickLi
         } else {
             meeting = meetings.get(position);
         }
-        PreferenceStorage.saveUserId(this, meeting.getid());
+//        PreferenceStorage.saveUserId(this, meeting.getid());
         Intent intent = new Intent(this, MeetingDetailActivity.class);
         intent.putExtra("serviceObj", meeting);
         startActivity(intent);    }

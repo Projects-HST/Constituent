@@ -4,4 +4,9 @@
     <item name="constituency_name" type="id" />
     <item name="radio_constituency" type="id" />
 
+    <item name="user_profile_img" type="id" />
+    <item name="user_name" type="id" />
+    <item name="user_serial" type="id" />
+    <item name="user_dob" type="id" />
+
 </resources>

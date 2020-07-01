@@ -61,6 +61,22 @@ public class PreferenceStorage {
     }
     /*End*/
 
+    // UserId
+    public static void saveSelectUserPage(Context context, boolean select) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(GMSConstants.KEY_SELECT_USER_PAGE, select);
+        editor.apply();
+    }
+
+    public static boolean getSelectUserPage(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return sharedPreferences.getBoolean(GMSConstants.KEY_SELECT_USER_PAGE, false);
+    }
+    /*End*/
+
     // User Type
     public static void savePincode(Context context, String userType) {
         SharedPreferences sharedPreferences = PreferenceManager

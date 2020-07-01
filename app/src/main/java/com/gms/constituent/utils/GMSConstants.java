@@ -102,6 +102,7 @@ public class GMSConstants {
     //    USER DATA
 
     public static final String KEY_USER_ID = "user_id";
+    public static final String KEY_SELECT_USER_PAGE = "select_user_page";
     public static final String KEY_CONSTITUENCY_ID = "constituency_id";
     public static final String KEY_CONSTITUENCY_NAME = "constituency_name";
     public static final String KEY_CLIENT_API_URL = "client_api_url";

@@ -1,9 +1,11 @@
 package com.gms.constituent.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -104,6 +107,31 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        View v = getCurrentFocus();
+
+        if (v != null &&
+                (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) &&
+                v instanceof EditText &&
+                !v.getClass().getName().startsWith("android.webkit.")) {
+            int scrcoords[] = new int[2];
+            v.getLocationOnScreen(scrcoords);
+            float x = ev.getRawX() + v.getLeft() - scrcoords[0];
+            float y = ev.getRawY() + v.getTop() - scrcoords[1];
+
+            if (x < v.getLeft() || x > v.getRight() || y < v.getTop() || y > v.getBottom())
+                hideKeyboard(this);
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+    public static void hideKeyboard(Activity activity) {
+        if (activity != null && activity.getWindow() != null && activity.getWindow().getDecorView() != null) {
+            InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(activity.getWindow().getDecorView().getWindowToken(), 0);
+        }
+    }
     private void getConstituencyList() {
         whatRes = "constituency";
         JSONObject jsonObject = new JSONObject();
@@ -143,6 +171,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else if (v == constituencyCancel) {
             layoutSpinner.removeAllViews();
             findViewById(R.id.spinner_layout).setVisibility(View.GONE);
+            selectConstituency.setClickable(true);
         } else if (v == constituencyOK) {
             sendSelectedConstituency();
         } else if (v == signIn) {
@@ -228,6 +257,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         constituencyCount = constituencyList.getConstituencyArrayList().size();
                         loadMembersList(constituencyCount);
                         findViewById(R.id.spinner_layout).setVisibility(View.VISIBLE);
+                        selectConstituency.setClickable(false);
                     }
                 } else if (whatRes.equalsIgnoreCase("number")) {
                     Intent intent = new Intent(this, NumberVerificationActivity.class);
@@ -243,6 +273,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     contistuencyText.setText(constituencyName);
                     layoutSpinner.removeAllViews();
                     findViewById(R.id.spinner_layout).setVisibility(View.GONE);
+                    selectConstituency.setClickable(true);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -272,7 +303,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 constiRadio.setElevation(20.0f);
                 constiRadio.setPadding(10, 0, 0, 0);
                 constiRadio.setTextColor(ContextCompat.getColor(this, R.color.black));
-                constiRadio.setButtonTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
+
+//                if(Build.VERSION.SDK_INT>=21)
+//                {
+//
+//                    ColorStateList colorStateList = new ColorStateList(
+//                            new int[][]{
+//                                    new int[]{-android.R.attr.state_enabled}, //disabled
+//                                    new int[]{android.R.attr.state_enabled} //enabled
+//                            },
+//                            new int[] {
+//                                    R.color.colorPrimary, //disabled
+//                                    R.color.radio_grey //enabled
+//                            }
+//                    );
+//
+//
+//                    constiRadio.setButtonTintList(colorStateList);//set the color tint list
+//                    constiRadio.invalidate(); //could not be necessary
+//                }
+
 
                 final int finalC = c1;
 
@@ -287,8 +337,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 });
                 if (c1 == 0) {
                     constiRadio.setChecked(true);
+                    constiRadio.setButtonTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
                 } else {
                     constiRadio.setChecked(false);
+                    constiRadio.setButtonTintList(ContextCompat.getColorStateList(this, R.color.radio_grey));
                 }
                 layoutSpinner.addView(constiRadio);
             }
@@ -311,8 +363,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             RadioButton rad = layoutSpinner.getChildAt(position).findViewById(R.id.radio_constituency);
             if (position == pooos) {
                 rad.setChecked(true);
+                rad.setButtonTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
+
             } else {
                 rad.setChecked(false);
+                rad.setButtonTintList(ContextCompat.getColorStateList(this, R.color.radio_grey));
             }
 
         }

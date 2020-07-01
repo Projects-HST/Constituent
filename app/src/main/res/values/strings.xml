@@ -87,6 +87,8 @@
     <string name="reference">Reference Note</string>
     <string name="petition">Petition</string>
     <string name="enquiry">Enquiry</string>
+    <string name="petition_num">Petition Number</string>
+    <string name="enquiry_num">Enquiry Number</string>
 
     <!--Notification Page Strings-->
     <string name="meeting_title">Meetings</string>
@@ -135,7 +137,7 @@
 
     <!--Terms and Conditions Page Strings-->
     <string name="terms_title">Terms and Conditions</string>
-    <string name="terms_content">About Us content yet to be finalised</string>
+    <string name="terms_content">Terms content yet to be finalised</string>
 
 
 

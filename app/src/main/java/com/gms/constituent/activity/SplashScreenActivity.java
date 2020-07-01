@@ -47,12 +47,21 @@ public class SplashScreenActivity extends Activity {
             public void run() {
                 Boolean b = PreferenceStorage.isFirstTimeLaunch(getApplicationContext());
                 String id = PreferenceStorage.getUserId(getApplicationContext());
-                if (!b && GMSValidator.checkNullString(id)) {
+                if (getStatus !=0 && GMSValidator.checkNullString(id)) {
                     Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
                     startActivity(i);
                     finish();
                 } else {
-                    if (!b) {
+                    boolean bb = PreferenceStorage.getSelectUserPage(getApplicationContext());
+                    if (bb) {
+                        Intent homeIntent = new Intent(getApplicationContext(), SelectUserActivity.class);
+                        homeIntent.putExtra("page", "verify");
+                        homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                    homeIntent.putExtra("profile_state", "new");
+                        startActivity(homeIntent);
+                        finish();
+                    }
+                    else if (getStatus != 0) {
                         Intent i = new Intent(SplashScreenActivity.this, LoginActivity.class);
                         startActivity(i);
                         finish();

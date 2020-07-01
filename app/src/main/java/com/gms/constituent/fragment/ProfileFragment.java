@@ -45,7 +45,7 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TabLayout.TabLayoutOnPageChangeListener tabatab;
-    private TextView userName, txtConstituencyName;
+    private TextView userName, txtSerialNo;
     private ImageView profilePic;
 
     public static ProfileFragment newInstance(int position) {
@@ -72,7 +72,7 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
         progressDialogHelper = new ProgressDialogHelper(getActivity());
 
         userName = (TextView) rootView.findViewById(R.id.user_name);
-        txtConstituencyName = (TextView) rootView.findViewById(R.id.constituency_name);
+        txtSerialNo = (TextView) rootView.findViewById(R.id.serial_number);
         profilePic = (ImageView) rootView.findViewById(R.id.profile_img);
         tabLayout = (TabLayout) rootView.findViewById(R.id.tab_layout);
         viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
@@ -247,7 +247,7 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
                 }
 
                 userName.setText(name);
-                txtConstituencyName.setText(constituencyName);
+                txtSerialNo.setText("Serial No - " +serialNo);
 
                 initialiseTabs();
 

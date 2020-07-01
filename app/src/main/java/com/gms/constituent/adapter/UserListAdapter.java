@@ -89,8 +89,8 @@ public class UserListAdapter extends BaseAdapter {
         }
 
         holder.txtUserName.setText(users.get(position).getfull_name());
-        holder.txtUserSerial.setText("Serial number - " +users.get(position).getSerial_no());
-        holder.txtUserDOB.setText("Date of birth - " +users.get(position).getdob());
+        holder.txtUserSerial.setText("Serial Number - " +users.get(position).getSerial_no());
+        holder.txtUserDOB.setText("Date of Birth - " +users.get(position).getdob());
         if (GMSValidator.checkNullString(users.get(position).getprofile_picture())) {
             Picasso.get().load(users.get(position).getprofile_picture()).into(holder.userImage);
         } else {

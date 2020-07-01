@@ -61,6 +61,12 @@
                     android:textStyle="bold" />
 
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/line"
+                    android:layout_below="@id/txt_news_name"/>
+
                 <TextView
                     android:id="@+id/txt_news_date"
                     android:layout_width="wrap_content"
@@ -68,11 +74,24 @@
                     android:layout_alignLeft="@+id/txt_news_name"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
                     android:hint="25"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="10dp"
                     android:singleLine="true"
+                    android:drawableStart="@drawable/ic_clock"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
                     android:textSize="12sp" />
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_alignTop="@+id/txt_news_date"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_clock"
+                    android:layout_marginEnd="10dp"/>
 
             </RelativeLayout>
 

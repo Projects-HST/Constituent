@@ -1,39 +1,21 @@
 package com.gms.constituent.activity;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.text.HtmlCompat;
 
 import com.gms.constituent.R;
-import com.gms.constituent.adapter.UserListAdapter;
 import com.gms.constituent.bean.support.News;
-import com.gms.constituent.bean.support.User;
-import com.gms.constituent.bean.support.UserList;
-import com.gms.constituent.helper.AlertDialogHelper;
-import com.gms.constituent.helper.ProgressDialogHelper;
 import com.gms.constituent.interfaces.DialogClickListener;
-import com.gms.constituent.servicehelpers.ServiceHelper;
-import com.gms.constituent.serviceinterfaces.IServiceListener;
-import com.gms.constituent.utils.GMSConstants;
 import com.gms.constituent.utils.GMSValidator;
-import com.gms.constituent.utils.PreferenceStorage;
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 public class NewsDetailActivity extends AppCompatActivity implements View.OnClickListener, DialogClickListener {
 
@@ -64,12 +46,17 @@ public class NewsDetailActivity extends AppCompatActivity implements View.OnClic
 
         newsName.setText(news.gettitle());
         newsDate.setText(news.getnews_date());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            newsDetail.setText(Html.fromHtml(news.getdetails(), Html.FROM_HTML_MODE_COMPACT));
-        } else {
-            newsDetail.setText(Html.fromHtml(news.getdetails()));
-        }
-
+        newsDetail.setLinksClickable(true);
+        newsDetail.setMovementMethod(LinkMovementMethod.getInstance());
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            newsDetail.setText(HtmlCompat.fromHtml(news.getdetails(), HtmlCompat.FROM_HTML_MODE_LEGACY));
+//            newsDetail.setText(SafeURLSpan.parseSafeHtml(news.getdetails()));
+//            newsDetail.setMovementMethod(LinkMovementMethod.getInstance());
+//        } else {
+            newsDetail.setText(HtmlCompat.fromHtml(news.getdetails(), HtmlCompat.FROM_HTML_MODE_LEGACY));
+//        }
+//        newsDetail.setClickable(true);
+//        Linkify.addLinks(newsDetail, Linkify.WEB_URLS);
 
         if (GMSValidator.checkNullString(news.getimage_file_name())) {
             Picasso.get().load(news.getimage_file_name()).into(newsImage);
@@ -95,3 +82,5 @@ public class NewsDetailActivity extends AppCompatActivity implements View.OnClic
     }
 
 }
+
+

@@ -54,9 +54,9 @@ public class GrievanceDetailActivity extends AppCompatActivity implements View.O
         seekerType.setText(grievance.getseeker_info());
 
         if (grievance.getgrievance_type().equalsIgnoreCase("P")) {
-            txtPetitionEnquiry.setText(getString(R.string.petition));
+            txtPetitionEnquiry.setText(getString(R.string.petition_num));
         } else {
-            txtPetitionEnquiry.setText(getString(R.string.enquiry));
+            txtPetitionEnquiry.setText(getString(R.string.enquiry_num));
         }
         petitionEnquiryNo.setText(grievance.getpetition_enquiry_no());
         grievanceName.setText(grievance.getgrievance_name());
