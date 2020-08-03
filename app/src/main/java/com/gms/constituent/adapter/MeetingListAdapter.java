@@ -103,6 +103,7 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
 
 
     public MeetingListAdapter(ArrayList<Meeting> meetingArrayList, MeetingListAdapter.OnItemClickListener onItemClickListener) {
+        Collections.reverse(meetingArrayList);
         this.meetingArrayList = meetingArrayList;
         this.meetingArrayListFiltered = meetingArrayList;
         this.og = meetingArrayList;
@@ -131,9 +132,11 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
 
         if (meeting.getmeeting_status().equalsIgnoreCase("REQUESTED")) {
             holder.txtStatusTitle.setText("Upcoming");
+            holder.txtMeetingTitle.setTextColor(ContextCompat.getColor(holder.txtMeetingStatus.getContext(), R.color.black));
             holder.txtMeetingStatus.setBackgroundColor(ContextCompat.getColor(holder.txtMeetingStatus.getContext(), R.color.requested));
             holder.meetingImage.setImageResource(R.drawable.ic_meeting_active);
             holder.meetingDateImage.setImageResource(R.drawable.ic_date_active);
+            holder.disableLayout.setVisibility(View.GONE);
         } else if (meeting.getmeeting_status().equalsIgnoreCase("COMPLETED")) {
             holder.txtStatusTitle.setText("Earlier");
             holder.txtMeetingTitle.setTextColor(ContextCompat.getColor(holder.txtMeetingStatus.getContext(), R.color.text_grey));
@@ -143,9 +146,22 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
             holder.disableLayout.setVisibility(View.VISIBLE);
         }
         if (position != 0) {
-            if (meeting.getmeeting_status().equalsIgnoreCase((meetingArrayList.get(position - 1).getmeeting_status()))) {
+            if (checkdatapos(position)) {
                 holder.txtStatusTitle.setVisibility(View.GONE);
+            } else {
+                holder.txtStatusTitle.setVisibility(View.VISIBLE);
             }
+        } else {
+            holder.txtStatusTitle.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private boolean checkdatapos(int position) {
+        Meeting meeting = meetingArrayList.get(position);
+        if (meeting.getmeeting_status().equalsIgnoreCase((meetingArrayList.get(position - 1).getmeeting_status()))) {
+            return true;
+        } else {
+            return false;
         }
     }
 
