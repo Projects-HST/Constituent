@@ -220,24 +220,24 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
                 String dob = data.getString("dob");
                 String gender = data.getString("gender");
                 String profilePicture = data.getString("profile_picture");
-                PreferenceStorage.saveName(getActivity(), name);
-                PreferenceStorage.saveAddress(getActivity(), address);
+                PreferenceStorage.saveName(getActivity(), capitalizeString(name));
+                PreferenceStorage.saveAddress(getActivity(), capitalizeString(address));
                 PreferenceStorage.savePincode(getActivity(), pincode);
-                PreferenceStorage.savefatherORhusband(getActivity(), fatherHusbandName);
+                PreferenceStorage.savefatherORhusband(getActivity(), capitalizeString(fatherHusbandName));
                 PreferenceStorage.saveMobileNo(getActivity(), mobileNo);
                 PreferenceStorage.saveWhatsappNo(getActivity(), whatsappNo);
                 PreferenceStorage.saveEmail(getActivity(), emailId);
-                PreferenceStorage.saveReligionName(getActivity(), religionName);
-                PreferenceStorage.saveConstituencyName(getActivity(), constituencyName);
-                PreferenceStorage.savePaguthiName(getActivity(), paguthiName);
-                PreferenceStorage.saveWard(getActivity(), wardName);
-                PreferenceStorage.saveBooth(getActivity(), boothName);
-                PreferenceStorage.saveBoothAddress(getActivity(), boothAddress);
+                PreferenceStorage.saveReligionName(getActivity(), capitalizeString(religionName));
+                PreferenceStorage.saveConstituencyName(getActivity(), capitalizeString(constituencyName));
+                PreferenceStorage.savePaguthiName(getActivity(), capitalizeString(paguthiName));
+                PreferenceStorage.saveWard(getActivity(), capitalizeString(wardName));
+                PreferenceStorage.saveBooth(getActivity(), capitalizeString(boothName));
+                PreferenceStorage.saveBoothAddress(getActivity(), capitalizeString(boothAddress));
                 PreferenceStorage.saveSerialNo(getActivity(), serialNo);
                 PreferenceStorage.saveAadhaarNo(getActivity(), aadhaarNo);
                 PreferenceStorage.saveVoterId(getActivity(), voterIdNo);
                 PreferenceStorage.saveDob(getActivity(), dob);
-                PreferenceStorage.saveGender(getActivity(), gender);
+                PreferenceStorage.saveGender(getActivity(), capitalizeString(gender));
                 PreferenceStorage.saveProfilePic(getActivity(), profilePicture);
 
                 if (GMSValidator.checkNullString(profilePicture)) {
@@ -261,6 +261,20 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
     public void onError(String error) {
         progressDialogHelper.hideProgressDialog();
         AlertDialogHelper.showSimpleAlertDialog(getActivity(), error);
+    }
+
+    public static String capitalizeString(String string) {
+        char[] chars = string.toLowerCase().toCharArray();
+        boolean found = false;
+        for (int i = 0; i < chars.length; i++) {
+            if (!found && Character.isLetter(chars[i])) {
+                chars[i] = Character.toUpperCase(chars[i]);
+                found = true;
+            } else if (Character.isWhitespace(chars[i]) || chars[i] == '.' || chars[i] == '\'') { // You can add other chars here
+                found = false;
+            }
+        }
+        return String.valueOf(chars);
     }
 
     @Override

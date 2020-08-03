@@ -2,179 +2,188 @@ package com.gms.constituent.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.gms.constituent.R;
 import com.gms.constituent.bean.support.Meeting;
-import com.gms.constituent.bean.support.News;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 
-public class MeetingListAdapter extends BaseAdapter {
+public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.MyViewHolder> implements Filterable {
 
-    //    private final Transformation transformation;
-    private Context context;
-    private ArrayList<Meeting> meetings;
-    private boolean mSearching = false;
-    private boolean mAnimateSearch = false;
-    Boolean click = false;
-    private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
+    private ArrayList<Meeting> meetingArrayList;
+    private ArrayList<Meeting> og;
+    private ArrayList<Meeting> meetingArrayListFiltered;
+    Context context;
+    private OnItemClickListener onItemClickListener;
 
-
-    public MeetingListAdapter(Context context, ArrayList<Meeting> meetings) {
-        this.context = context;
-        this.meetings = meetings;
-//        Collections.reverse(services);
-//        transformation = new RoundedTransformationBuilder()
-//                .cornerRadiusDp(0)
-//                .oval(false)
-//                .build();
-        mSearching = false;
-    }
 
     @Override
-    public int getCount() {
-        if (mSearching) {
-            if (!mAnimateSearch) {
-                mAnimateSearch = true;
+    public Filter getFilter() {
+        return new Filter() {
+
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString().toLowerCase();
+                if (charString.isEmpty()) {
+                    meetingArrayListFiltered = og;
+                    //filteredCUG = CUG;
+                } else {
+                    ArrayList<Meeting> filtered = new ArrayList<>();
+                    for (Meeting cug : meetingArrayList) {
+                        if (cug.getmeeting_title().toLowerCase().contains(charString) || cug.getmeeting_date().toLowerCase().contains(charString)) {
+                            filtered.add(cug);
+                        }
+                    }
+                    meetingArrayListFiltered = filtered;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = meetingArrayListFiltered;
+                return filterResults;
             }
-            return mValidSearchIndices.size();
-        } else {
-            return meetings.size();
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                //filteredCUG.clear();
+                meetingArrayList = (ArrayList<Meeting>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public TextView txtMeetingTitle, txtStatusTitle, txtMeetingDate, txtMeetingStatus;
+        private ImageView meetingImage, meetingDateImage;
+        private LinearLayout disableLayout;
+        private FrameLayout meeting;
+
+        public MyViewHolder(View view) {
+            super(view);
+            disableLayout = (LinearLayout) view.findViewById(R.id.complete_layout);
+            meeting = (FrameLayout) view.findViewById(R.id.meeting_lay_click);
+            meeting.setOnClickListener(this);
+            txtMeetingTitle = (TextView) view.findViewById(R.id.meeting_title);
+            txtStatusTitle = (TextView) view.findViewById(R.id.status_title);
+            txtMeetingDate = (TextView) view.findViewById(R.id.meeting_date);
+            txtMeetingStatus = (TextView) view.findViewById(R.id.meeting_status);
+            meetingImage = (ImageView) view.findViewById(R.id.meeting_img);
+            meetingDateImage = (ImageView) view.findViewById(R.id.meeting_date_img);
+
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(v, getAdapterPosition());
+            }
+//            else {
+//                onClickListener.onClick(Selecttick);
+//            }
         }
     }
 
+
+    public MeetingListAdapter(ArrayList<Meeting> meetingArrayList, MeetingListAdapter.OnItemClickListener onItemClickListener) {
+        this.meetingArrayList = meetingArrayList;
+        this.meetingArrayListFiltered = meetingArrayList;
+        this.og = meetingArrayList;
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public interface OnItemClickListener {
+        public void onItemClick(View view, int position);
+    }
+
+
     @Override
-    public Object getItem(int position) {
-        if (mSearching) {
-            return meetings.get(mValidSearchIndices.get(position));
-        } else {
-            return meetings.get(position);
-        }
+    public MeetingListAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.list_item_meeting, parent, false);
+
+        return new MeetingListAdapter.MyViewHolder(itemView);
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
-    }
+    public void onBindViewHolder(MeetingListAdapter.MyViewHolder holder, int position) {
+        Meeting meeting = meetingArrayList.get(position);
+        holder.txtMeetingTitle.setText(capitalizeString(meeting.getmeeting_title()));
+        holder.txtMeetingDate.setText(meeting.getmeeting_date());
+        holder.txtMeetingStatus.setText(capitalizeString(meeting.getmeeting_status()));
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        final ViewHolder holder;
-        if (convertView == null) {
-            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-            convertView = inflater.inflate(R.layout.list_item_meeting, parent, false);
-
-            holder = new ViewHolder();
-            holder.totalLayout = (LinearLayout) convertView.findViewById(R.id.total_layout);
-            holder.txtMeetingTitle = (TextView) convertView.findViewById(R.id.meeting_title);
-            holder.txtStatusTitle = (TextView) convertView.findViewById(R.id.status_title);
-            holder.txtMeetingDate = (TextView) convertView.findViewById(R.id.meeting_date);
-            holder.txtMeetingStatus = (TextView) convertView.findViewById(R.id.meeting_status);
-            holder.meetingImage = (ImageView) convertView.findViewById(R.id.meeting_img);
-            holder.meetingDateImage = (ImageView) convertView.findViewById(R.id.meeting_date_img);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-            holder.totalLayout = (LinearLayout) convertView.findViewById(R.id.total_layout);
-            holder.txtMeetingTitle = (TextView) convertView.findViewById(R.id.meeting_title);
-            holder.txtStatusTitle = (TextView) convertView.findViewById(R.id.status_title);
-            holder.txtMeetingDate = (TextView) convertView.findViewById(R.id.meeting_date);
-            holder.txtMeetingStatus = (TextView) convertView.findViewById(R.id.meeting_status);
-            holder.meetingImage = (ImageView) convertView.findViewById(R.id.meeting_img);
-            holder.meetingDateImage = (ImageView) convertView.findViewById(R.id.meeting_date_img);
-        }
-        holder.txtMeetingTitle.setText(meetings.get(position).getmeeting_title());
-        holder.txtMeetingDate.setText(meetings.get(position).getmeeting_date());
-        holder.txtMeetingStatus.setText(meetings.get(position).getmeeting_status());
-
-        if (meetings.get(position).getmeeting_status().equalsIgnoreCase("REQUESTED")) {
+        if (meeting.getmeeting_status().equalsIgnoreCase("REQUESTED")) {
             holder.txtStatusTitle.setText("Upcoming");
-            holder.txtMeetingStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.requested));
+            holder.txtMeetingStatus.setBackgroundColor(ContextCompat.getColor(holder.txtMeetingStatus.getContext(), R.color.requested));
             holder.meetingImage.setImageResource(R.drawable.ic_meeting_active);
             holder.meetingDateImage.setImageResource(R.drawable.ic_date_active);
-        } else if (meetings.get(position).getmeeting_status().equalsIgnoreCase("COMPLETED")){
+        } else if (meeting.getmeeting_status().equalsIgnoreCase("COMPLETED")) {
             holder.txtStatusTitle.setText("Earlier");
-            holder.txtMeetingStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.completed));
+            holder.txtMeetingTitle.setTextColor(ContextCompat.getColor(holder.txtMeetingStatus.getContext(), R.color.text_grey));
+            holder.txtMeetingStatus.setBackgroundColor(ContextCompat.getColor(holder.txtMeetingStatus.getContext(), R.color.completed_meeting));
             holder.meetingImage.setImageResource(R.drawable.ic_meeting_inactive);
             holder.meetingDateImage.setImageResource(R.drawable.ic_date_inactive);
+            holder.disableLayout.setVisibility(View.VISIBLE);
         }
-        if (position!=0) {
-            if (meetings.get(position).getmeeting_status().equalsIgnoreCase((meetings.get(position-1).getmeeting_status()))) {
+        if (position != 0) {
+            if (meeting.getmeeting_status().equalsIgnoreCase((meetingArrayList.get(position - 1).getmeeting_status()))) {
                 holder.txtStatusTitle.setVisibility(View.GONE);
             }
         }
-
-
-        if (mSearching) {
-            position = mValidSearchIndices.get(position);
-
-        } else {
-            Log.d("Event List Adapter", "getview pos called" + position);
-        }
-
-        return convertView;
     }
 
-    public void startSearch(String eventName) {
-        mSearching = true;
-        mAnimateSearch = false;
-        Log.d("EventListAdapter", "serach for event" + eventName);
-        mValidSearchIndices.clear();
-        for (int i = 0; i < meetings.size(); i++) {
-            String homeWorkTitle = meetings.get(i).getid();
-            if ((homeWorkTitle != null) && !(homeWorkTitle.isEmpty())) {
-                if (homeWorkTitle.toLowerCase().contains(eventName.toLowerCase())) {
-                    mValidSearchIndices.add(i);
-                }
+    private String getserverdateformat(String dd) {
+        String serverFormatDate = "";
+        if (dd != null && dd != "") {
+
+            String date = dd;
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date testDate = null;
+            try {
+                testDate = formatter.parse(date);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            serverFormatDate = sdf.format(testDate);
+            System.out.println(".....Date..." + serverFormatDate);
+        }
+        return serverFormatDate;
+    }
+
+    public static String capitalizeString(String string) {
+        char[] chars = string.toLowerCase().toCharArray();
+        boolean found = false;
+        for (int i = 0; i < chars.length; i++) {
+            if (!found && Character.isLetter(chars[i])) {
+                chars[i] = Character.toUpperCase(chars[i]);
+                found = true;
+            } else if (Character.isWhitespace(chars[i]) || chars[i] == '.' || chars[i] == '\'') { // You can add other chars here
+                found = false;
             }
         }
-        Log.d("Event List Adapter", "notify" + mValidSearchIndices.size());
+        return String.valueOf(chars);
     }
 
-    public void exitSearch() {
-        mSearching = false;
-        mValidSearchIndices.clear();
-        mAnimateSearch = false;
+    @Override
+    public int getItemCount() {
+        return meetingArrayListFiltered.size();
     }
-
-    public void clearSearchFlag() {
-        mSearching = false;
-    }
-
-    public class ViewHolder {
-        public TextView txtMeetingTitle, txtStatusTitle, txtMeetingDate, txtMeetingStatus;
-        private ImageView meetingImage, meetingDateImage;
-        private LinearLayout totalLayout;
-    }
-
-    public boolean ismSearching() {
-        return mSearching;
-    }
-
-    public int getActualEventPos(int selectedSearchpos) {
-        if (selectedSearchpos < mValidSearchIndices.size()) {
-            return mValidSearchIndices.get(selectedSearchpos);
-        } else {
-            return 0;
-        }
-    }
-
-    private void getStat(String stat) {
-
-    }
-
-
 }

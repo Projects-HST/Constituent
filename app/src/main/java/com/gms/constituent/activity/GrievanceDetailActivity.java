@@ -57,23 +57,39 @@ public class GrievanceDetailActivity extends AppCompatActivity implements View.O
             txtPetitionEnquiry.setText(getString(R.string.petition_num));
         } else {
             txtPetitionEnquiry.setText(getString(R.string.enquiry_num));
+            grievanceDesc.setVisibility(View.GONE);
+            findViewById(R.id.grievance_des_txt).setVisibility(View.GONE);
         }
         petitionEnquiryNo.setText(grievance.getpetition_enquiry_no());
-        grievanceName.setText(grievance.getgrievance_name());
-        grievanceSubCat.setText(grievance.getSub_category_name());
-        grievanceDesc.setText(grievance.getdescription());
-        grievanceReference.setText(grievance.getreference_note());
-        grievanceStatus.setText(grievance.getstatus());
+        grievanceName.setText(capitalizeString(grievance.getgrievance_name()));
+        grievanceSubCat.setText(capitalizeString(grievance.getSub_category_name()));
+        grievanceDesc.setText(capitalizeString(grievance.getdescription()));
+        grievanceReference.setText(capitalizeString(grievance.getreference_note()));
+        grievanceStatus.setText(capitalizeString(grievance.getstatus()));
 
         if (grievance.getstatus().equalsIgnoreCase("COMPLETED")) {
-            grievanceStatus.setBackgroundColor(ContextCompat.getColor(this, R.color.completed));
+            grievanceStatus.setBackground(ContextCompat.getDrawable(this, R.drawable.btn_round_completed));
         } else {
-            grievanceStatus.setBackgroundColor(ContextCompat.getColor(this, R.color.requested));
+            grievanceStatus.setBackground(ContextCompat.getDrawable(this, R.drawable.btn_round_processing));
 //            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 //                holder.totalLayout.setForeground(ContextCompat.getDrawable(context, R.drawable.shadow_foreground));
 //            }
         }
 
+    }
+
+    public static String capitalizeString(String string) {
+        char[] chars = string.toLowerCase().toCharArray();
+        boolean found = false;
+        for (int i = 0; i < chars.length; i++) {
+            if (!found && Character.isLetter(chars[i])) {
+                chars[i] = Character.toUpperCase(chars[i]);
+                found = true;
+            } else if (Character.isWhitespace(chars[i]) || chars[i]=='.' || chars[i]=='\'') { // You can add other chars here
+                found = false;
+            }
+        }
+        return String.valueOf(chars);
     }
 
     @Override

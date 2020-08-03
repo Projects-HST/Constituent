@@ -238,6 +238,20 @@ public class SelectUserActivity extends AppCompatActivity implements View.OnClic
         finish();
     }
 
+    public static String capitalizeString(String string) {
+        char[] chars = string.toLowerCase().toCharArray();
+        boolean found = false;
+        for (int i = 0; i < chars.length; i++) {
+            if (!found && Character.isLetter(chars[i])) {
+                chars[i] = Character.toUpperCase(chars[i]);
+                found = true;
+            } else if (Character.isWhitespace(chars[i]) || chars[i]=='.' || chars[i]=='\'') { // You can add other chars here
+                found = false;
+            }
+        }
+        return String.valueOf(chars);
+    }
+
     private void loadMembersList(int memberCount) {
 
         try {
@@ -285,7 +299,7 @@ public class SelectUserActivity extends AppCompatActivity implements View.OnClic
 
                 TextView txtUserName = new TextView(this);
                 txtUserName.setLayoutParams(paramsTextViewUserName);
-                txtUserName.setText(userList.getUserArrayList().get(c1).getfull_name());
+                txtUserName.setText(capitalizeString(userList.getUserArrayList().get(c1).getfull_name()));
                 txtUserName.setId(R.id.user_name);
                 txtUserName.requestFocusFromTouch();
                 txtUserName.setTextSize(16.0f);
@@ -325,7 +339,7 @@ public class SelectUserActivity extends AppCompatActivity implements View.OnClic
 
                         PreferenceStorage.saveSelectUserPage(getApplicationContext(), false);
                         PreferenceStorage.saveUserId(getApplicationContext(), user.getid());
-                        PreferenceStorage.saveName(getApplicationContext(), user.getfull_name());
+                        PreferenceStorage.saveName(getApplicationContext(), capitalizeString(user.getfull_name()));
 //        PreferenceStorage.saveSelectUserPage(this, false);
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.putExtra("serviceObj", user);

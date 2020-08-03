@@ -44,17 +44,31 @@ public class MeetingDetailActivity extends AppCompatActivity implements View.OnC
         meetingStatus = (TextView) findViewById(R.id.meeting_status);
 
 
-        meetingTitle.setText(meeting.getmeeting_title());
-        meetingDetail.setText(meeting.getmeeting_detail());
+        meetingTitle.setText(capitalizeString(meeting.getmeeting_title()));
+        meetingDetail.setText(capitalizeString(meeting.getmeeting_detail()));
         meetingDate.setText(meeting.getmeeting_date());
-        meetingStatus.setText(meeting.getmeeting_status());
+        meetingStatus.setText(capitalizeString(meeting.getmeeting_status()));
         if (meeting.getmeeting_status().equalsIgnoreCase("COMPLETED")) {
-            meetingStatus.setTextColor(ContextCompat.getColor(this, R.color.completed));
+            meetingStatus.setTextColor(ContextCompat.getColor(this, R.color.completed_meeting));
         } else {
             meetingStatus.setTextColor(ContextCompat.getColor(this, R.color.requested));
         }
 
 
+    }
+
+    public static String capitalizeString(String string) {
+        char[] chars = string.toLowerCase().toCharArray();
+        boolean found = false;
+        for (int i = 0; i < chars.length; i++) {
+            if (!found && Character.isLetter(chars[i])) {
+                chars[i] = Character.toUpperCase(chars[i]);
+                found = true;
+            } else if (Character.isWhitespace(chars[i]) || chars[i]=='.' || chars[i]=='\'') { // You can add other chars here
+                found = false;
+            }
+        }
+        return String.valueOf(chars);
     }
 
     @Override

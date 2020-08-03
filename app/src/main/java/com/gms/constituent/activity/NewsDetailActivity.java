@@ -44,7 +44,7 @@ public class NewsDetailActivity extends AppCompatActivity implements View.OnClic
         newsImage = (ImageView) findViewById(R.id.img_logo);
 
 
-        newsName.setText(news.gettitle());
+        newsName.setText(capitalizeString(news.gettitle()));
         newsDate.setText(news.getnews_date());
         newsDetail.setLinksClickable(true);
         newsDetail.setMovementMethod(LinkMovementMethod.getInstance());
@@ -64,6 +64,20 @@ public class NewsDetailActivity extends AppCompatActivity implements View.OnClic
             newsImage.setImageResource(R.drawable.news_banner);
         }
 
+    }
+
+    public static String capitalizeString(String string) {
+        char[] chars = string.toLowerCase().toCharArray();
+        boolean found = false;
+        for (int i = 0; i < chars.length; i++) {
+            if (!found && Character.isLetter(chars[i])) {
+                chars[i] = Character.toUpperCase(chars[i]);
+                found = true;
+            } else if (Character.isWhitespace(chars[i]) || chars[i]=='.' || chars[i]=='\'') { // You can add other chars here
+                found = false;
+            }
+        }
+        return String.valueOf(chars);
     }
 
     @Override

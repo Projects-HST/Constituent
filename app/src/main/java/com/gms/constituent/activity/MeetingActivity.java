@@ -9,6 +9,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.gms.constituent.R;
 import com.gms.constituent.adapter.MeetingListAdapter;
@@ -31,7 +33,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MeetingActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener, DialogClickListener, AdapterView.OnItemClickListener {
+public class MeetingActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener, DialogClickListener, MeetingListAdapter.OnItemClickListener {
 
     private static final String TAG = MeetingActivity.class.getName();
 
@@ -43,6 +45,8 @@ public class MeetingActivity extends AppCompatActivity implements View.OnClickLi
     private ArrayList<Meeting> meetings = new ArrayList<>();
     private MeetingListAdapter meetingListAdapter;
     private RelativeLayout toolBar;
+    private RecyclerView recyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +63,8 @@ public class MeetingActivity extends AppCompatActivity implements View.OnClickLi
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
 
-        listView = (ListView) findViewById(R.id.meeting_list);
-        listView.setOnItemClickListener(this);
+        recyclerView = findViewById(R.id.recycler_view);
+
 
         getMeetingList();
 
@@ -126,26 +130,11 @@ public class MeetingActivity extends AppCompatActivity implements View.OnClickLi
         if (validateResponse(response)) {
             Gson gson = new Gson();
             MeetingList meetingList = gson.fromJson(response.toString(), MeetingList.class);
-            if (meetingList.getMeetingArrayList() != null && meetingList.getMeetingArrayList().size() > 0) {
-//                    this.ongoingServiceArrayList.addAll(ongoingServiceList.getserviceArrayList());
-                updateListAdapter(meetingList.getMeetingArrayList());
-            } else {
-                if (meetings != null) {
-                    meetings.clear();
-                    updateListAdapter(meetingList.getMeetingArrayList());
-                }
-            }
-        }
-    }
-
-    protected void updateListAdapter(ArrayList<Meeting> meetingArrayList) {
-        meetings.clear();
-        meetings.addAll(meetingArrayList);
-        if (meetingListAdapter == null) {
-            meetingListAdapter = new MeetingListAdapter(this, meetings);
-            listView.setAdapter(meetingListAdapter);
-        } else {
-            meetingListAdapter.notifyDataSetChanged();
+            meetings.addAll(meetingList.getMeetingArrayList());
+            MeetingListAdapter mAdapter = new MeetingListAdapter(meetings, this);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+            recyclerView.setLayoutManager(mLayoutManager);
+            recyclerView.setAdapter(mAdapter);
         }
     }
 
@@ -156,19 +145,7 @@ public class MeetingActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.d(TAG, "onEvent list item clicked" + position);
-        Meeting meeting = null;
-        if ((meetingListAdapter != null) && (meetingListAdapter.ismSearching())) {
-            Log.d(TAG, "while searching");
-            int actualindex = meetingListAdapter.getActualEventPos(position);
-            Log.d(TAG, "actual index" + actualindex);
-            meeting = meetings.get(actualindex);
-        } else {
-            meeting = meetings.get(position);
-        }
-//        PreferenceStorage.saveUserId(this, meeting.getid());
-        Intent intent = new Intent(this, MeetingDetailActivity.class);
-        intent.putExtra("serviceObj", meeting);
-        startActivity(intent);    }
+    public void onItemClick(View view, int position) {
+
+    }
 }

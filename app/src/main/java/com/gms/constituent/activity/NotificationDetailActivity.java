@@ -44,9 +44,23 @@ public class NotificationDetailActivity extends AppCompatActivity implements Vie
 
         txtNotificationDate.setText(notification.getcreated_at());
         txtNotificationTime.setText(notification.getcreated_time());
-        txtNotificationText.setText(notification.getnotification_text());
+        txtNotificationText.setText(capitalizeString(notification.getnotification_text()));
 
 
+    }
+
+    public static String capitalizeString(String string) {
+        char[] chars = string.toLowerCase().toCharArray();
+        boolean found = false;
+        for (int i = 0; i < chars.length; i++) {
+            if (!found && Character.isLetter(chars[i])) {
+                chars[i] = Character.toUpperCase(chars[i]);
+                found = true;
+            } else if (Character.isWhitespace(chars[i]) || chars[i]=='.' || chars[i]=='\'') { // You can add other chars here
+                found = false;
+            }
+        }
+        return String.valueOf(chars);
     }
 
     @Override

@@ -21,7 +21,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="15dp"
-            android:src="@drawable/ic_loacation" />
+            android:src="@drawable/ic_location" />
 
         <TextView
             android:id="@+id/text_constituency"
@@ -33,12 +33,11 @@
 
     </RelativeLayout>
 
-    <ListView
-        android:id="@+id/list_petition"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@color/background_grey"
-        android:dividerHeight="0dp" />
+        android:scrollbars="vertical" />
 
     <TextView
         android:id="@+id/no_grievance"

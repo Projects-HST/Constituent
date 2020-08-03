@@ -45,7 +45,6 @@ public class PlantDonationActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onClick(View v) {
                 finish();
-
             }
         });
         serviceHelper = new ServiceHelper(this);

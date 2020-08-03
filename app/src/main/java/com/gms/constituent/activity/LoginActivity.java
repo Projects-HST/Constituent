@@ -264,7 +264,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     startActivity(intent);
                 } else if (whatRes.equalsIgnoreCase("ANS")) {
                     String constituencyID = response.getJSONArray("data").getJSONObject(0).getString("constituency_id");
-                    String constituencyName = response.getJSONArray("data").getJSONObject(0).getString("constituency_name");
+                    String constituencyName = capitalizeString(response.getJSONArray("data").getJSONObject(0).getString("constituency_name"));
                     String clientURL = response.getJSONArray("data").getJSONObject(0).getString("client_api_url");
 
                     PreferenceStorage.saveConstituencyID(this, constituencyID);
@@ -286,6 +286,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    public static String capitalizeString(String string) {
+        char[] chars = string.toLowerCase().toCharArray();
+        boolean found = false;
+        for (int i = 0; i < chars.length; i++) {
+            if (!found && Character.isLetter(chars[i])) {
+                chars[i] = Character.toUpperCase(chars[i]);
+                found = true;
+            } else if (Character.isWhitespace(chars[i]) || chars[i] == '.' || chars[i] == '\'') { // You can add other chars here
+                found = false;
+            }
+        }
+        return String.valueOf(chars);
+    }
+
     private void loadMembersList(int memberCount) {
 
         try {
@@ -296,7 +310,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 radioParams.setMargins(20, 10, 10, 10);
                 constiRadio.setLayoutParams(radioParams);
 
-                String consti = constituencyList.getConstituencyArrayList().get(c1).getconstituency_name();
+                String consti = capitalizeString(constituencyList.getConstituencyArrayList().get(c1).getconstituency_name());
                 constiRadio.setText(consti);
                 constiRadio.setId(R.id.radio_constituency);
                 constiRadio.setTextSize(18.0f);

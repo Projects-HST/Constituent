@@ -91,11 +91,10 @@ public class NewsListAdapter extends BaseAdapter {
             holder.newsImage = (ImageView) convertView.findViewById(R.id.img_logo);
 
         }
-        holder.txtNewsTitle.setText(news.get(position).gettitle());
+        holder.txtNewsTitle.setText(capitalizeString(news.get(position).gettitle()));
         holder.txtNewsTitle.setEllipsize(TextUtils.TruncateAt.END);
 
-        holder.txtDaysAgo.setText(getDateDiff(new SimpleDateFormat("dd-MM-yyyy"), news.get(position).getnews_date()));
-        holder.txtDaysAgo.setCompoundDrawables(ContextCompat.getDrawable(context, R.drawable.ic_clock), null, null, null);
+        holder.txtDaysAgo.setText(news.get(position).getnews_date());
         if (GMSValidator.checkNullString(news.get(position).getimage_file_name())) {
             Picasso.get().load(news.get(position).getimage_file_name()).into(holder.newsImage);
         } else {
@@ -157,6 +156,20 @@ public class NewsListAdapter extends BaseAdapter {
 
     private void getStat(String stat) {
 
+    }
+
+    public static String capitalizeString(String string) {
+        char[] chars = string.toLowerCase().toCharArray();
+        boolean found = false;
+        for (int i = 0; i < chars.length; i++) {
+            if (!found && Character.isLetter(chars[i])) {
+                chars[i] = Character.toUpperCase(chars[i]);
+                found = true;
+            } else if (Character.isWhitespace(chars[i]) || chars[i] == '.' || chars[i] == '\'') { // You can add other chars here
+                found = false;
+            }
+        }
+        return String.valueOf(chars);
     }
 
     public static String getDateDiff(SimpleDateFormat format, String oldDate) {

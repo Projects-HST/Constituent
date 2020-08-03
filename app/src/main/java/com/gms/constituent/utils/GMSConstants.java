@@ -140,7 +140,7 @@ public class GMSConstants {
     public static String PHONE_NUMBER = "phone_no";
     public static String REFERRAL_CODE = "referral_code";
     public static String OTP = "otp";
-    public static String DEVICE_TOKEN = "device_token";
+    public static String DEVICE_TOKEN = "device_id";
     public static String MOBILE_TYPE = "mobile_type";
     public static String USER_MASTER_ID = "user_master_id";
     public static String UNIQUE_NUMBER = "unique_number";

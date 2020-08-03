@@ -85,13 +85,6 @@
                     android:textColorHint="@color/black"
                     android:textSize="12sp" />
 
-                <ImageView
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:layout_alignTop="@+id/txt_news_date"
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_clock"
-                    android:layout_marginEnd="10dp"/>
 
             </RelativeLayout>
 

@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.gms.constituent.R;
 import com.gms.constituent.activity.GrievanceDetailActivity;
@@ -33,17 +35,18 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class EnquiryFragment extends Fragment implements IServiceListener, DialogClickListener, View.OnClickListener, AdapterView.OnItemClickListener {
+public class EnquiryFragment extends Fragment implements IServiceListener, DialogClickListener, View.OnClickListener, GrievanceListAdapter.OnItemClickListener {
 
     private static final String TAG = NewsFragment.class.getName();
     private View rootView;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
-    private ListView listView;
     private int ab = 0;
     private ArrayList<Grievance> grievances = new ArrayList<>();
     private GrievanceListAdapter grievanceListAdapter;
     private TextView selectedConstituency, noGrievance;
+    private RecyclerView recyclerView;
+    private GrievanceList grievanceList;
 
     public static PetitionFragment newInstance(int position) {
         PetitionFragment frag = new PetitionFragment();
@@ -64,8 +67,8 @@ public class EnquiryFragment extends Fragment implements IServiceListener, Dialo
 
         rootView = inflater.inflate(R.layout.fragment_petition, container, false);
 
-        listView = (ListView) rootView.findViewById(R.id.list_petition);
-        listView.setOnItemClickListener(this);
+        recyclerView = rootView.findViewById(R.id.recycler_view);
+
 
         noGrievance = (TextView) rootView.findViewById(R.id.no_grievance);
 
@@ -126,7 +129,7 @@ public class EnquiryFragment extends Fragment implements IServiceListener, Dialo
                         signInSuccess = false;
                         Log.d(TAG, "Show error dialog");
                         noGrievance.setVisibility(View.VISIBLE);
-                        listView.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.GONE);
                     }
                 }
             } catch (JSONException e) {
@@ -135,33 +138,17 @@ public class EnquiryFragment extends Fragment implements IServiceListener, Dialo
         }
         return signInSuccess;
     }
-
     @Override
     public void onResponse(JSONObject response) {
         progressDialogHelper.hideProgressDialog();
         if (validateResponse(response)) {
             Gson gson = new Gson();
-            GrievanceList grievanceList = gson.fromJson(response.toString(), GrievanceList.class);
-            if (grievanceList.getGrievanceArrayList() != null && grievanceList.getGrievanceArrayList().size() > 0) {
-//                    this.ongoingServiceArrayList.addAll(ongoingServiceList.getserviceArrayList());
-                updateListAdapter(grievanceList.getGrievanceArrayList());
-            } else {
-                if (grievances != null) {
-                    grievances.clear();
-                    updateListAdapter(grievanceList.getGrievanceArrayList());
-                }
-            }
-        }
-    }
-
-    protected void updateListAdapter(ArrayList<Grievance> grievanceArrayList) {
-        grievances.clear();
-        grievances.addAll(grievanceArrayList);
-        if (grievanceListAdapter == null) {
-            grievanceListAdapter = new GrievanceListAdapter(getActivity(), grievances);
-            listView.setAdapter(grievanceListAdapter);
-        } else {
-            grievanceListAdapter.notifyDataSetChanged();
+            grievanceList = gson.fromJson(response.toString(), GrievanceList.class);
+            grievances.addAll(grievanceList.getGrievanceArrayList());
+            GrievanceListAdapter mAdapter = new GrievanceListAdapter(grievances, EnquiryFragment.this);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+            recyclerView.setLayoutManager(mLayoutManager);
+            recyclerView.setAdapter(mAdapter);
         }
     }
 
@@ -172,18 +159,9 @@ public class EnquiryFragment extends Fragment implements IServiceListener, Dialo
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.d(TAG, "onEvent list item clicked" + position);
+    public void onItemClick(View view, int position) {
         Grievance grievance = null;
-        if ((grievanceListAdapter != null) && (grievanceListAdapter.ismSearching())) {
-            Log.d(TAG, "while searching");
-            int actualindex = grievanceListAdapter.getActualEventPos(position);
-            Log.d(TAG, "actual index" + actualindex);
-            grievance = grievances.get(actualindex);
-        } else {
-            grievance = grievances.get(position);
-        }
-//        PreferenceStorage.saveUserId(this, news.getid());
+        grievance = grievances.get(position);
         Intent intent = new Intent(getActivity(), GrievanceDetailActivity.class);
         intent.putExtra("serviceObj", grievance);
         startActivity(intent);

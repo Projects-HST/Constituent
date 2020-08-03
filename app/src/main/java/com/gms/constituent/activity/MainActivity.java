@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
         setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
+        toolbar.setTitle(getString(R.string.app_title)  + " - " + PreferenceStorage.getName(this));
         setSupportActionBar(toolbar);
 
 
@@ -87,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
 
         changeFragment(1);
         bottomNavigationView.setSelectedItemId(R.id.navigation_home);
-        toolbar.setTitle("GMS - " + PreferenceStorage.getName(this));
     }
 
     @Override
@@ -116,13 +116,12 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
         Fragment newFragment = null;
 
         if (position == 0) {
-            toolbar.setTitle("News");
-            toolbar.setTitle("News");
+            toolbar.setTitle(getString(R.string.menu_news));
             checkPointSearch = 0;
             newFragment = new NewsFragment();
         } else if (position == 1) {
             checkPointSearch = 1;
-            toolbar.setTitle("GMS - Constituent");
+            toolbar.setTitle(getString(R.string.app_title) +" - " +PreferenceStorage.getName(this));
             newFragment = new HomeFragment();
         } else if (position == 2) {
             checkPointSearch = 2;

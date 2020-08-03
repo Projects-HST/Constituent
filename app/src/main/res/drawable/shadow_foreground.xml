@@ -3,7 +3,7 @@
         <layer-list>
             <item>
                 <shape>
-                    <solid android:color="@color/background_grey" />
+                    <solid android:color="@color/trans_grey" />
                 </shape>
             </item>
         </layer-list>
