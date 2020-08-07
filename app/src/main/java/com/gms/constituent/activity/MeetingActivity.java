@@ -146,6 +146,9 @@ public class MeetingActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onItemClick(View view, int position) {
-
+        Meeting meeting = meetings.get(position);
+        Intent i = new Intent (this, MeetingDetailActivity.class);
+        i.putExtra("serviceObj", meeting);
+        startActivity(i);
     }
 }

@@ -84,6 +84,7 @@
             android:drawablePadding="10dp"
             android:textColor="@color/black"
             android:textStyle="bold"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:text=""
             android:textSize="14sp"/>
