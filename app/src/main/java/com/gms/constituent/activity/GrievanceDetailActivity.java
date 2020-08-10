@@ -57,8 +57,7 @@ public class GrievanceDetailActivity extends AppCompatActivity implements View.O
             txtPetitionEnquiry.setText(getString(R.string.petition_num));
         } else {
             txtPetitionEnquiry.setText(getString(R.string.enquiry_num));
-            grievanceDesc.setVisibility(View.GONE);
-            findViewById(R.id.grievance_des_txt).setVisibility(View.GONE);
+            findViewById(R.id.desc_layout).setVisibility(View.GONE);
         }
         petitionEnquiryNo.setText(grievance.getpetition_enquiry_no());
         grievanceName.setText(capitalizeString(grievance.getgrievance_name()));

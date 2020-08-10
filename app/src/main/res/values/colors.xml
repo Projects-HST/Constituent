@@ -6,6 +6,7 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="text_grey">#676767</color>
+    <color name="line_grey">#D9D9D9</color>
     <color name="text_disable">#bababa</color>
     <color name="radio_grey">#69696B</color>
     <color name="bottom_nav_grey">#A8D1F4</color>
