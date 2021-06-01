@@ -230,15 +230,15 @@ public class NumberVerificationActivity extends AppCompatActivity implements Vie
     public void onResponse(JSONObject response) {
         progressDialogHelper.hideProgressDialog();
         if (validateResponse(response)) {
-//            try {
+            try {
                 if (checkVerify.equalsIgnoreCase("Resend")) {
 
                     Toast.makeText(getApplicationContext(), "OTP resent successfully", Toast.LENGTH_SHORT).show();
 
                 } else if (checkVerify.equalsIgnoreCase("Confirm")) {
 
-//                    String userId = response.getString("user_id");
-//                    PreferenceStorage.saveUserId(getApplicationContext(), userId);
+                    String appBaseColor = response.getJSONArray("user_details").getJSONObject(0).getString("base_colour");
+                    PreferenceStorage.saveAppBaseColor(getApplicationContext(), appBaseColor);
                     Intent homeIntent = new Intent(getApplicationContext(), SelectUserActivity.class);
                     homeIntent.putExtra("page", "verify");
                     homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -247,9 +247,9 @@ public class NumberVerificationActivity extends AppCompatActivity implements Vie
                     this.finish();
 
                 }
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 

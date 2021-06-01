@@ -62,9 +62,14 @@
 
 
     <!--Home Page Strings-->
+    <string name="home_title">Home - Dashboard</string>
     <string name="dashboard_grievance">Grievances</string>
     <string name="dashboard_meeting">Meetings</string>
     <string name="dashboard_plant_donation">Plant Donation</string>
+    <string name="hi">Hi</string>
+    <string name="grievance_count">Grievance Count</string>
+    <string name="count" />
+    <string name="meeting_count">Meeting Count</string>
 
 
     <!--Plant Donation Page Strings-->
@@ -117,12 +122,18 @@
     <string name="voterid">Voter ID</string>
     <string name="aadhaar">Aadhaar Number</string>
     <string name="general">General Setting</string>
+    <string name="share">Share app</string>
+
+    <!--Settings Page Strings-->
     <string name="change_user">Change Users</string>
     <string name="about">About us</string>
-    <string name="terms">Terms and condition</string>
-    <string name="share">Share app</string>
-    <string name="sign_out">Sign out</string>
+    <string name="terms"><![CDATA[Terms & Conditions]]></string>
+    <string name="privacy"><![CDATA[Privacy & Security]]></string>
+    <string name="support"><![CDATA[Help & Support]]></string>
+    <string name="sign_out">Logout</string>
     <string name="sign_out_alert">Do you really want to signout?</string>
+    <string name="menu_settings">Settings</string>
+    <string name="account">Account Settings</string>
 
     <!--Constituency Page Strings-->
     <string name="constituency_name">Constituency Name</string>

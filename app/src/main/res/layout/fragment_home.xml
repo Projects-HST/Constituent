@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_grey"
@@ -10,59 +11,88 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/homeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/background_grey" >
+            android:background="@color/background_grey"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/constituent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/hi"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
+                android:layout_marginHorizontal="10dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/dashboard_banner" />
 
+
             <LinearLayout
-                android:id="@+id/grievance_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/shadow_oval"
-                android:elevation="10dp"
-                android:orientation="horizontal">
+                android:elevation="6dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:padding="15dp"
-                    android:src="@drawable/ic_grievance" />
-
-                <TextView
+                <LinearLayout
+                    android:id="@+id/img_grievance"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center"
-                    android:text="@string/dashboard_grievance"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_height="80dp"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/grievance_img_bg"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_grievance" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/img_meet"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_weight="0.5">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/meet_img_bg"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_meeting" />
+
+
+                </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="-40dp"
                 android:orientation="horizontal"
                 android:weightSum="1">
 
                 <LinearLayout
+                    android:id="@+id/grievance_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/meeting_layout"
+                    android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="0.5"
@@ -70,62 +100,94 @@
                     android:elevation="5dp"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="120dp"
-                        android:layout_gravity="center_horizontal"
-                        android:padding="15dp"
-                        android:src="@drawable/ic_meeting" />
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="60dp"
                         android:gravity="center"
-                        android:layout_marginBottom="10dp"
-                        android:text="@string/dashboard_meeting"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:text="@string/grievance_count"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/grievance_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/count"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/black" />
+
+                    <ImageView
+                        android:id="@+id/grievance"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="end"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_next" />
+
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/meeting_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/plant_donation_layout"
-                    android:layout_marginEnd="50dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="0.5"
                     android:background="@drawable/shadow_oval"
                     android:elevation="5dp"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="120dp"
-                        android:padding="15dp"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/ic_plant_donation" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="60dp"
+                        android:gravity="center"
+                        android:text="@string/meeting_count"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/black" />
 
                     <TextView
-                        android:layout_width="120dp"
+                        android:id="@+id/meeting_count"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
                         android:gravity="center"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
-                        android:text="@string/dashboard_plant_donation"
-                        android:layout_marginBottom="10dp"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:text="@string/count"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/black" />
+
+                    <ImageView
+                        android:id="@+id/meeting"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="end"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_next" />
+
 
                 </LinearLayout>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/dashboard_banner" />
+
+
+            </LinearLayout>
+
 
         </LinearLayout>
 

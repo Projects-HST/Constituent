@@ -2,6 +2,7 @@ package com.gms.constituent.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,7 +37,8 @@ import java.util.ArrayList;
 public class GrievanceActivity extends AppCompatActivity implements View.OnClickListener, DialogClickListener{
 
     private static final String TAG = GrievanceActivity.class.getName();
-
+    private int colour = 0;
+    private RelativeLayout toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TabLayout.TabLayoutOnPageChangeListener tabatab;
@@ -45,6 +47,12 @@ public class GrievanceActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grievances);
+
+        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(this));
+
+        toolbar = (RelativeLayout)findViewById(R.id.toolbar_view);
+        toolbar.setBackgroundColor(colour);
+
         findViewById(R.id.img_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,8 +67,10 @@ public class GrievanceActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void initialiseTabs() {
+
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.petition)));
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.enquiry)));
+        tabLayout.setSelectedTabIndicatorColor(colour);
 
         final GrievanceFragmentAdapter adapter = new GrievanceFragmentAdapter
                 (getSupportFragmentManager());

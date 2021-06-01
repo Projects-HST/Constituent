@@ -1,6 +1,7 @@
 package com.gms.constituent.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,7 +34,8 @@ public class PlantDonationActivity extends AppCompatActivity implements View.OnC
 
     private static final String TAG = PlantDonationActivity.class.getName();
 
-
+    private int colour = 0;
+    private RelativeLayout toolbar;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
     private TextView plantName, plantCount, plantedDate;
@@ -41,6 +43,12 @@ public class PlantDonationActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plant_donation);
+
+        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(this));
+
+        toolbar = (RelativeLayout)findViewById(R.id.toolbar_view);
+        toolbar.setBackgroundColor(colour);
+
         findViewById(R.id.img_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

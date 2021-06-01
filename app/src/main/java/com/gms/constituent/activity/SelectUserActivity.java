@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -56,7 +57,6 @@ public class SelectUserActivity extends AppCompatActivity implements View.OnClic
     private static final String TAG = SelectUserActivity.class.getName();
     boolean doubleBackToExitPressedOnce = false;
 
-
     private String whatRes = "";
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
@@ -92,9 +92,9 @@ public class SelectUserActivity extends AppCompatActivity implements View.OnClic
         page = getIntent().getStringExtra("page");
 
         if (page.equalsIgnoreCase("verify")) {
-
+//            colour = Color.parseColor(PreferenceStorage.getAppBaseColor(this));
 //            toolBar = (RelativeLayout) findViewById(R.id.toolbar_view);
-//            toolBar.setVisibility(View.GONE);
+//            toolBar.setBackgroundColor(colour);
             findViewById(R.id.img_back).setVisibility(View.GONE);
             TextView titel = findViewById(R.id.tvtitletext);
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

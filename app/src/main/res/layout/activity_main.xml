@@ -13,6 +13,7 @@
     android:id="@+id/activity_toolbar"
     layout="@layout/tool_bar" />
 
+
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
@@ -33,7 +34,6 @@
         android:elevation="6dp"
         android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary"
-        app:itemBackground="@color/colorPrimary"
         app:itemIconTint="@color/bottom_nav_item_color"
         app:labelVisibilityMode="selected"
         app:itemTextColor="@color/bottom_nav_item_color"

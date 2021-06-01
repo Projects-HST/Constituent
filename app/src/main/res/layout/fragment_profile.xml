@@ -57,7 +57,6 @@
         app:tabIndicatorHeight="45dp"
         android:minHeight="?attr/actionBarSize"
         app:tabSelectedTextColor="@color/white"
-        app:tabIndicatorColor="@color/colorPrimary"
         app:tabTextColor="@color/black" />
 
     <androidx.viewpager.widget.ViewPager

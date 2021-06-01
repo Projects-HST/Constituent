@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2D94EB</color>
+    <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#1C88E2</color>
     <color name="colorAccent">#2D94EB</color>
     <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
+    <color name="black">#1F1F1F</color>
     <color name="text_grey">#676767</color>
     <color name="line_grey">#D9D9D9</color>
+    <color name="grey">#DEDEDE</color>
     <color name="text_disable">#bababa</color>
     <color name="radio_grey">#69696B</color>
-    <color name="bottom_nav_grey">#A8D1F4</color>
+    <color name="bottom_nav_grey">#878787</color>
     <color name="background_grey">#FAFAFA</color>
     <color name="background_grey_trans">#08979696</color>
     <color name="red">#F70A0A</color>
+    <color name="lite_red">#EC1C1C</color>
     <color name="line">#CFCFCF</color>
     <color name="line_cosituency">#D9D9D9</color>
     <color name="vline">#ACAAAA</color>
-
+    <color name="meet_color">#594F84</color>
+    <color name="grievance_color">#43ABC6</color>
     <!-- dots inactive colors -->
     <color name="dot_dark_screen1">#1C88E2</color>
     <color name="dot_dark_screen2">#1C88E2</color>

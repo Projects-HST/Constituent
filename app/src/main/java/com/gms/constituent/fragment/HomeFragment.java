@@ -40,7 +40,8 @@ import java.lang.reflect.Field;
 public class HomeFragment extends Fragment implements IServiceListener, DialogClickListener, View.OnClickListener {
 
     private View rootView;
-    private LinearLayout grievance, meeting, plantDoantion;
+    private TextView constituent;
+    private LinearLayout grievance, meeting, plantDonation;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
     private int ab = 0;
@@ -64,12 +65,14 @@ public class HomeFragment extends Fragment implements IServiceListener, DialogCl
 
         rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
+        constituent = rootView.findViewById(R.id.constituent);
+        constituent.setText(getString(R.string.hi) + " " + PreferenceStorage.getName(getContext()) + ",");
         grievance = rootView.findViewById(R.id.grievance_layout);
         grievance.setOnClickListener(this);
         meeting = rootView.findViewById(R.id.meeting_layout);
         meeting.setOnClickListener(this);
-        plantDoantion = rootView.findViewById(R.id.plant_donation_layout);
-        plantDoantion.setOnClickListener(this);
+//        plantDonation = rootView.findViewById(R.id.plant_donation_layout);
+//        plantDonation.setOnClickListener(this);
 
         return rootView;
     }
@@ -112,11 +115,11 @@ public class HomeFragment extends Fragment implements IServiceListener, DialogCl
 //            intent.putExtra("cat", category);
             startActivity(intent);
         }
-        if (v == plantDoantion) {
-            Intent intent = new Intent(getActivity(), PlantDonationActivity.class);
-//            intent.putExtra("cat", category);
-            startActivity(intent);
-        }
+//        if (v == plantDonation) {
+//            Intent intent = new Intent(getActivity(), PlantDonationActivity.class);
+////            intent.putExtra("cat", category);
+//            startActivity(intent);
+//        }
 
     }
 

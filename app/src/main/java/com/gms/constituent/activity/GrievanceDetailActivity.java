@@ -1,10 +1,12 @@
 package com.gms.constituent.activity;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +23,8 @@ import com.squareup.picasso.Picasso;
 public class GrievanceDetailActivity extends AppCompatActivity implements View.OnClickListener, DialogClickListener {
 
     private static final String TAG = GrievanceDetailActivity.class.getName();
-
+    private int colour = 0;
+    private RelativeLayout toolbar;
     private Grievance grievance;
     private TextView txtConstituency, seekerType, txtPetitionEnquiry, petitionEnquiryNo, grievanceName,
             grievanceSubCat, grievanceDesc, grievanceReference, grievanceStatus;
@@ -30,6 +33,12 @@ public class GrievanceDetailActivity extends AppCompatActivity implements View.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grievance_detail);
+
+        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(this));
+
+        toolbar = (RelativeLayout)findViewById(R.id.toolbar_view);
+        toolbar.setBackgroundColor(colour);
+
         findViewById(R.id.img_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

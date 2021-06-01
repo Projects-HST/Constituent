@@ -1,6 +1,7 @@
 package com.gms.constituent.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,6 +43,7 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
     private int ab = 0;
+    private int colour = 0;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TabLayout.TabLayoutOnPageChangeListener tabatab;
@@ -98,6 +100,9 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
 
 
     private void initialiseTabs() {
+
+        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(getActivity()));
+
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.profile)));
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.constituency)));
 
@@ -105,6 +110,7 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
 
         viewPager.setAdapter(adapter);
         tabatab = new TabLayout.TabLayoutOnPageChangeListener(tabLayout);
+        tabLayout.setSelectedTabIndicatorColor(colour);
         viewPager.addOnPageChangeListener(tabatab);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

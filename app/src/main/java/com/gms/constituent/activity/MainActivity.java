@@ -3,12 +3,15 @@ package com.gms.constituent.activity;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,12 +19,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.gms.constituent.R;
 import com.gms.constituent.fragment.HomeFragment;
 import com.gms.constituent.fragment.NewsFragment;
 import com.gms.constituent.fragment.ProfileFragment;
+import com.gms.constituent.fragment.SettingsFragment;
 import com.gms.constituent.helper.AlertDialogHelper;
 import com.gms.constituent.helper.ProgressDialogHelper;
 import com.gms.constituent.interfaces.DialogClickListener;
@@ -51,9 +56,14 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(this));
+
         toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
-        toolbar.setTitle(getString(R.string.app_title)  + " - " + PreferenceStorage.getName(this));
+//        toolbar.setBackgroundColor(colour);
+        toolbar.setTitle(getString(R.string.home_title));
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.black));
         setSupportActionBar(toolbar);
+
 
 
         serviceHelper = new ServiceHelper(this);
@@ -62,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
         callGetSubCategoryService();
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 //        bottomNavigationView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_SELECTED);
+//        bottomNavigationView.setBackgroundColor(colour);
+//        bottomNavigationView.setItemBackgroundResource(colour);
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -79,6 +91,10 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
                                 break;
                             case R.id.navigation_profile:
                                 changeFragment(2);
+//                                fabView.setVisibility(View.VISIBLE);
+                                break;
+                            case R.id.navigation_settings:
+                                changeFragment(3);
 //                                fabView.setVisibility(View.VISIBLE);
                                 break;
                         }
@@ -121,12 +137,16 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
             newFragment = new NewsFragment();
         } else if (position == 1) {
             checkPointSearch = 1;
-            toolbar.setTitle(getString(R.string.app_title) +" - " +PreferenceStorage.getName(this));
+            toolbar.setTitle(getString(R.string.home_title));
             newFragment = new HomeFragment();
         } else if (position == 2) {
             checkPointSearch = 2;
             toolbar.setTitle(getString(R.string.profile_title));
             newFragment = new ProfileFragment();
+        } else if (position == 3) {
+            checkPointSearch = 3;
+            toolbar.setTitle(getString(R.string.profile_title));
+            newFragment = new SettingsFragment();
         }
 
         getSupportFragmentManager().beginTransaction().replace(

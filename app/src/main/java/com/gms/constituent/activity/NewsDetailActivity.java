@@ -1,11 +1,13 @@
 package com.gms.constituent.activity;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,12 +17,14 @@ import com.gms.constituent.R;
 import com.gms.constituent.bean.support.News;
 import com.gms.constituent.interfaces.DialogClickListener;
 import com.gms.constituent.utils.GMSValidator;
+import com.gms.constituent.utils.PreferenceStorage;
 import com.squareup.picasso.Picasso;
 
 public class NewsDetailActivity extends AppCompatActivity implements View.OnClickListener, DialogClickListener {
 
     private static final String TAG = NewsDetailActivity.class.getName();
-
+    private int colour = 0;
+    private RelativeLayout toolbar;
     private News news;
     private ImageView newsImage;
     private TextView newsName, newsDate, newsDetail;
@@ -29,6 +33,12 @@ public class NewsDetailActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
+
+        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(this));
+
+        toolbar = (RelativeLayout)findViewById(R.id.toolbar_view);
+        toolbar.setBackgroundColor(colour);
+
         findViewById(R.id.img_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

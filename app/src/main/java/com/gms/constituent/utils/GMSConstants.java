@@ -128,6 +128,7 @@ public class GMSConstants {
     public static final String KEY_AADHAAR = "aadhaar_no";
     public static final String KEY_VOTER_ID = "voter_id_no";
     public static final String KEY_DOB = "dob";
+    public static final String KEY_BASE_COLOR = "base_colour";
 
     // Alert Dialog Constants
     public static String ALERT_DIALOG_TITLE = "alertDialogTitle";

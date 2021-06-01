@@ -488,6 +488,22 @@ public class PreferenceStorage {
         return ser;
     }
     /*End*/
+    /*To search*/
+    public static void saveAppBaseColor(Context context, String color) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(GMSConstants.KEY_BASE_COLOR, color);
+        editor.apply();
+    }
 
+    public static String getAppBaseColor(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String ser;
+        ser = sharedPreferences.getString(GMSConstants.KEY_BASE_COLOR, "");
+        return ser;
+    }
+    /*End*/
 
 }
