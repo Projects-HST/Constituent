@@ -43,8 +43,8 @@
     <string name="select_constituency">Select Constituency</string>
     <string name="select_constituency_alert">Please select constituency before proceeding</string>
     <string name="country_code">+91</string>
-    <string name="login_text_one">Enter your phone number</string>
-    <string name="login_text_two">We will send you the 4 digit verification code</string>
+    <string name="login_text_one">Login to your Account</string>
+    <string name="login_text_two">An OTP will be send to your mobile number entered</string>
 
 
     <!--OTP Page Strings-->
@@ -149,7 +149,13 @@
     <!--Terms and Conditions Page Strings-->
     <string name="terms_title">Terms and Conditions</string>
     <string name="terms_content">Terms content yet to be finalised</string>
-
+    <string name="constituency_id">Constituency ID</string>
+    <string name="id_content">Please enter the Constituency Id given to you for login</string>
+    <string name="btn_next">Lets get Started</string>
+    <string name="welcome">Welcome</string>
+    <string name="requested">Requested</string>
+    <string name="complete">Completed</string>
+    <string name="schedule">Scheduled</string>
 
 
 </resources>

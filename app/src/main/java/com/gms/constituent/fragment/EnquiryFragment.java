@@ -88,6 +88,7 @@ public class EnquiryFragment extends Fragment implements IServiceListener, Dialo
         try {
             jsonObject.put(GMSConstants.KEY_USER_ID, PreferenceStorage.getUserId(getActivity()));
             jsonObject.put(GMSConstants.KEY_GRIEVANCE_TYPE, "E");
+            jsonObject.put(GMSConstants.DYNAMIC_DATABASE, PreferenceStorage.getDynamicDb(getActivity()));
 
         } catch (JSONException e) {
             e.printStackTrace();

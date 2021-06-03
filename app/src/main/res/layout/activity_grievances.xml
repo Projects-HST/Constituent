@@ -14,6 +14,7 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
             android:minHeight="60dp" />
 
         <ImageView
@@ -33,8 +34,9 @@
             android:gravity="center_vertical"
             android:minHeight="60dp"
             android:padding="5dp"
+            android:fontFamily="@font/regular"
             android:text="@string/dashboard_grievance"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
     </RelativeLayout>
@@ -47,7 +49,7 @@
         android:background="@color/white"
         android:elevation="6dp"
         android:minHeight="?attr/actionBarSize"
-        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabIndicatorColor="@color/black"
         app:tabTextColor="@color/black" />
 
     <androidx.viewpager.widget.ViewPager

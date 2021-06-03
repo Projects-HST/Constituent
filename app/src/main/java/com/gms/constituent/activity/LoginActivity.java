@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
     private EditText edtNumber, edtReferral;
-    private Button signIn;
+    private TextView signIn;
     private TextView skip;
     private ImageView laang;
     String IMEINo = "";
@@ -132,20 +132,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             imm.hideSoftInputFromWindow(activity.getWindow().getDecorView().getWindowToken(), 0);
         }
     }
-    private void getConstituencyList() {
-        whatRes = "constituency";
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put(GMSConstants.KEY_PARTY_ID, "1");
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = GMSConstants.BUILD_URL + GMSConstants.CONSTITUENCY;
-        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-    }
+//    private void getConstituencyList() {
+//        whatRes = "constituency";
+//        JSONObject jsonObject = new JSONObject();
+//        try {
+//            jsonObject.put(GMSConstants.KEY_PARTY_ID, "1");
+//            jsonObject.put(GMSConstants.DYNAMIC_DATABASE, PreferenceStorage.getDynamicDb(this));
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+//        String url = GMSConstants.BUILD_URL + GMSConstants.CONSTITUENCY;
+//        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+//    }
 
 
     private void sendNumber() {
@@ -153,6 +154,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put(GMSConstants.KEY_MOBILE_NUMBER, edtNumber.getText().toString());
+            jsonObject.put(GMSConstants.DYNAMIC_DATABASE, PreferenceStorage.getDynamicDb(this));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -167,13 +169,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == selectConstituency) {
-            getConstituencyList();
+//            getConstituencyList();
         } else if (v == constituencyCancel) {
             layoutSpinner.removeAllViews();
-            findViewById(R.id.spinner_layout).setVisibility(View.GONE);
+//            findViewById(R.id.spinner_layout).setVisibility(View.GONE);
             selectConstituency.setClickable(true);
         } else if (v == constituencyOK) {
-            sendSelectedConstituency();
+//            sendSelectedConstituency();
         } else if (v == signIn) {
             if (validateFields()) {
                 PreferenceStorage.saveMobileNo(this, edtNumber.getText().toString());
@@ -245,39 +247,41 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onResponse(JSONObject response) {
         progressDialogHelper.hideProgressDialog();
         if (validateResponse(response)) {
-            try {
-                if (whatRes.equalsIgnoreCase("constituency")) {
-                    Gson gson = new Gson();
-                    constituencyList = gson.fromJson(response.toString(), ConstituencyList.class);
-                    if (constituencyList.getConstituencyArrayList() != null && constituencyList.getConstituencyArrayList().size() > 0) {
-                        int totalCount = constituencyList.getCount();
-//                    this.serviceHistoryArrayList.addAll(ongoingServiceList.getserviceArrayList());
-                        boolean isLoadingForFirstTime = false;
-//                        updateListAdapter(serviceHistoryList.getFeedbackArrayList());
-                        constituencyCount = constituencyList.getConstituencyArrayList().size();
-                        loadMembersList(constituencyCount);
-                        findViewById(R.id.spinner_layout).setVisibility(View.VISIBLE);
-                        selectConstituency.setClickable(false);
-                    }
-                } else if (whatRes.equalsIgnoreCase("number")) {
+//            try {
+//                if (whatRes.equalsIgnoreCase("constituency")) {
+//                    Gson gson = new Gson();
+//                    constituencyList = gson.fromJson(response.toString(), ConstituencyList.class);
+//                    if (constituencyList.getConstituencyArrayList() != null && constituencyList.getConstituencyArrayList().size() > 0) {
+//                        int totalCount = constituencyList.getCount();
+////                    this.serviceHistoryArrayList.addAll(ongoingServiceList.getserviceArrayList());
+//                        boolean isLoadingForFirstTime = false;
+////                        updateListAdapter(serviceHistoryList.getFeedbackArrayList());
+//                        constituencyCount = constituencyList.getConstituencyArrayList().size();
+//                        loadMembersList(constituencyCount);
+//                        findViewById(R.id.spinner_layout).setVisibility(View.VISIBLE);
+//                        selectConstituency.setClickable(false);
+//                    }
+//                }
+                if (whatRes.equalsIgnoreCase("number")) {
                     Intent intent = new Intent(this, NumberVerificationActivity.class);
                     startActivity(intent);
-                } else if (whatRes.equalsIgnoreCase("ANS")) {
-                    String constituencyID = response.getJSONArray("data").getJSONObject(0).getString("constituency_id");
-                    String constituencyName = capitalizeString(response.getJSONArray("data").getJSONObject(0).getString("constituency_name"));
-                    String clientURL = response.getJSONArray("data").getJSONObject(0).getString("client_api_url");
-
-                    PreferenceStorage.saveConstituencyID(this, constituencyID);
-                    PreferenceStorage.saveConstituencyName(this, constituencyName);
-                    PreferenceStorage.saveClientUrl(this, clientURL);
-                    contistuencyText.setText(constituencyName);
-                    layoutSpinner.removeAllViews();
-                    findViewById(R.id.spinner_layout).setVisibility(View.GONE);
-                    selectConstituency.setClickable(true);
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+//                } else if (whatRes.equalsIgnoreCase("ANS")) {
+//                    String constituencyID = response.getJSONArray("data").getJSONObject(0).getString("constituency_id");
+//                    String constituencyName = capitalizeString(response.getJSONArray("data").getJSONObject(0).getString("constituency_name"));
+//                    String clientURL = response.getJSONArray("data").getJSONObject(0).getString("client_api_url");
+//
+//                    PreferenceStorage.saveConstituencyID(this, constituencyID);
+//                    PreferenceStorage.saveConstituencyName(this, constituencyName);
+//                    PreferenceStorage.saveClientUrl(this, clientURL);
+//                    contistuencyText.setText(constituencyName);
+//                    layoutSpinner.removeAllViews();
+//                    findViewById(R.id.spinner_layout).setVisibility(View.GONE);
+//                    selectConstituency.setClickable(true);
+//                }
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 
@@ -300,118 +304,119 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return String.valueOf(chars);
     }
 
-    private void loadMembersList(int memberCount) {
-
-        try {
-
-            for (int c1 = 0; c1 < memberCount; c1++) {
-                RadioButton constiRadio = new RadioButton(this);
-                RadioGroup.LayoutParams radioParams = new RadioGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                radioParams.setMargins(20, 10, 10, 10);
-                constiRadio.setLayoutParams(radioParams);
-
-                String consti = capitalizeString(constituencyList.getConstituencyArrayList().get(c1).getconstituency_name());
-                constiRadio.setText(consti);
-                constiRadio.setId(R.id.radio_constituency);
-                constiRadio.setTextSize(18.0f);
-                constiRadio.setElevation(20.0f);
-                constiRadio.setPadding(10, 0, 0, 0);
-                constiRadio.setTextColor(ContextCompat.getColor(this, R.color.black));
-
-//                if(Build.VERSION.SDK_INT>=21)
-//                {
+//    private void loadMembersList(int memberCount) {
 //
-//                    ColorStateList colorStateList = new ColorStateList(
-//                            new int[][]{
-//                                    new int[]{-android.R.attr.state_enabled}, //disabled
-//                                    new int[]{android.R.attr.state_enabled} //enabled
-//                            },
-//                            new int[] {
-//                                    R.color.colorPrimary, //disabled
-//                                    R.color.radio_grey //enabled
-//                            }
-//                    );
+//        try {
+//
+//            for (int c1 = 0; c1 < memberCount; c1++) {
+//                RadioButton constiRadio = new RadioButton(this);
+//                RadioGroup.LayoutParams radioParams = new RadioGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//                radioParams.setMargins(20, 10, 10, 10);
+//                constiRadio.setLayoutParams(radioParams);
+//
+//                String consti = capitalizeString(constituencyList.getConstituencyArrayList().get(c1).getconstituency_name());
+//                constiRadio.setText(consti);
+//                constiRadio.setId(R.id.radio_constituency);
+//                constiRadio.setTextSize(18.0f);
+//                constiRadio.setElevation(20.0f);
+//                constiRadio.setPadding(10, 0, 0, 0);
+//                constiRadio.setTextColor(ContextCompat.getColor(this, R.color.black));
+//
+////                if(Build.VERSION.SDK_INT>=21)
+////                {
+////
+////                    ColorStateList colorStateList = new ColorStateList(
+////                            new int[][]{
+////                                    new int[]{-android.R.attr.state_enabled}, //disabled
+////                                    new int[]{android.R.attr.state_enabled} //enabled
+////                            },
+////                            new int[] {
+////                                    R.color.colorPrimary, //disabled
+////                                    R.color.radio_grey //enabled
+////                            }
+////                    );
+////
+////
+////                    constiRadio.setButtonTintList(colorStateList);//set the color tint list
+////                    constiRadio.invalidate(); //could not be necessary
+////                }
 //
 //
-//                    constiRadio.setButtonTintList(colorStateList);//set the color tint list
-//                    constiRadio.invalidate(); //could not be necessary
+//                final int finalC = c1;
+//
+//                constiRadio.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        if (v == constiRadio) {
+//                            pooos = finalC;
+////                            onRadioButtonClicked();
+//                        }
+//                    }
+//                });
+//                if (c1 == 0) {
+//                    constiRadio.setChecked(true);
+//                    constiRadio.setButtonTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
+//                } else {
+//                    constiRadio.setChecked(false);
+//                    constiRadio.setButtonTintList(ContextCompat.getColorStateList(this, R.color.radio_grey));
 //                }
+//                layoutSpinner.addView(constiRadio);
+//            }
+//            ScrollView.LayoutParams params = null;
+//            if (memberCount < 5) {
+//                int height = memberCount * 100;
+//                params = new ScrollView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
+//
+//            } else {
+//                params = new ScrollView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300);
+//            }
+//            layoutSpinner.setLayoutParams(params);
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//    }
 
+//    public void onRadioButtonClicked() {
+//        for (int position = 0; position < constituencyCount; position++) {
+//            RadioButton rad = layoutSpinner.getChildAt(position).findViewById(R.id.radio_constituency);
+//            if (position == pooos) {
+//                rad.setChecked(true);
+//                rad.setButtonTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
+//
+//            } else {
+//                rad.setChecked(false);
+//                rad.setButtonTintList(ContextCompat.getColorStateList(this, R.color.radio_grey));
+//            }
+//
+//        }
+//    }
 
-                final int finalC = c1;
-
-                constiRadio.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (v == constiRadio) {
-                            pooos = finalC;
-                            onRadioButtonClicked();
-                        }
-                    }
-                });
-                if (c1 == 0) {
-                    constiRadio.setChecked(true);
-                    constiRadio.setButtonTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
-                } else {
-                    constiRadio.setChecked(false);
-                    constiRadio.setButtonTintList(ContextCompat.getColorStateList(this, R.color.radio_grey));
-                }
-                layoutSpinner.addView(constiRadio);
-            }
-            ScrollView.LayoutParams params = null;
-            if (memberCount < 5) {
-                int height = memberCount * 100;
-                params = new ScrollView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
-
-            } else {
-                params = new ScrollView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300);
-            }
-            layoutSpinner.setLayoutParams(params);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public void onRadioButtonClicked() {
-        for (int position = 0; position < constituencyCount; position++) {
-            RadioButton rad = layoutSpinner.getChildAt(position).findViewById(R.id.radio_constituency);
-            if (position == pooos) {
-                rad.setChecked(true);
-                rad.setButtonTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
-
-            } else {
-                rad.setChecked(false);
-                rad.setButtonTintList(ContextCompat.getColorStateList(this, R.color.radio_grey));
-            }
-
-        }
-    }
-
-    private void sendSelectedConstituency() {
-        whatRes = "ANS";
-        int idConsti = 0;
-        for (int position = 0; position < constituencyCount; position++) {
-            RadioButton rad = layoutSpinner.getChildAt(position).findViewById(R.id.radio_constituency);
-            if (rad.isChecked()) {
-                idConsti = position;
-            }
-
-        }
-
-        JSONObject jsonObject = new JSONObject();
-        String id = "";
-        id = constituencyList.getConstituencyArrayList().get(idConsti).getid();
-
-        try {
-            jsonObject.put(GMSConstants.KEY_JUST_ID, id);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-//        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = GMSConstants.BUILD_URL + GMSConstants.SELECTED_CONSTITUENCY;
-        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-    }
+//    private void sendSelectedConstituency() {
+//        whatRes = "ANS";
+//        int idConsti = 0;
+//        for (int position = 0; position < constituencyCount; position++) {
+//            RadioButton rad = layoutSpinner.getChildAt(position).findViewById(R.id.radio_constituency);
+//            if (rad.isChecked()) {
+//                idConsti = position;
+//            }
+//
+//        }
+//
+//        JSONObject jsonObject = new JSONObject();
+//        String id = "";
+//        id = constituencyList.getConstituencyArrayList().get(idConsti).getid();
+//
+//        try {
+//            jsonObject.put(GMSConstants.KEY_JUST_ID, id);
+//            jsonObject.put(GMSConstants.DYNAMIC_DATABASE, PreferenceStorage.getDynamicDb(this));
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+////        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+//        String url = GMSConstants.BUILD_URL + GMSConstants.SELECTED_CONSTITUENCY;
+//        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+//    }
 
 
     private static class OnViewGlobalLayoutListener implements ViewTreeObserver.OnGlobalLayoutListener {

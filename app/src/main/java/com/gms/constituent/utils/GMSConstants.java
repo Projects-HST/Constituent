@@ -23,18 +23,22 @@ public class GMSConstants {
 //    public static final String BUILD_URL = BASE_URL + "uat/apicustomer/";
 //    public static final String BUILD_URL = BASE_URL + "apicustomer/";
 
+    public static final String CLIENT_URL = BASE_URL + "gms/";
+
+
 
     //CONSTITUENCY URL
     public static final String CONSTITUENCY = "list";
 
 
-
     //CONSTITUENCY URL
     public static final String SELECTED_CONSTITUENCY = "details";
 
-
     //LOGIN URL
     public static final String USER_LOGIN = "login/";
+
+    //CONSTITUENCY CODE URL
+    public static final String CHECK_CONSTITUENCY = "apiconstituent/chk_constituency_code";
 
     //GET OTP URL
     public static final String GET_OTP = "apiconstituent/mobile_check";
@@ -101,6 +105,8 @@ public class GMSConstants {
 
     //    USER DATA
 
+    public static final String KEY_CONSTITUENCY_CODE = "constituency_code";
+    public static final String DYNAMIC_DATABASE = "dynamic_db";
     public static final String KEY_USER_ID = "user_id";
     public static final String KEY_SELECT_USER_PAGE = "select_user_page";
     public static final String KEY_CONSTITUENCY_ID = "constituency_id";

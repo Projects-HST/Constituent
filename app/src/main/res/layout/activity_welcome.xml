@@ -34,7 +34,7 @@
         android:textAllCaps="false"
         android:background="@drawable/btn_round_color"
         android:text="@string/welcome_next"
-        android:textColor="@color/white" />
+        android:textColor="@color/text_grey" />
 
     <Button
         android:id="@+id/btn_skip"

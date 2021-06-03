@@ -34,8 +34,9 @@
             android:gravity="center_vertical"
             android:minHeight="60dp"
             android:padding="5dp"
+            android:fontFamily="@font/regular"
             android:text="@string/verification_title"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
     </RelativeLayout>
@@ -56,7 +57,7 @@
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="55dp"
-                android:src="@drawable/ic_verify" />
+                android:src="@drawable/ic_otp" />
 
             <TextView
                 android:id="@+id/code_title"
@@ -131,18 +132,18 @@
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp">
 
-                <Button
+                <TextView
                     android:id="@+id/sendcode"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:paddingStart="40dp"
                     android:paddingEnd="40dp"
-                    android:background="@drawable/btn_round_color"
+                    android:background="@drawable/default_logo"
                     android:text="@string/verify"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/bold" />
 
             </LinearLayout>
 

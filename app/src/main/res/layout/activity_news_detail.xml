@@ -33,8 +33,9 @@
             android:gravity="center_vertical"
             android:minHeight="60dp"
             android:padding="5dp"
+            android:fontFamily="@font/regular"
             android:text="@string/news_detail_title"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
     </RelativeLayout>

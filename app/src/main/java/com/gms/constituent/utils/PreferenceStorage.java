@@ -27,6 +27,22 @@ public class PreferenceStorage {
     }
     /*End*/
 
+    /*To store dynamic database */
+    public static void setDynamicDb(Context context, String dbDynamic) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(GMSConstants.DYNAMIC_DATABASE, dbDynamic);
+        editor.apply();
+    }
+
+    public static String getDynamicDb(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return sharedPreferences.getString(GMSConstants.DYNAMIC_DATABASE, "");
+    }
+    /*End*/
+
     /*To save mobile IMEI number */
     public static void saveIMEI(Context context, String imei) {
         SharedPreferences sharedPreferences = PreferenceManager
@@ -488,7 +504,7 @@ public class PreferenceStorage {
         return ser;
     }
     /*End*/
-    /*To search*/
+    /*To save base color*/
     public static void saveAppBaseColor(Context context, String color) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);

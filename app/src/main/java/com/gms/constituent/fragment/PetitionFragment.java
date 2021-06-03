@@ -97,6 +97,7 @@ public class PetitionFragment extends Fragment implements IServiceListener, Dial
         try {
             jsonObject.put(GMSConstants.KEY_USER_ID, PreferenceStorage.getUserId(getActivity()));
             jsonObject.put(GMSConstants.KEY_GRIEVANCE_TYPE, "P");
+            jsonObject.put(GMSConstants.DYNAMIC_DATABASE, PreferenceStorage.getDynamicDb(getActivity()));
 
         } catch (JSONException e) {
             e.printStackTrace();

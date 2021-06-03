@@ -131,6 +131,7 @@ public class SelectUserActivity extends AppCompatActivity implements View.OnClic
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put(GMSConstants.KEY_MOBILE_NUMBER, PreferenceStorage.getMobileNo(this));
+            jsonObject.put(GMSConstants.DYNAMIC_DATABASE, PreferenceStorage.getDynamicDb(this));
 
         } catch (JSONException e) {
             e.printStackTrace();

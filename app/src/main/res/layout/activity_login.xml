@@ -5,118 +5,173 @@
     android:background="@color/white"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:id="@+id/toolbar_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:minHeight="60dp" />
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:minHeight="60dp"
+            android:padding="20dp"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/tvtitletext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/img_back"
+            android:gravity="center_vertical"
+            android:minHeight="60dp"
+            android:padding="5dp"
+            android:fontFamily="@font/regular"
+            android:text="@string/login_title"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+
+
+    <TextView
+        android:id="@+id/logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:fontFamily="@font/bold"
+        android:background="@drawable/default_logo"
+        android:text="@string/app_title"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:elevation="24dp" />
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical">
 
         <RelativeLayout
+            android:id="@+id/welcome_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/select_constituency"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="50dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginBottom="40dp"
-                android:background="@drawable/shadow_round"
-                android:elevation="10dp">
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:padding="15dp"
-                    android:src="@drawable/ic_location" />
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/select_constituency"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentTop="true"-->
+<!--                android:layout_marginTop="50dp"-->
+<!--                android:layout_marginStart="40dp"-->
+<!--                android:layout_marginEnd="40dp"-->
+<!--                android:layout_marginBottom="40dp"-->
+<!--                android:background="@drawable/shadow_round"-->
+<!--                android:elevation="10dp">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:padding="15dp"-->
+<!--                    android:src="@drawable/ic_location" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/text_constituency"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerInParent="true"-->
+<!--                    android:text="@string/select_constituency"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="18sp" />-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:padding="18dp"-->
+<!--                    android:src="@drawable/ic_dropdown_side" />-->
+
+<!--            </RelativeLayout>-->
 
                 <TextView
-                    android:id="@+id/text_constituency"
+                    android:id="@+id/welcome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="@string/select_constituency"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="50dp"
+                    android:fontFamily="@font/bold"
+                    android:text="@string/welcome"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:padding="18dp"
-                    android:src="@drawable/ic_dropdown_side" />
 
-            </RelativeLayout>
+<!--            <ImageView-->
+<!--                android:id="@+id/login_image"-->
+<!--                android:layout_width="240dp"-->
+<!--                android:layout_height="240dp"-->
+<!--                android:layout_below="@+id/select_constituency"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_marginTop="40dp"-->
+<!--                android:src="@drawable/ic_login_icon" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/select_constituency"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/login_title"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/login_image"
-                android:layout_width="240dp"
-                android:layout_height="240dp"
-                android:layout_below="@+id/select_constituency"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
-                android:src="@drawable/ic_login_icon" />
-
-            <include
-                android:id="@+id/spinner_layout"
-                layout="@layout/select_constituency_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:visibility="gone"
-                android:layout_centerInParent="true" />
+<!--            <include-->
+<!--                android:id="@+id/spinner_layout"-->
+<!--                layout="@layout/select_constituency_spinner"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_margin="20dp"-->
+<!--                android:visibility="gone"-->
+<!--                android:layout_centerInParent="true" />-->
 
             <TextView
                 android:id="@+id/explain_text_one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/regular"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/login_image"
+                android:layout_below="@+id/welcome"
                 android:text="@string/login_text_one"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/explain_text_two"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/explain_text_one"
-                android:layout_marginTop="10dp"
-                android:text="@string/login_text_two"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+<!--            <TextView-->
+<!--                android:id="@+id/explain_text_two"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_below="@+id/explain_text_one"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:text="@string/login_text_two"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="16sp" />-->
 
             <RelativeLayout
                 android:id="@+id/number_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="75dp"
-                android:layout_below="@+id/explain_text_two"
+                android:layout_below="@+id/explain_text_one"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="75dp"
                 android:background="@drawable/shadow_round"
                 android:elevation="10dp">
+
 
                 <ImageView
                     android:layout_width="50dp"
@@ -139,7 +194,7 @@
                     android:layout_width="1dp"
                     android:layout_height="25dp"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/text_number"
+                    android:layout_toEndOf="@id/text_number"
                     android:background="@color/vline" />
 
                 <EditText
@@ -148,7 +203,7 @@
                     android:layout_height="50dp"
                     android:layout_centerInParent="true"
                     android:layout_marginStart="10dp"
-                    android:layout_toRightOf="@id/text_number"
+                    android:layout_toEndOf="@id/text_number"
                     android:background="@null"
                     android:inputType="number"
                     android:maxLength="10"
@@ -159,25 +214,41 @@
 
             </RelativeLayout>
 
-            <Button
+            <TextView
+                android:id="@+id/explain_text_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:fontFamily="@font/regular"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/number_input_layout"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="60dp"
+                android:text="@string/login_text_two"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+
+            <TextView
                 android:id="@+id/btn_login"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="@font/bold"
                 android:layout_marginStart="75dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="75dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/btn_round_color"
+                android:background="@drawable/default_logo"
                 android:elevation="5dp"
-                android:layout_below="@+id/number_input_layout"
+                android:layout_below="@+id/explain_text_two"
                 android:text="@string/login_title"
                 android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:textSize="16sp"
+                android:textColor="@color/black" />
 
         </RelativeLayout>
 
     </ScrollView>
-
 
 </LinearLayout>

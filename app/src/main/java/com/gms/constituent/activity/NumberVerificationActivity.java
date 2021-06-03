@@ -136,6 +136,7 @@ public class NumberVerificationActivity extends AppCompatActivity implements Vie
                                 JSONObject jsonObject = new JSONObject();
                                 try {
                                     jsonObject.put(GMSConstants.KEY_MOBILE_NUMBER, PreferenceStorage.getMobileNo(getApplicationContext()));
+                                    jsonObject.put(GMSConstants.DYNAMIC_DATABASE, PreferenceStorage.getDynamicDb(getApplicationContext()));
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -166,6 +167,7 @@ public class NumberVerificationActivity extends AppCompatActivity implements Vie
                         jsonObject.put(GMSConstants.OTP, otpEditText.getOTP());
                         jsonObject.put(GMSConstants.DEVICE_TOKEN, PreferenceStorage.getGCM(getApplicationContext()));
                         jsonObject.put(GMSConstants.MOBILE_TYPE, "2");
+                        jsonObject.put(GMSConstants.DYNAMIC_DATABASE, PreferenceStorage.getDynamicDb(getApplicationContext()));
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -230,15 +232,15 @@ public class NumberVerificationActivity extends AppCompatActivity implements Vie
     public void onResponse(JSONObject response) {
         progressDialogHelper.hideProgressDialog();
         if (validateResponse(response)) {
-            try {
+//            try {
                 if (checkVerify.equalsIgnoreCase("Resend")) {
 
                     Toast.makeText(getApplicationContext(), "OTP resent successfully", Toast.LENGTH_SHORT).show();
 
                 } else if (checkVerify.equalsIgnoreCase("Confirm")) {
 
-                    String appBaseColor = response.getJSONArray("user_details").getJSONObject(0).getString("base_colour");
-                    PreferenceStorage.saveAppBaseColor(getApplicationContext(), appBaseColor);
+//                    String appBaseColor = response.getJSONArray("user_details").getJSONObject(0).getString("base_colour");
+//                    PreferenceStorage.saveAppBaseColor(getApplicationContext(), appBaseColor);
                     Intent homeIntent = new Intent(getApplicationContext(), SelectUserActivity.class);
                     homeIntent.putExtra("page", "verify");
                     homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -247,9 +249,9 @@ public class NumberVerificationActivity extends AppCompatActivity implements Vie
                     this.finish();
 
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 

@@ -88,6 +88,7 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put(GMSConstants.KEY_USER_ID, PreferenceStorage.getUserId(getActivity()));
+            jsonObject.put(GMSConstants.DYNAMIC_DATABASE, PreferenceStorage.getDynamicDb(getActivity()));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -101,7 +102,7 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
 
     private void initialiseTabs() {
 
-        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(getActivity()));
+//        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(getActivity()));
 
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.profile)));
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.constituency)));

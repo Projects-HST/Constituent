@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -41,7 +42,7 @@ public class HomeFragment extends Fragment implements IServiceListener, DialogCl
 
     private View rootView;
     private TextView constituent;
-    private LinearLayout grievance, meeting, plantDonation;
+    private ImageView grievance, meeting;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
     private int ab = 0;
@@ -67,9 +68,9 @@ public class HomeFragment extends Fragment implements IServiceListener, DialogCl
 
         constituent = rootView.findViewById(R.id.constituent);
         constituent.setText(getString(R.string.hi) + " " + PreferenceStorage.getName(getContext()) + ",");
-        grievance = rootView.findViewById(R.id.grievance_layout);
+        grievance = rootView.findViewById(R.id.grievance);
         grievance.setOnClickListener(this);
-        meeting = rootView.findViewById(R.id.meeting_layout);
+        meeting = rootView.findViewById(R.id.meeting);
         meeting.setOnClickListener(this);
 //        plantDonation = rootView.findViewById(R.id.plant_donation_layout);
 //        plantDonation.setOnClickListener(this);

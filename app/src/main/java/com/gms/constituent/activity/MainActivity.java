@@ -8,9 +8,12 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,11 +38,15 @@ import com.gms.constituent.serviceinterfaces.IServiceListener;
 import com.gms.constituent.utils.CommonUtils;
 import com.gms.constituent.utils.GMSConstants;
 import com.gms.constituent.utils.PreferenceStorage;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import static android.view.View.GONE;
 
 public class MainActivity extends AppCompatActivity implements IServiceListener, DialogClickListener {
 
@@ -48,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
     int checkPointSearch = 0;
     boolean doubleBackToExitPressedOnce = false;
 
+    private View notificationBadge;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
 
@@ -64,12 +72,17 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.black));
         setSupportActionBar(toolbar);
 
-
-
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
         callGetSubCategoryService();
+
+//        BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
+//        BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(0); //set this to 0, 1, 2, or 3.. accordingly which menu item of the bottom bar you want to show badge
+//        notificationBadge = LayoutInflater.from(MainActivity.this).inflate(R.layout.bottom_menu_indicator, menuView, false);
+//        itemView.addView(notificationBadge);
+//        notificationBadge.setVisibility(GONE);
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 //        bottomNavigationView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_SELECTED);
 //        bottomNavigationView.setBackgroundColor(colour);
@@ -80,31 +93,45 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
 
-                            case R.id.navigation_news:
+                            case R.id.navigation_home:
                                 changeFragment(0);
-//                                fabView.setVisibility(View.VISIBLE);
+//                                notificationBadge.setVisibility(View.VISIBLE);
                                 break;
 
-                            case R.id.navigation_home:
+                            case R.id.navigation_news:
                                 changeFragment(1);
-//                                fabView.setVisibility(View.VISIBLE);
+//                                notificationBadge.setVisibility(View.VISIBLE);
                                 break;
                             case R.id.navigation_profile:
                                 changeFragment(2);
-//                                fabView.setVisibility(View.VISIBLE);
+//                                notificationBadge.setVisibility(View.VISIBLE);
                                 break;
                             case R.id.navigation_settings:
                                 changeFragment(3);
-//                                fabView.setVisibility(View.VISIBLE);
+//                                notificationBadge.setVisibility(View.VISIBLE);
                                 break;
                         }
                         return true;
                     }
                 });
 
-        changeFragment(1);
+        changeFragment(0);
         bottomNavigationView.setSelectedItemId(R.id.navigation_home);
+//        addBadgeView();
     }
+
+//    private void addBadgeView() {
+//        try {
+//            BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
+//            BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(0); //set this to 0, 1, 2, or 3.. accordingly which menu item of the bottom bar you want to show badge
+//            notificationBadge = LayoutInflater.from(MainActivity.this).inflate(R.layout.bottom_menu_indicator, menuView, false);
+//            itemView.addView(notificationBadge);
+//            notificationBadge.setVisibility(GONE);// initially badge will be invisible
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public void onBackPressed() {
@@ -132,13 +159,13 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
         Fragment newFragment = null;
 
         if (position == 0) {
-            toolbar.setTitle(getString(R.string.menu_news));
+            toolbar.setTitle(getString(R.string.home_title));
             checkPointSearch = 0;
-            newFragment = new NewsFragment();
+            newFragment = new HomeFragment();
         } else if (position == 1) {
             checkPointSearch = 1;
-            toolbar.setTitle(getString(R.string.home_title));
-            newFragment = new HomeFragment();
+            toolbar.setTitle(getString(R.string.menu_news));
+            newFragment = new NewsFragment();
         } else if (position == 2) {
             checkPointSearch = 2;
             toolbar.setTitle(getString(R.string.profile_title));
@@ -178,6 +205,7 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
         String id = "";
         try {
             jsonObject.put(GMSConstants.KEY_APP_VERSION, GMSConstants.KEY_APP_VERSION_VALUE);
+//            jsonObject.put(GMSConstants.DYNAMIC_DATABASE, PreferenceStorage.getDynamicDb(this));
 
         } catch (JSONException e) {
             e.printStackTrace();

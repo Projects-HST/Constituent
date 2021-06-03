@@ -69,6 +69,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put(GMSConstants.KEY_USER_ID, PreferenceStorage.getUserId(this));
+            jsonObject.put(GMSConstants.DYNAMIC_DATABASE, PreferenceStorage.getDynamicDb(this));
 //            jsonObject.put(GMSConstants.KEY_USER_ID, "1");
 
         } catch (JSONException e) {
