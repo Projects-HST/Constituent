@@ -45,7 +45,7 @@ public class NumberVerificationActivity extends AppCompatActivity implements Vie
 
     private CustomOtpEditText otpEditText;
     private TextView tvResendOTP, tvCountDown;
-    private Button btnConfirm;
+    private TextView btnConfirm;
     private Button btnChangeNumber;
     private String mobileNo;
     private String checkVerify;
@@ -69,7 +69,7 @@ public class NumberVerificationActivity extends AppCompatActivity implements Vie
         tvResendOTP = (TextView) findViewById(R.id.resend);
         tvResendOTP.setOnClickListener(this);
         tvCountDown = findViewById(R.id.contentresend);
-        btnConfirm = (Button) findViewById(R.id.sendcode);
+        btnConfirm = (TextView) findViewById(R.id.sendcode);
         btnConfirm.setOnClickListener(this);
 //        btnChangeNumber = (Button) findViewById(R.id.changenumber);
 //        btnChangeNumber.setOnClickListener(this);
@@ -143,7 +143,7 @@ public class NumberVerificationActivity extends AppCompatActivity implements Vie
                                 }
 
                                 progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                                String url = PreferenceStorage.getClientUrl(getApplicationContext()) + GMSConstants.GET_OTP;
+                                String url = GMSConstants.BUILD_URL + GMSConstants.GET_OTP;
                                 serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
                             }
                         });
@@ -174,7 +174,7 @@ public class NumberVerificationActivity extends AppCompatActivity implements Vie
                     }
 
                     progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                    String url = PreferenceStorage.getClientUrl(getApplicationContext()) + GMSConstants.MOBILE_VERIFY;
+                    String url = GMSConstants.BUILD_URL + GMSConstants.MOBILE_VERIFY;
                     serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
                 } else {
                     AlertDialogHelper.showSimpleAlertDialog(this, "Invalid OTP");
@@ -232,15 +232,15 @@ public class NumberVerificationActivity extends AppCompatActivity implements Vie
     public void onResponse(JSONObject response) {
         progressDialogHelper.hideProgressDialog();
         if (validateResponse(response)) {
-//            try {
+            try {
                 if (checkVerify.equalsIgnoreCase("Resend")) {
 
                     Toast.makeText(getApplicationContext(), "OTP resent successfully", Toast.LENGTH_SHORT).show();
 
                 } else if (checkVerify.equalsIgnoreCase("Confirm")) {
 
-//                    String appBaseColor = response.getJSONArray("user_details").getJSONObject(0).getString("base_colour");
-//                    PreferenceStorage.saveAppBaseColor(getApplicationContext(), appBaseColor);
+                    String appBaseColor = response.getJSONArray("user_details").getJSONObject(0).getString("base_colour");
+                    PreferenceStorage.saveAppBaseColor(getApplicationContext(), appBaseColor);
                     Intent homeIntent = new Intent(getApplicationContext(), SelectUserActivity.class);
                     homeIntent.putExtra("page", "verify");
                     homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -249,9 +249,9 @@ public class NumberVerificationActivity extends AppCompatActivity implements Vie
                     this.finish();
 
                 }
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 

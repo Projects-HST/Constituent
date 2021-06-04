@@ -158,7 +158,7 @@ public class NewsFragment extends Fragment implements IServiceListener, DialogCl
         }
 
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = PreferenceStorage.getClientUrl(getActivity()) + GMSConstants.GET_NEWS;
+        String url = GMSConstants.BUILD_URL + GMSConstants.GET_NEWS;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 

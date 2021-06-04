@@ -47,7 +47,7 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TabLayout.TabLayoutOnPageChangeListener tabatab;
-    private TextView userName, txtSerialNo;
+    private TextView userName, selectedConstituency;
     private ImageView profilePic;
 
     public static ProfileFragment newInstance(int position) {
@@ -74,7 +74,7 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
         progressDialogHelper = new ProgressDialogHelper(getActivity());
 
         userName = (TextView) rootView.findViewById(R.id.user_name);
-        txtSerialNo = (TextView) rootView.findViewById(R.id.serial_number);
+        selectedConstituency = (TextView) rootView.findViewById(R.id.text_constituency);
         profilePic = (ImageView) rootView.findViewById(R.id.profile_img);
         tabLayout = (TabLayout) rootView.findViewById(R.id.tab_layout);
         viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
@@ -95,23 +95,23 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
         }
 
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = PreferenceStorage.getClientUrl(getActivity()) + GMSConstants.GET_USER_DETAILS;
+        String url = GMSConstants.BUILD_URL + GMSConstants.GET_USER_DETAILS;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
 
     private void initialiseTabs() {
 
-//        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(getActivity()));
+        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(getActivity()));
 
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.profile)));
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.constituency)));
+        tabLayout.setSelectedTabIndicatorColor(colour);
 
         final ProfileFragmentAdapter adapter = new ProfileFragmentAdapter(getChildFragmentManager());
 
         viewPager.setAdapter(adapter);
         tabatab = new TabLayout.TabLayoutOnPageChangeListener(tabLayout);
-        tabLayout.setSelectedTabIndicatorColor(colour);
         viewPager.addOnPageChangeListener(tabatab);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -254,7 +254,7 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
                 }
 
                 userName.setText(name);
-                txtSerialNo.setText("Serial No - " +serialNo);
+                selectedConstituency.setText(PreferenceStorage.getConstituencyName(getActivity()));
 
                 initialiseTabs();
 

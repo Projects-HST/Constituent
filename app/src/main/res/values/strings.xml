@@ -25,9 +25,9 @@
     <string name="title_notifications">Notifications</string>
 
     <!--Welcome Strings-->
-    <string name="welcome_next">Next</string>
+    <string name="welcome_gms">Grievance Management System</string>
     <string name="welcome_start">Get Started</string>
-    <string name="welcome_skip">Skip</string>
+    <string name="gms_content">Resolve constituents complaints and Stay in touch with your local representative</string>
 
     <string name="slide_1_title">Grievance</string>
     <string name="slide_1_desc">Resolve constituent\'s complaints</string>

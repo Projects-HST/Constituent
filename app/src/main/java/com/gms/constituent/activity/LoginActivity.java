@@ -58,12 +58,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private TextView skip;
     private ImageView laang;
     String IMEINo = "";
-    private RelativeLayout selectConstituency;
+//    private RelativeLayout selectConstituency;
     private String whatRes = "";
     private ConstituencyList constituencyList;
     private LinearLayout layoutSpinner;
     private String feebackAns = "";
-    private int pooos, constituencyCount;
+    private int pos, constituencyCount;
     private TextView constituencyCancel, constituencyOK, contistuencyText;
 
     @Override
@@ -79,25 +79,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         signIn = findViewById(R.id.btn_login);
         signIn.setOnClickListener(this);
 
-        contistuencyText = (TextView) findViewById(R.id.text_constituency);
-        selectConstituency = (RelativeLayout) findViewById(R.id.select_constituency);
-        selectConstituency.setOnClickListener(this);
+//        contistuencyText = (TextView) findViewById(R.id.text_constituency);
+//        selectConstituency = (RelativeLayout) findViewById(R.id.select_constituency);
+//        selectConstituency.setOnClickListener(this);
 
-        constituencyCancel = (TextView) findViewById(R.id.selection_cancel);
-        constituencyOK = (TextView) findViewById(R.id.selection_done);
-        constituencyCancel.setOnClickListener(this);
-        constituencyOK.setOnClickListener(this);
+//        constituencyCancel = (TextView) findViewById(R.id.selection_cancel);
+//        constituencyOK = (TextView) findViewById(R.id.selection_done);
+//        constituencyCancel.setOnClickListener(this);
+//        constituencyOK.setOnClickListener(this);
 
-        layoutSpinner = (LinearLayout) findViewById(R.id.list_view);
-        layoutSpinner.setOnTouchListener(new View.OnTouchListener() {
-            // Setting on Touch Listener for handling the touch inside ScrollView
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // Disallow the touch request for parent scroll on touch of child view
-                v.getParent().requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
+//        layoutSpinner = (LinearLayout) findViewById(R.id.list_view);
+//        layoutSpinner.setOnTouchListener(new View.OnTouchListener() {
+//            // Setting on Touch Listener for handling the touch inside ScrollView
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                // Disallow the touch request for parent scroll on touch of child view
+//                v.getParent().requestDisallowInterceptTouchEvent(true);
+//                return false;
+//            }
+//        });
 
         FirstTimePreference prefFirstTime = new FirstTimePreference(getApplicationContext());
 
@@ -161,22 +161,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = PreferenceStorage.getClientUrl(this) + GMSConstants.GET_OTP;
+        String url = GMSConstants.BUILD_URL + GMSConstants.GET_OTP;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
 
     @Override
     public void onClick(View v) {
-        if (v == selectConstituency) {
-//            getConstituencyList();
-        } else if (v == constituencyCancel) {
-            layoutSpinner.removeAllViews();
-//            findViewById(R.id.spinner_layout).setVisibility(View.GONE);
-            selectConstituency.setClickable(true);
-        } else if (v == constituencyOK) {
-//            sendSelectedConstituency();
-        } else if (v == signIn) {
+//        if (v == selectConstituency) {
+////            getConstituencyList();
+//        } else if (v == constituencyCancel) {
+//            layoutSpinner.removeAllViews();
+////            findViewById(R.id.spinner_layout).setVisibility(View.GONE);
+//            selectConstituency.setClickable(true);
+//        }
+//        else if (v == constituencyOK) {
+////            sendSelectedConstituency();
+//        }
+        if (v == signIn) {
             if (validateFields()) {
                 PreferenceStorage.saveMobileNo(this, edtNumber.getText().toString());
                 sendNumber();
@@ -195,10 +197,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             requestFocus(edtNumber);
             return false;
         }
-        if (contistuencyText.getText().toString().equalsIgnoreCase(getString(R.string.select_constituency))) {
-            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.select_constituency_alert));
-            return false;
-        } else {
+//        if (contistuencyText.getText().toString().equalsIgnoreCase(getString(R.string.select_constituency))) {
+//            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.select_constituency_alert));
+//            return false;
+//        }
+        else {
             return true;
         }
     }

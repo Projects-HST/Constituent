@@ -37,7 +37,7 @@ import java.util.ArrayList;
 public class GrievanceActivity extends AppCompatActivity implements View.OnClickListener, DialogClickListener{
 
     private static final String TAG = GrievanceActivity.class.getName();
-//    private int colour = 0;
+    private int colour;
     private RelativeLayout toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -48,7 +48,7 @@ public class GrievanceActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grievances);
 
-//        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(this));
+        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(this));
 
         toolbar = (RelativeLayout)findViewById(R.id.toolbar_view);
 //        toolbar.setBackgroundColor(colour);
@@ -70,7 +70,7 @@ public class GrievanceActivity extends AppCompatActivity implements View.OnClick
 
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.petition)));
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.enquiry)));
-//        tabLayout.setSelectedTabIndicatorColor(colour);
+        tabLayout.setSelectedTabIndicatorColor(colour);
 
         final GrievanceFragmentAdapter adapter = new GrievanceFragmentAdapter
                 (getSupportFragmentManager());

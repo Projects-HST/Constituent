@@ -19,12 +19,9 @@ public class GMSConstants {
     public static final String JOINT_URL = "";
 //
 //    //BUILD URL
-    public static final String BUILD_URL = BASE_URL + JOINT_URL + "superadmingms/api/";
+    public static final String BUILD_URL = BASE_URL + JOINT_URL + "gms/";
 //    public static final String BUILD_URL = BASE_URL + "uat/apicustomer/";
 //    public static final String BUILD_URL = BASE_URL + "apicustomer/";
-
-    public static final String CLIENT_URL = BASE_URL + "gms/";
-
 
 
     //CONSTITUENCY URL

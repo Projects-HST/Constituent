@@ -95,7 +95,7 @@ public class EnquiryFragment extends Fragment implements IServiceListener, Dialo
         }
 
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = PreferenceStorage.getClientUrl(getActivity()) + GMSConstants.GET_GRIEVANCES;
+        String url = GMSConstants.BUILD_URL + GMSConstants.GET_GRIEVANCES;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 

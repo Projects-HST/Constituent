@@ -54,10 +54,10 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
     Toolbar toolbar;
     int checkPointSearch = 0;
     boolean doubleBackToExitPressedOnce = false;
-
     private View notificationBadge;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
+    int colour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
         }
 
 //        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = PreferenceStorage.getClientUrl(this) + GMSConstants.CHECK_VERSION;
+        String url = GMSConstants.BUILD_URL + GMSConstants.CHECK_VERSION;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 

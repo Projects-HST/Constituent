@@ -62,7 +62,7 @@ public class SplashScreenActivity extends Activity {
                         finish();
                     }
                     else if (getStatus != 0) {
-                        Intent i = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                        Intent i = new Intent(SplashScreenActivity.this, ConstituencyIdActivity.class);
                         startActivity(i);
                         finish();
                     } else {

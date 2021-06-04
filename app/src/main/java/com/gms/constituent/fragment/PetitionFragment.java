@@ -104,7 +104,7 @@ public class PetitionFragment extends Fragment implements IServiceListener, Dial
         }
 
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = PreferenceStorage.getClientUrl(getActivity()) + GMSConstants.GET_GRIEVANCES;
+        String url = GMSConstants.BUILD_URL + GMSConstants.GET_GRIEVANCES;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 

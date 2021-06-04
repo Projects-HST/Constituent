@@ -77,7 +77,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
         }
 
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = PreferenceStorage.getClientUrl(this) + GMSConstants.GET_NOTIFICATIONS;
+        String url = GMSConstants.BUILD_URL + GMSConstants.GET_NOTIFICATIONS;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 

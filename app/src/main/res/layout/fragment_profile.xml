@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/white"
-    android:layout_height="match_parent">
-    
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        
+
         <com.gms.constituent.customview.CircleImageView
+            android:id="@+id/profile_img"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="20dp"
-            android:id="@+id/profile_img"
-            android:src="@drawable/ic_profile"/>
+            android:src="@drawable/ic_profile" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -28,23 +28,36 @@
                 android:id="@+id/user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/bold"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/location_img"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/user_name"
+                android:padding="5dp"
+                android:src="@drawable/ic_location" />
 
             <TextView
-                android:id="@+id/serial_number"
+                android:id="@+id/text_constituency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
-                android:layout_marginTop="10dp"
-                android:textSize="14sp"
-                android:textColor="@color/black"/>
+                android:layout_below="@id/user_name"
+                android:layout_toEndOf="@id/location_img"
+                android:layout_alignTop="@id/location_img"
+                android:layout_alignBottom="@id/location_img"
+                android:gravity="center|start"
+                android:fontFamily="@font/regular"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
 
-        </LinearLayout>
-        
-        
+        </RelativeLayout>
+
+
     </LinearLayout>
 
     <com.google.android.material.tabs.TabLayout
@@ -53,11 +66,9 @@
         android:layout_height="45dp"
         android:layout_gravity="center"
         android:background="@color/white"
-        android:elevation="6dp"
-        app:tabIndicatorHeight="45dp"
         android:minHeight="?attr/actionBarSize"
-        app:tabSelectedTextColor="@color/white"
-        app:tabTextColor="@color/black" />
+        app:tabSelectedTextColor="@color/black"
+        app:tabTextColor="@color/text_grey" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"

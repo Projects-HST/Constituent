@@ -138,7 +138,7 @@ public class SelectUserActivity extends AppCompatActivity implements View.OnClic
         }
 
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = PreferenceStorage.getClientUrl(this) + GMSConstants.GET_USER_LIST;
+        String url = GMSConstants.BUILD_URL + GMSConstants.GET_USER_LIST;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 

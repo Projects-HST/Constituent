@@ -51,7 +51,7 @@ public class ConstituencyIdActivity extends AppCompatActivity implements IServic
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        String url = GMSConstants.CLIENT_URL + GMSConstants.CHECK_CONSTITUENCY;
+        String url = GMSConstants.BUILD_URL + GMSConstants.CHECK_CONSTITUENCY;
         serviceHelper.makeGetServiceCall(jsonObject.toString(),url);
     }
 
@@ -85,8 +85,10 @@ public class ConstituencyIdActivity extends AppCompatActivity implements IServic
         if (validateResponse(response)){
 
             try {
+                String constituencyName = response.getJSONArray("userData").getJSONObject(0).getString("constituency_name");
                 String dynamicDB = response.getJSONObject("dynamic_db").getString("dynamic_db");
 
+                PreferenceStorage.saveConstituencyName(getApplicationContext(), constituencyName);
                 PreferenceStorage.setDynamicDb(getApplicationContext(), dynamicDB);
                 startActivity(new Intent(this, LoginActivity.class));
                 finish();
