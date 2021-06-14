@@ -44,13 +44,15 @@
         <item>@color/dot_light_screen3</item>
     </array>
 
-    <color name="requested">#FDA644</color>
-    <color name="completed_meeting">#70AD47</color>
+    <color name="requested">#F8C22D</color>
+    <color name="scheduled">#FF7400</color>
+    <color name="completed_meeting">#43BF57</color>
     <color name="completed_grievance">#36D66B</color>
     <color name="seeker">#F2255D</color>
-    <color name="trans_grey">#1EA4A4A4</color>
+    <color name="trans_grey">#FCFCFC</color>R
     <color name="line_interaction">#ACAAAA</color>
     <color name="fore">#3ED3D2D2</color>
+    <color name="dark_bg">#303030</color>
 
 
 </resources>

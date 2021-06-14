@@ -27,7 +27,7 @@ public class MeetingDetailActivity extends AppCompatActivity implements View.OnC
     private RelativeLayout toolbar;
     private Meeting meeting;
     private ImageView newsImage;
-    private TextView meetingTitle, meetingDetail, meetingDate, meetingStatus;
+    private TextView meetingTitle, meetingDetail, requestDate, meetingDate, meetingStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,21 +50,26 @@ public class MeetingDetailActivity extends AppCompatActivity implements View.OnC
 
         meetingTitle = (TextView) findViewById(R.id.meeting_title);
         meetingDetail = (TextView) findViewById(R.id.meeting_details);
-        meetingDate = (TextView) findViewById(R.id.meeting_date);
-        meetingStatus = (TextView) findViewById(R.id.meeting_status);
-
+        requestDate = (TextView) findViewById(R.id.created_on);
+        meetingStatus = (TextView) findViewById(R.id.meet_status);
+        meetingDate = (TextView) findViewById(R.id.schedule_date);
 
         meetingTitle.setText(capitalizeString(meeting.getmeeting_title()));
         meetingDetail.setText(capitalizeString(meeting.getmeeting_detail()));
-        meetingDate.setText(meeting.getmeeting_date());
+        requestDate.setText(meeting.getcreated_at());
+        meetingDate.setText(("Meeting Date" + " : " + meeting.getmeeting_date()));
         meetingStatus.setText(capitalizeString(meeting.getmeeting_status()));
-        if (meeting.getmeeting_status().equalsIgnoreCase("COMPLETED")) {
-            meetingStatus.setTextColor(ContextCompat.getColor(this, R.color.completed_meeting));
+        if (meeting.getmeeting_status().equalsIgnoreCase("REQUESTED")) {
+            meetingStatus.setBackgroundColor(ContextCompat.getColor(this, R.color.requested));
         } else {
-            meetingStatus.setTextColor(ContextCompat.getColor(this, R.color.requested));
+            if (meeting.getmeeting_status().equalsIgnoreCase("SCHEDULED")) {
+                meetingStatus.setBackgroundColor(ContextCompat.getColor(this, R.color.scheduled));
+            } else {
+                if (meeting.getmeeting_status().equalsIgnoreCase("COMPLETED")) {
+                    meetingStatus.setBackgroundColor(ContextCompat.getColor(this, R.color.completed_meeting));
+                }
+            }
         }
-
-
     }
 
     public static String capitalizeString(String string) {

@@ -89,7 +89,7 @@
     <string name="no_grievance">No grievance found</string>
     <string name="seeker_type">Seeker Type</string>
     <string name="description">Description</string>
-    <string name="reference">Reference Note</string>
+    <string name="reference">Reference Number</string>
     <string name="petition">Petition</string>
     <string name="enquiry">Enquiry</string>
     <string name="petition_num">Petition Number</string>
@@ -156,6 +156,12 @@
     <string name="requested">Requested</string>
     <string name="complete">Completed</string>
     <string name="schedule">Scheduled</string>
+    <string name="req_date">Requested on</string>
+    <string name="meet_date">Meeting Date</string>
+    <string name="created">Created by</string>
+    <string name="user">Super Admin</string>
+    <string name="created_on">Created On</string>
+    <string name="updated_on">Updated On</string>
 
 
 </resources>

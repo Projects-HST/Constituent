@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
-public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.MyViewHolder> implements Filterable {
+public class TestMeetingListAdapter extends RecyclerView.Adapter<TestMeetingListAdapter.MyViewHolder> implements Filterable {
 
     private ArrayList<Meeting> meetingArrayList;
     private ArrayList<Meeting> og;
@@ -73,23 +73,33 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView txtMeetingTitle, txtConstituencyName, txtMeetingDate, txtScheduleDate;
-//        private ImageView meetingImage, meetingDateImage;
-        private LinearLayout meetingListLayout, scheduledLayout;
-        private FrameLayout request, schedule;
+        public TextView txtReqMeetTitle, txtReqConstName, txtReqMeetDate, txtSchMeetTitle, txtSchConstName,
+                txtSchMeetDate, txtSchDate,  txtComMeetTitle, txtComConstName, txtComMeetDate, txtComDate;
+        private LinearLayout requestLayout, scheduledLayout, completeLayout;
+        private FrameLayout requestFrame, scheduleFrame, completeFrame;
 
         public MyViewHolder(View view) {
             super(view);
-            meetingListLayout = (LinearLayout) view.findViewById(R.id.req_layout);
-            scheduledLayout = (LinearLayout) view.findViewById(R.id.sch_layout);
-            request = (FrameLayout) view.findViewById(R.id.meeting_lay_click);
-            request.setOnClickListener(this);
-            txtMeetingTitle = (TextView) view.findViewById(R.id.meeting_title);
-            txtConstituencyName = (TextView) view.findViewById(R.id.constituency_name);
-            txtMeetingDate = (TextView) view.findViewById(R.id.req_meeting_date);
-            txtScheduleDate = (TextView) view.findViewById(R.id.schedule_date);
-//            meetingImage = (ImageView) view.findViewById(R.id.meeting_img);
-//            meetingDateImage = (ImageView) view.findViewById(R.id.meeting_date_img);
+            requestLayout = (LinearLayout) view.findViewById(R.id.request_layout);
+            scheduledLayout = (LinearLayout) view.findViewById(R.id.schedule_layout);
+            completeLayout = (LinearLayout) view.findViewById(R.id.completed_layout);
+            requestFrame = (FrameLayout) view.findViewById(R.id.meeting_req_click);
+            scheduleFrame = (FrameLayout) view.findViewById(R.id.meeting_sch_click);
+            completeFrame = (FrameLayout) view.findViewById(R.id.meeting_com_click);
+            requestFrame.setOnClickListener(this);
+            scheduleFrame.setOnClickListener(this);
+            completeFrame.setOnClickListener(this);
+            txtReqMeetTitle = (TextView) view.findViewById(R.id.req_meeting_title);
+            txtReqConstName = (TextView) view.findViewById(R.id.req_constituency_name);
+            txtReqMeetDate = (TextView) view.findViewById(R.id.req_meeting_date);
+            txtSchMeetTitle = (TextView) view.findViewById(R.id.sch_meeting_title);
+            txtSchConstName = (TextView) view.findViewById(R.id.sch_constituency_name);
+            txtSchMeetDate = (TextView) view.findViewById(R.id.sch_meeting_date);
+            txtSchDate = (TextView) view.findViewById(R.id.sch_date);
+//            txtComMeetTitle = (TextView) view.findViewById(R.id.com_meeting_title);
+//            txtComConstName = (TextView) view.findViewById(R.id.com_constituency_name);
+//            txtComMeetDate = (TextView) view.findViewById(R.id.com_meeting_date);
+//            txtComDate = (TextView) view.findViewById(R.id.com_date);
         }
 
         @Override
@@ -102,9 +112,7 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
 //            }
         }
     }
-
-
-    public MeetingListAdapter(ArrayList<Meeting> meetingArrayList, Context mCtx, OnItemClickListener onItemClickListener) {
+    public TestMeetingListAdapter(ArrayList<Meeting> meetingArrayList, Context mCtx, OnItemClickListener onItemClickListener) {
         Collections.reverse(meetingArrayList);
         this.meetingArrayList = meetingArrayList;
         this.meetingArrayListFiltered = meetingArrayList;
@@ -119,33 +127,44 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
 
 
     @Override
-    public MeetingListAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TestMeetingListAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_meeting, parent, false);
+                .inflate(R.layout.test_list_meeting_item, parent, false);
 
 //        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(context));
 
-        return new MeetingListAdapter.MyViewHolder(itemView);
+        return new TestMeetingListAdapter.MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(MeetingListAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(TestMeetingListAdapter.MyViewHolder holder, int position) {
         Meeting meeting = meetingArrayList.get(position);
-//        holder.scheduledLayout.setVisibility(View.GONE);
         if (meeting.getmeeting_status().equalsIgnoreCase("REQUESTED")) {
+            holder.requestLayout.setVisibility(View.VISIBLE);
             holder.scheduledLayout.setVisibility(View.GONE);
-            holder.txtMeetingTitle.setText(capitalizeString(meeting.getmeeting_title()));
-            holder.txtConstituencyName.setText(capitalizeString(PreferenceStorage.getConstituencyName(context) + " ( " + "Paguthi" + " )"));
-            holder.txtMeetingDate.setText(("Requested On" + " : " + meeting.getcreated_at()));
+//            holder.completeLayout.setVisibility(View.GONE);
+            holder.txtReqMeetTitle.setText(capitalizeString(meeting.getmeeting_title()));
+            holder.txtReqConstName.setText(capitalizeString(PreferenceStorage.getConstituencyName(context) + " ( " + "Paguthi" + " )"));
+            holder.txtReqMeetDate.setText(("Requested On" + " : " + meeting.getcreated_at()));
         }
-        else {
+        else{
+            holder.requestLayout.setVisibility(View.GONE);
             holder.scheduledLayout.setVisibility(View.VISIBLE);
-            holder.txtMeetingTitle.setText(capitalizeString(meeting.getmeeting_title()));
-            holder.txtConstituencyName.setText(capitalizeString(PreferenceStorage.getConstituencyName(context) + " ( " + "Paguthi" + " )"));
-            holder.txtMeetingDate.setText(("Requested On" + " : " + meeting.getcreated_at()));
-            holder.txtScheduleDate.setText(("Meeting Date" + " : " + meeting.getmeeting_date()));
+//            holder.completeLayout.setVisibility(View.GONE);
+            holder.txtSchMeetTitle.setText(capitalizeString(meeting.getmeeting_title()));
+            holder.txtSchConstName.setText(capitalizeString(PreferenceStorage.getConstituencyName(context) + " ( " + "Paguthi" + " )"));
+            holder.txtSchMeetDate.setText(("Requested On" + " : " + meeting.getcreated_at()));
+            holder.txtSchDate.setText(("Meeting Date" + " : " + meeting.getmeeting_date()));
         }
-
+//        if (meeting.getmeeting_status().equalsIgnoreCase("COMPLETED")){
+//            holder.requestLayout.setVisibility(View.GONE);
+//            holder.scheduledLayout.setVisibility(View.GONE);
+//            holder.completeLayout.setVisibility(View.VISIBLE);
+//            holder.txtComMeetTitle.setText(capitalizeString(meeting.getmeeting_title()));
+//            holder.txtComConstName.setText(capitalizeString(PreferenceStorage.getConstituencyName(context) + " ( " + "Paguthi" + " )"));
+//            holder.txtComMeetDate.setText(("Requested On" + " : " + meeting.getcreated_at()));
+//            holder.txtComDate.setText(("Meeting Date" + " : " + meeting.getmeeting_date()));
+//        }
 
         if (position != 0) {
             if (checkdatapos(position)) {

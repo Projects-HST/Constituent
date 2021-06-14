@@ -8,7 +8,7 @@ public class GMSConstants {
 
     //URL'S
     //BASE URL
-    private static final String BASE_URL = "https://happysanz.in/";
+    public static final String BASE_URL = "https://happysanz.in/";
 
     //Development Mode
     //development
@@ -102,8 +102,6 @@ public class GMSConstants {
 
     //    USER DATA
 
-    public static final String KEY_CONSTITUENCY_CODE = "constituency_code";
-    public static final String DYNAMIC_DATABASE = "dynamic_db";
     public static final String KEY_USER_ID = "user_id";
     public static final String KEY_SELECT_USER_PAGE = "select_user_page";
     public static final String KEY_CONSTITUENCY_ID = "constituency_id";
@@ -141,6 +139,8 @@ public class GMSConstants {
     public static String ALERT_DIALOG_NEG_BUTTON = "alert_dialog_neg_button";
 
     // Login Parameters
+    public static final String KEY_CONSTITUENCY_CODE = "constituency_code";
+    public static final String DYNAMIC_DATABASE = "dynamic_db";
     public static String PHONE_NUMBER = "phone_no";
     public static String REFERRAL_CODE = "referral_code";
     public static String OTP = "otp";

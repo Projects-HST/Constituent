@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+import androidx.core.text.HtmlCompat;
 
 import com.gms.constituent.R;
 import com.gms.constituent.bean.support.News;
@@ -81,12 +82,14 @@ public class NewsListAdapter extends BaseAdapter {
 
             holder = new NewsListAdapter.ViewHolder();
             holder.txtNewsTitle = (TextView) convertView.findViewById(R.id.txt_news_name);
+            holder.txtNewsDetails = (TextView) convertView.findViewById(R.id.txt_news);
             holder.txtDaysAgo = (TextView) convertView.findViewById(R.id.txt_news_date);
             holder.newsImage = (ImageView) convertView.findViewById(R.id.img_logo);
             convertView.setTag(holder);
         } else {
             holder = (NewsListAdapter.ViewHolder) convertView.getTag();
             holder.txtNewsTitle = (TextView) convertView.findViewById(R.id.txt_news_name);
+            holder.txtNewsDetails = (TextView) convertView.findViewById(R.id.txt_news);
             holder.txtDaysAgo = (TextView) convertView.findViewById(R.id.txt_news_date);
             holder.newsImage = (ImageView) convertView.findViewById(R.id.img_logo);
 
@@ -94,6 +97,9 @@ public class NewsListAdapter extends BaseAdapter {
         holder.txtNewsTitle.setText(capitalizeString(news.get(position).gettitle()));
         holder.txtNewsTitle.setEllipsize(TextUtils.TruncateAt.END);
 
+        holder.txtNewsDetails.setText(HtmlCompat.fromHtml(news.get(position).getdetails(),
+                HtmlCompat.FROM_HTML_MODE_LEGACY));
+//        holder.txtNewsDetails.setEllipsize(TextUtils.TruncateAt.END);
         holder.txtDaysAgo.setText(news.get(position).getnews_date());
         if (GMSValidator.checkNullString(news.get(position).getimage_file_name())) {
             Picasso.get().load(news.get(position).getimage_file_name()).into(holder.newsImage);
@@ -138,7 +144,7 @@ public class NewsListAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        public TextView txtNewsTitle, txtDaysAgo;
+        public TextView txtNewsTitle, txtNewsDetails, txtDaysAgo;
         private ImageView newsImage;
     }
 

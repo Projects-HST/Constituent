@@ -13,6 +13,7 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:minHeight="60dp" />
 
         <ImageView
@@ -42,29 +43,34 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/trans_grey">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/shadow_round"
+            android:layout_margin="20dp"
+            android:elevation="5dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_margin="10dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/ic_meeting_active" />
+                    android:padding="8dp"
+                    android:src="@drawable/ic_meeting_color" />
 
                 <TextView
                     android:id="@+id/meeting_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/bold"
                     android:maxLines="1"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -76,51 +82,91 @@
                 android:id="@+id/meeting_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
+                android:fontFamily="@font/regular"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@color/text_grey" />
+                android:background="@color/line_grey" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-                <TextView
-                    android:id="@+id/meeting_date"
+
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="0.5"
-                    android:drawableLeft="@drawable/ic_clock"
-                    android:drawablePadding="20dp"
-                    android:text="DDMMYYYY"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.65"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/meeting_status"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:drawableStart="@drawable/ic_date_active"
+                        android:drawablePadding="5dp"
+                        android:gravity="start"
+                        android:text="@string/req_date"
+                        android:fontFamily="@font/bold"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/created_on"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/medium"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="0.5"
-                    android:drawablePadding="20dp"
-                    android:text=""
-                    android:textSize="16sp" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.35"
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:drawableStart="@drawable/ic_meeting_user"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/bold"
+                        android:text="@string/created"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/user_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/user"
+                        android:fontFamily="@font/medium"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -128,10 +174,43 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@color/text_grey" />
+                android:layout_marginBottom="10dp"
+                android:background="@color/line_grey" />
 
+            <TextView
+                android:id="@+id/schedule_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/bold"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:orientation="vertical">-->
+
+                <TextView
+                    android:id="@+id/meet_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/bold"
+                    android:padding="5dp"
+                    android:background="@drawable/shadow_round"
+                    android:text="@string/meet_date"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+<!--            </LinearLayout>-->
 
         </LinearLayout>
 

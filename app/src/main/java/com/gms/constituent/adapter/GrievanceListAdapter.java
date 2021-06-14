@@ -40,7 +40,7 @@ public class GrievanceListAdapter extends RecyclerView.Adapter<GrievanceListAdap
             txtPetitionEnquiryNo = (TextView) view.findViewById(R.id.petition_enquiry_number);
             txtUser = (TextView) view.findViewById(R.id.full_name);
             txtdate = (TextView) view.findViewById(R.id.grievance_date);
-            txtSeekerType = (TextView) view.findViewById(R.id.seeker_type);
+//            txtSeekerType = (TextView) view.findViewById(R.id.seeker_type);
             txtGrievanceName = (TextView) view.findViewById(R.id.grievance_name);
             txtGrievanceSubCategory = (TextView) view.findViewById(R.id.grievance_sub_category);
             txtGrievanceStatus = (TextView) view.findViewById(R.id.grievance_status);
@@ -86,12 +86,12 @@ public class GrievanceListAdapter extends RecyclerView.Adapter<GrievanceListAdap
             holder.txtPetitionEnquiryNo.setText("Enquiry Number - " + Grievance.getpetition_enquiry_no());
         }
 
-        holder.txtSeekerType.setText(capitalizeString(Grievance.getseeker_info()));
+//        holder.txtSeekerType.setText(capitalizeString(Grievance.getseeker_info()));
         holder.txtdate.setText(Grievance.getgrievance_date());
         holder.txtUser.setText(PreferenceStorage.getName(holder.txtUser.getContext()));
         holder.txtGrievanceName.setText(capitalizeString(Grievance.getgrievance_name()));
         holder.txtGrievanceStatus.setText(capitalizeString(Grievance.getstatus()));
-        holder.txtGrievanceSubCategory.setText(capitalizeString(Grievance.getSub_category_name()));
+        holder.txtGrievanceSubCategory.setText(capitalizeString(Grievance.getdescription()));
 
         if (Grievance.getstatus().equalsIgnoreCase("COMPLETED")) {
             holder.txtGrievanceStatus.setBackground(ContextCompat.getDrawable(holder.txtGrievanceStatus.getContext(), R.drawable.btn_round_completed));

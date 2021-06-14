@@ -23,7 +23,7 @@ import com.squareup.picasso.Picasso;
 public class NewsDetailActivity extends AppCompatActivity implements View.OnClickListener, DialogClickListener {
 
     private static final String TAG = NewsDetailActivity.class.getName();
-    private int colour = 0;
+//    private int colour = 0;
     private RelativeLayout toolbar;
     private News news;
     private ImageView newsImage;
@@ -34,10 +34,10 @@ public class NewsDetailActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
 
-        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(this));
+//        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(this));
 
         toolbar = (RelativeLayout)findViewById(R.id.toolbar_view);
-        toolbar.setBackgroundColor(colour);
+//        toolbar.setBackgroundColor(colour);
 
         findViewById(R.id.img_back).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -92,7 +92,6 @@ public class SelectUserActivity extends AppCompatActivity implements View.OnClic
         page = getIntent().getStringExtra("page");
 
         if (page.equalsIgnoreCase("verify")) {
-//            colour = Color.parseColor(PreferenceStorage.getAppBaseColor(this));
 //            toolBar = (RelativeLayout) findViewById(R.id.toolbar_view);
 //            toolBar.setBackgroundColor(colour);
             findViewById(R.id.img_back).setVisibility(View.GONE);
@@ -189,7 +188,7 @@ public class SelectUserActivity extends AppCompatActivity implements View.OnClic
             userList = gson.fromJson(response.toString(), UserList.class);
             loadMembersList(userList.getUserArrayList().size());
 //            if (userList.getUserArrayList() != null && userList.getUserArrayList().size() > 0) {
-////                    this.ongoingServiceArrayList.addAll(ongoingServiceList.getserviceArrayList());
+//                    this.ongoingServiceArrayList.addAll(ongoingServiceList.getserviceArrayList());
 //                updateListAdapter(userList.getUserArrayList());
 //            } else {
 //                if (usersArray != null) {
