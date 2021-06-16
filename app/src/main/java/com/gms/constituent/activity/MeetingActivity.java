@@ -23,7 +23,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.gms.constituent.R;
 import com.gms.constituent.adapter.GrievanceFragmentAdapter;
 import com.gms.constituent.adapter.MeetingListAdapter;
-import com.gms.constituent.adapter.TestMeetingListAdapter;
 import com.gms.constituent.adapter.UserListAdapter;
 import com.gms.constituent.bean.support.Meeting;
 import com.gms.constituent.bean.support.MeetingList;
@@ -47,7 +46,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MeetingActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener, DialogClickListener, TestMeetingListAdapter.OnItemClickListener {
+public class MeetingActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener, DialogClickListener, MeetingListAdapter.OnItemClickListener {
 
     private static final String TAG = MeetingActivity.class.getName();
 
@@ -60,7 +59,7 @@ public class MeetingActivity extends AppCompatActivity implements View.OnClickLi
     private ArrayList<Meeting> meetings = new ArrayList<>();
     private ArrayList<Meeting> meetingStatus = new ArrayList<>();
     private MeetingList meetingList;
-    private TestMeetingListAdapter meetingListAdapter;
+    private MeetingListAdapter meetingListAdapter;
     private RelativeLayout toolBar;
     private LinearLayout meetingLayout;
     private RecyclerView recyclerView;
@@ -102,6 +101,7 @@ public class MeetingActivity extends AppCompatActivity implements View.OnClickLi
         recyclerView = findViewById(R.id.recycler_view);
 
         request.setOnClickListener(this);
+        request.setEnabled(true);
         schedule.setOnClickListener(this);
         complete.setOnClickListener(this);
 
@@ -109,6 +109,7 @@ public class MeetingActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void getMeetingList() {
+
         JSONObject jsonObject = new JSONObject();
         String id = PreferenceStorage.getUserId(this);
         try {
@@ -131,18 +132,22 @@ public class MeetingActivity extends AppCompatActivity implements View.OnClickLi
             request.setBackground(ContextCompat.getDrawable(this, R.drawable.shadow_round));
             schedule.setBackground(null);
             complete.setBackground(null);
+            meetingStatus.clear();
             request("REQUESTED");
+//            getMeetingList();
         }
         if (v == schedule) {
             request.setBackground(null);
             schedule.setBackground(ContextCompat.getDrawable(this, R.drawable.shadow_round));
             complete.setBackground(null);
+            meetingStatus.clear();
             request("SCHEDULED");
         }
         if (v == complete) {
             complete.setBackground(ContextCompat.getDrawable(this, R.drawable.shadow_round));
             request.setBackground(null);
             schedule.setBackground(null);
+            meetingStatus.clear();
             request("COMPLETED");
         }
     }
@@ -189,7 +194,8 @@ public class MeetingActivity extends AppCompatActivity implements View.OnClickLi
             meetingList = gson.fromJson(response.toString(), MeetingList.class);
 //            ArrayList<Meeting> meetingArrayList = new ArrayList<>();
 //            if (meetingList.getMeetingArrayList() != null && meetingList.getMeetingArrayList().size() > 0) {
-                request(meetingList.getMeetingArrayList().get(pos).getmeeting_status());
+//                request(meetingList.getMeetingArrayList().get(pos).getmeeting_status());
+            request("REQUESTED");
 //                meetingArrayList.addAll(meetingList.getMeetingArrayList());
 //            }
 //            meetingListAdapter = new TestMeetingListAdapter(meetingArrayList, getApplicationContext(), this);
@@ -217,19 +223,15 @@ public class MeetingActivity extends AppCompatActivity implements View.OnClickLi
 
         if (meetingList.getMeetingArrayList() != null && meetingList.getMeetingArrayList().size() > 0) {
             for (int position = 0; position < meetingList.getMeetingArrayList().size(); position++) {
-                if (meetingList.getMeetingArrayList().get(pos).getmeeting_status().equalsIgnoreCase(status)) {
-                    meetingList.getMeetingArrayList().get(position).setmeeting_status(status);
-//                    meetingListAdapter = new TestMeetingListAdapter(meetingStatus, getApplicationContext(),this);
+                if (meetingList.getMeetingArrayList().get(position).getmeeting_status().equalsIgnoreCase(status)) {
+                    meetingStatus.add(meetingList.getMeetingArrayList().get(position));
                 }
-                meetingStatus.addAll(meetingList.getMeetingArrayList());
             }
-            meetingListAdapter = new TestMeetingListAdapter(meetingStatus, getApplicationContext(), this);
+            meetingListAdapter = new MeetingListAdapter(meetingStatus, getApplicationContext(), this);
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setAdapter(meetingListAdapter);
-            meetingListAdapter.notifyItemChanged(pos);
             meetingListAdapter.notifyDataSetChanged();
-
         }
     }
 }

@@ -1,5 +1,4 @@
 <resources>
-
     <declare-styleable name="OtpEditText">
         <attr name="android:inputType" />
         <attr name="android:textColor" />
