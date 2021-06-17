@@ -85,11 +85,11 @@ public class ProfileInfoFragment extends Fragment implements DialogClickListener
         pincode = (TextView) rootView.findViewById(R.id.pincode);
         voterIdNo = (TextView) rootView.findViewById(R.id.voter_id);
         aadhaarNo = (TextView) rootView.findViewById(R.id.aadhaar);
-        changeUser = (TextView) rootView.findViewById(R.id.change_user);
-        aboutUs = (TextView) rootView.findViewById(R.id.about_us);
-        terms = (TextView) rootView.findViewById(R.id.terms);
-        shareApp = (TextView) rootView.findViewById(R.id.share_app);
-        signout = (TextView) rootView.findViewById(R.id.sign_out);
+//        changeUser = (TextView) rootView.findViewById(R.id.change_user);
+//        aboutUs = (TextView) rootView.findViewById(R.id.about_us);
+//        terms = (TextView) rootView.findViewById(R.id.terms);
+//        shareApp = (TextView) rootView.findViewById(R.id.share_app);
+//        signout = (TextView) rootView.findViewById(R.id.sign_out);
 
         fatherHusbandName.setText(PreferenceStorage.getfatherORhusband(getActivity()));
         emailId.setText(PreferenceStorage.getEmail(getActivity()));
@@ -103,11 +103,11 @@ public class ProfileInfoFragment extends Fragment implements DialogClickListener
         voterIdNo.setText(PreferenceStorage.getVoterId(getActivity()));
         aadhaarNo.setText(PreferenceStorage.getAadhaarNo(getActivity()));
 
-        changeUser.setOnClickListener(this);
-        aboutUs.setOnClickListener(this);
-        terms.setOnClickListener(this);
-        shareApp.setOnClickListener(this);
-        signout.setOnClickListener(this);
+//        changeUser.setOnClickListener(this);
+//        aboutUs.setOnClickListener(this);
+//        terms.setOnClickListener(this);
+//        shareApp.setOnClickListener(this);
+//        signout.setOnClickListener(this);
 
 
         return rootView;
@@ -115,47 +115,47 @@ public class ProfileInfoFragment extends Fragment implements DialogClickListener
 
     @Override
     public void onClick(View v) {
-        if (v == changeUser) {
-            Intent homeIntent = new Intent(getActivity(), SelectUserActivity.class);
-            homeIntent.putExtra("page", "profile");
-            startActivity(homeIntent);
-        }if (v == aboutUs) {
-            Intent homeIntent = new Intent(getActivity(), AboutUsActivity.class);
-            startActivity(homeIntent);
-        }if (v == terms) {
-            Intent homeIntent = new Intent(getActivity(), TermsAndConditions.class);
-            startActivity(homeIntent);
-        }if (v == shareApp) {
-            Intent i = new Intent(android.content.Intent.ACTION_SEND);
-            i.setType("text/plain");
-            i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Share");
-            i.putExtra(android.content.Intent.EXTRA_TEXT, "App url after upload in playstore");
-            startActivity(Intent.createChooser(i, "Share via"));
-        }if (v == signout) {
-            android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(getActivity());
-            alertDialogBuilder.setTitle(getString(R.string.sign_out));
-            alertDialogBuilder.setMessage(getString(R.string.sign_out_alert));
-            alertDialogBuilder.setPositiveButton(R.string.alert_button_yes, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface arg0, int arg1) {
-                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                    sharedPreferences.edit().clear().apply();
-//        TwitterUtil.getInstance().resetTwitterRequestToken();
-
-
-                    Intent homeIntent = new Intent(getActivity(), SplashScreenActivity.class);
-                    homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(homeIntent);
-                }
-            });
-            alertDialogBuilder.setNegativeButton(R.string.alert_button_no, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
-            alertDialogBuilder.show();
-        }
+//        if (v == changeUser) {
+//            Intent homeIntent = new Intent(getActivity(), SelectUserActivity.class);
+//            homeIntent.putExtra("page", "profile");
+//            startActivity(homeIntent);
+//        }if (v == aboutUs) {
+//            Intent homeIntent = new Intent(getActivity(), AboutUsActivity.class);
+//            startActivity(homeIntent);
+//        }if (v == terms) {
+//            Intent homeIntent = new Intent(getActivity(), TermsAndConditions.class);
+//            startActivity(homeIntent);
+//        }if (v == shareApp) {
+//            Intent i = new Intent(android.content.Intent.ACTION_SEND);
+//            i.setType("text/plain");
+//            i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Share");
+//            i.putExtra(android.content.Intent.EXTRA_TEXT, "App url after upload in playstore");
+//            startActivity(Intent.createChooser(i, "Share via"));
+//        }if (v == signout) {
+//            android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(getActivity());
+//            alertDialogBuilder.setTitle(getString(R.string.sign_out));
+//            alertDialogBuilder.setMessage(getString(R.string.sign_out_alert));
+//            alertDialogBuilder.setPositiveButton(R.string.alert_button_yes, new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface arg0, int arg1) {
+//                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+//                    sharedPreferences.edit().clear().apply();
+//            TwitterUtil.getInstance().resetTwitterRequestToken();
+//
+//
+//                    Intent homeIntent = new Intent(getActivity(), SplashScreenActivity.class);
+//                    homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                    startActivity(homeIntent);
+//                }
+//            });
+//            alertDialogBuilder.setNegativeButton(R.string.alert_button_no, new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    dialog.dismiss();
+//                }
+//            });
+//            alertDialogBuilder.show();
+//        }
     }
 
 

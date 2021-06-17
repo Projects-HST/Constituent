@@ -25,21 +25,24 @@
             android:layout_below="@id/accountSettings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:layout_margin="10dp">
 
             <ImageView
                 android:id="@+id/imgView_1"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_centerVertical="true"
                 android:src="@drawable/ic_change_user" />
 
             <TextView
                 android:id="@+id/changeUser"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_toEndOf="@id/imgView_1"
+                android:layout_centerVertical="true"
                 android:text="@string/change_user"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
@@ -52,7 +55,8 @@
                 android:layout_alignTop="@id/imgView_1"
                 android:layout_alignBottom="@id/imgView_1"
                 android:layout_alignParentEnd="true"
-                android:padding="4dp"
+                android:layout_centerVertical="true"
+                android:padding="5dp"
                 android:src="@drawable/ic_next_arrow_settings" />
 
             <View
@@ -110,7 +114,7 @@
                 android:layout_alignTop="@id/imgView_2"
                 android:layout_alignBottom="@id/imgView_2"
                 android:layout_alignParentEnd="true"
-                android:padding="4dp"
+                android:padding="5dp"
                 android:src="@drawable/ic_next_arrow_settings" />
 
             <View
@@ -119,6 +123,7 @@
                 android:layout_height="0.1dp"
                 android:layout_below="@id/imgView_2"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:background="@color/grey" />
 
             <ImageView
@@ -150,7 +155,7 @@
                 android:layout_alignTop="@id/imgView_3"
                 android:layout_alignBottom="@id/imgView_3"
                 android:layout_alignParentEnd="true"
-                android:padding="4dp"
+                android:padding="5dp"
                 android:src="@drawable/ic_next_arrow_settings" />
 
             <View
@@ -159,6 +164,7 @@
                 android:layout_height="0.1dp"
                 android:layout_below="@id/terms"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:background="@color/grey" />
 
 
@@ -191,7 +197,7 @@
                 android:layout_alignTop="@id/imgView_4"
                 android:layout_alignBottom="@id/imgView_4"
                 android:layout_alignParentEnd="true"
-                android:padding="4dp"
+                android:padding="5dp"
                 android:src="@drawable/ic_next_arrow_settings" />
 
             <View
@@ -200,6 +206,7 @@
                 android:layout_height="0.1dp"
                 android:layout_below="@id/imgView_4"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:background="@color/grey" />
 
             <ImageView
@@ -231,7 +238,7 @@
                 android:layout_alignTop="@id/imgView_5"
                 android:layout_alignBottom="@id/imgView_5"
                 android:layout_alignParentEnd="true"
-                android:padding="4dp"
+                android:padding="5dp"
                 android:src="@drawable/ic_next_arrow_settings" />
 
             <View
@@ -240,15 +247,16 @@
                 android:layout_height="0.1dp"
                 android:layout_below="@id/imgView_5"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:background="@color/grey" />
 
-            <ImageView
-                android:id="@+id/imgView_6"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_below="@id/div_5"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/ic_logout" />
+<!--            <ImageView-->
+<!--                android:id="@+id/imgView_6"-->
+<!--                android:layout_width="20dp"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:layout_below="@id/div_5"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:src="@drawable/ic_logout" />-->
 
 
             <TextView
@@ -256,14 +264,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/div_5"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
-                android:layout_toEndOf="@id/imgView_6"
+                android:paddingVertical="10dp"
+                android:drawableStart="@drawable/ic_logout"
+                android:drawablePadding="5dp"
                 android:gravity="center"
+                android:fontFamily="@font/medium"
                 android:text="@string/sign_out"
                 android:textAllCaps="false"
                 android:textColor="@color/lite_red"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
 
 
         </RelativeLayout>

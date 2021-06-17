@@ -49,7 +49,8 @@
 
     <!--OTP Page Strings-->
     <string name="verification_title">Verification Code</string>
-    <string name="verification_heading">Enter the Verification code</string>
+    <string name="verification_heading">Verification Code</string>
+    <string name="verification_line">We have sent you a 4 digit code to your phone number Please enter the verification code</string>
     <string name="not_received">Didn\'t receive OTP?</string>
     <string name="verify">Verify &amp; Continue</string>
     <string name="resend">Resend</string>

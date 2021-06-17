@@ -269,8 +269,8 @@ public class NumberVerificationActivity extends AppCompatActivity implements Vie
                 int seconds = (int) (millisUntilFinished / 1000);
                 int minutes = seconds / 60;
                 seconds = seconds % 60;
-                tvCountDown.setText("Resend in " + String.format("%02d", minutes)
-                        + ":" + String.format("%02d", seconds) + " seconds");
+                tvCountDown.setText(("Request new code in " + String.format("%02d", minutes)
+                        + ":" + String.format("%02d", seconds) + " seconds"));
             }
 
             public void onFinish() {
