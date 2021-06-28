@@ -167,7 +167,7 @@ public class NewsFragment extends Fragment implements IServiceListener, DialogCl
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put(GMSConstants.KEY_USER_ID, PreferenceStorage.getUserId(getActivity()));
-//            jsonObject.put(GMSConstants.DYNAMIC_DATABASE, PreferenceStorage.getDynamicDb(getActivity()));
+            jsonObject.put(GMSConstants.DYNAMIC_DATABASE, PreferenceStorage.getDynamicDb(getActivity()));
 
         } catch (JSONException e) {
             e.printStackTrace();

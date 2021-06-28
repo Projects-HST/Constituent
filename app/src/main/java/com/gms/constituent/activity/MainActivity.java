@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
     private View notificationBadge;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
-    int colour;
+    int index;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
 //        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(this));
 
         toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
-//        toolbar.setBackgroundColor(colour);
         toolbar.setTitle(getString(R.string.home_title));
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.black));
         setSupportActionBar(toolbar);
@@ -77,16 +76,7 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
         progressDialogHelper = new ProgressDialogHelper(this);
         callGetSubCategoryService();
 
-//        BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
-//        BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(0); //set this to 0, 1, 2, or 3.. accordingly which menu item of the bottom bar you want to show badge
-//        notificationBadge = LayoutInflater.from(MainActivity.this).inflate(R.layout.bottom_menu_indicator, menuView, false);
-//        itemView.addView(notificationBadge);
-//        notificationBadge.setVisibility(GONE);
-
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-//        bottomNavigationView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_SELECTED);
-//        bottomNavigationView.setBackgroundColor(colour);
-//        bottomNavigationView.setItemBackgroundResource(colour);
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -97,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
                                 changeFragment(0);
 //                                notificationBadge.setVisibility(View.VISIBLE);
                                 break;
-
                             case R.id.navigation_news:
                                 changeFragment(1);
 //                                notificationBadge.setVisibility(View.VISIBLE);
@@ -121,16 +110,17 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
     }
 
 //    private void addBadgeView() {
-//        try {
+//            removeBadge(bottomNavigationView, 0);
 //            BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
 //            BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(0); //set this to 0, 1, 2, or 3.. accordingly which menu item of the bottom bar you want to show badge
 //            notificationBadge = LayoutInflater.from(MainActivity.this).inflate(R.layout.bottom_menu_indicator, menuView, false);
 //            itemView.addView(notificationBadge);
-//            notificationBadge.setVisibility(GONE);// initially badge will be invisible
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+//    }
+//    public void removeBadge(BottomNavigationView navigationView, int index) {
+//        BottomNavigationMenuView bottomNavigationMenuView = (BottomNavigationMenuView) navigationView.getChildAt(0);
+//        View v = bottomNavigationMenuView.getChildAt(index);
+//        BottomNavigationItemView itemView = (BottomNavigationItemView) v;
+//        itemView.removeViewAt(itemView.getChildCount() - 1);
 //    }
 
     @Override
@@ -232,8 +222,7 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
                         try {
                             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
                             finish();
-                        }
-                        catch (android.content.ActivityNotFoundException anfe) {
+                        } catch (android.content.ActivityNotFoundException anfe) {
                             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
                         }
                     }

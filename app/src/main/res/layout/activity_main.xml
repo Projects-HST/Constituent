@@ -37,6 +37,7 @@
         app:itemIconTint="@color/bottom_nav_item_color"
         app:labelVisibilityMode="selected"
         app:itemTextColor="@color/bottom_nav_item_color"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/bottom_nav_menu"
+        app:itemBackground="@drawable/bottom_nav_indicator"/>
 
 </RelativeLayout>
