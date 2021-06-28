@@ -26,19 +26,37 @@
             android:weightSum="1"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/petition_enquiry_number"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:gravity="start|center"
                 android:layout_marginStart="10dp"
-                android:fontFamily="@font/regular"
-                android:drawableStart="@drawable/ic_petition"
-                android:drawablePadding="5dp"
-                android:text=""
-                android:textColor="@color/dark_bg"
-                android:textSize="14sp" />
+                android:layout_weight="0.3">
+
+                <TextView
+                    android:id="@+id/petition_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_petition"
+                    android:drawablePadding="5dp"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/medium" />
+
+                <TextView
+                    android:id="@+id/enquiry_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_enquiry"
+                    android:drawablePadding="5dp"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/medium"
+                    android:visibility="gone"/>
+
+
+            </RelativeLayout>
 
 <!--            <TextView-->
 <!--                android:id="@+id/seeker_type"-->

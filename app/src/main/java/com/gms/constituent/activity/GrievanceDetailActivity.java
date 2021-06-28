@@ -26,7 +26,7 @@ public class GrievanceDetailActivity extends AppCompatActivity implements View.O
     private int colour = 0;
     private RelativeLayout toolbar;
     private Grievance grievance;
-    private TextView txtConstituency, seekerType, txtPetitionEnquiry, petitionEnquiryNo, grievanceName,
+    private TextView txtConstituency, seekerType, txtPetition, txtEnquiry, petitionEnquiryNo, grievanceName,
             grievanceSubCat, grievanceDesc, grievanceReference, grievanceStatus;
 
     @Override
@@ -34,10 +34,7 @@ public class GrievanceDetailActivity extends AppCompatActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grievance_detail);
 
-//        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(this));
-
         toolbar = (RelativeLayout)findViewById(R.id.toolbar_view);
-//        toolbar.setBackgroundColor(colour);
 
         findViewById(R.id.img_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +47,8 @@ public class GrievanceDetailActivity extends AppCompatActivity implements View.O
 
         txtConstituency = (TextView) findViewById(R.id.text_constituency);
         seekerType = (TextView) findViewById(R.id.seeker_type);
-        txtPetitionEnquiry = (TextView) findViewById(R.id.txt_petition_enquiry);
+        txtPetition = (TextView) findViewById(R.id.txt_petition);
+        txtEnquiry = (TextView) findViewById(R.id.txt_enquiry);
         petitionEnquiryNo = (TextView) findViewById(R.id.petition_enquiry_number);
         grievanceName = (TextView) findViewById(R.id.grievance_name);
         grievanceSubCat = (TextView) findViewById(R.id.grievance_sub_category);
@@ -58,15 +56,16 @@ public class GrievanceDetailActivity extends AppCompatActivity implements View.O
         grievanceReference = (TextView) findViewById(R.id.grievance_reference_note);
         grievanceStatus = (TextView) findViewById(R.id.grievance_status);
 
-
         txtConstituency.setText(PreferenceStorage.getConstituencyName(this));
         seekerType.setText(grievance.getseeker_info());
 
         if (grievance.getgrievance_type().equalsIgnoreCase("P")) {
-            txtPetitionEnquiry.setText(getString(R.string.petition_num));
+            txtEnquiry.setVisibility(View.GONE);
+            txtPetition.setText(getString(R.string.petition_num));
         } else {
-            txtPetitionEnquiry.setText(getString(R.string.enquiry_num));
-            findViewById(R.id.desc_layout).setVisibility(View.GONE);
+            txtPetition.setVisibility(View.GONE);
+            txtEnquiry.setVisibility(View.VISIBLE);
+            txtEnquiry.setText(getString(R.string.enquiry_num));
         }
         petitionEnquiryNo.setText(grievance.getpetition_enquiry_no());
         grievanceName.setText(capitalizeString(grievance.getgrievance_name()));

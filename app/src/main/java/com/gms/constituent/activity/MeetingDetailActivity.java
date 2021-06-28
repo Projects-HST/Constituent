@@ -23,7 +23,7 @@ import com.squareup.picasso.Picasso;
 public class MeetingDetailActivity extends AppCompatActivity implements View.OnClickListener, DialogClickListener {
 
     private static final String TAG = MeetingDetailActivity.class.getName();
-//    private int colour = 0;
+    //    private int colour = 0;
     private RelativeLayout toolbar;
     private Meeting meeting;
     private ImageView newsImage;
@@ -36,7 +36,7 @@ public class MeetingDetailActivity extends AppCompatActivity implements View.OnC
 
 //        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(this));
 
-        toolbar = (RelativeLayout)findViewById(R.id.toolbar_view);
+        toolbar = (RelativeLayout) findViewById(R.id.toolbar_view);
 //        toolbar.setBackgroundColor(colour);
 
         findViewById(R.id.img_back).setOnClickListener(new View.OnClickListener() {
@@ -57,17 +57,20 @@ public class MeetingDetailActivity extends AppCompatActivity implements View.OnC
         meetingTitle.setText(capitalizeString(meeting.getmeeting_title()));
         meetingDetail.setText(capitalizeString(meeting.getmeeting_detail()));
         requestDate.setText(meeting.getcreated_at());
-        meetingDate.setText(("Meeting Date" + " : " + meeting.getmeeting_date()));
         meetingStatus.setText(capitalizeString(meeting.getmeeting_status()));
+
         if (meeting.getmeeting_status().equalsIgnoreCase("REQUESTED")) {
+            meetingDate.setVisibility(View.GONE);
             meetingStatus.setBackgroundColor(ContextCompat.getColor(this, R.color.requested));
         } else {
             if (meeting.getmeeting_status().equalsIgnoreCase("SCHEDULED")) {
+                meetingDate.setVisibility(View.VISIBLE);
+                meetingDate.setText(("Meeting Date" + " : " + meeting.getmeeting_date()));
                 meetingStatus.setBackgroundColor(ContextCompat.getColor(this, R.color.scheduled));
             } else {
-                if (meeting.getmeeting_status().equalsIgnoreCase("COMPLETED")) {
-                    meetingStatus.setBackgroundColor(ContextCompat.getColor(this, R.color.completed_meeting));
-                }
+                meetingDate.setVisibility(View.VISIBLE);
+                meetingDate.setText(("Meeting Date" + " : " + meeting.getmeeting_date()));
+                meetingStatus.setBackgroundColor(ContextCompat.getColor(this, R.color.completed_meeting));
             }
         }
     }
@@ -79,7 +82,7 @@ public class MeetingDetailActivity extends AppCompatActivity implements View.OnC
             if (!found && Character.isLetter(chars[i])) {
                 chars[i] = Character.toUpperCase(chars[i]);
                 found = true;
-            } else if (Character.isWhitespace(chars[i]) || chars[i]=='.' || chars[i]=='\'') { // You can add other chars here
+            } else if (Character.isWhitespace(chars[i]) || chars[i] == '.' || chars[i] == '\'') { // You can add other chars here
                 found = false;
             }
         }

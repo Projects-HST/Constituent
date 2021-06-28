@@ -185,6 +185,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:fontFamily="@font/bold"
+                android:visibility="gone"
                 android:gravity="center"
                 android:padding="10dp"
                 android:textColor="@color/black"
