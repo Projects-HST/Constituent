@@ -20,6 +20,9 @@ import com.gms.constituent.utils.GMSValidator;
 import com.gms.constituent.utils.PreferenceStorage;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class NewsDetailActivity extends AppCompatActivity implements View.OnClickListener, DialogClickListener {
 
     private static final String TAG = NewsDetailActivity.class.getName();
@@ -55,7 +58,7 @@ public class NewsDetailActivity extends AppCompatActivity implements View.OnClic
 
 
         newsName.setText(capitalizeString(news.gettitle()));
-        newsDate.setText(news.getnews_date());
+        newsDate.setText(getserverdateformat(news.getnews_date()));
         newsDetail.setLinksClickable(true);
         newsDetail.setMovementMethod(LinkMovementMethod.getInstance());
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -103,6 +106,25 @@ public class NewsDetailActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onAlertNegativeClicked(int tag) {
 
+    }
+
+    private String getserverdateformat(String dd) {
+        String serverFormatDate = "";
+        if (dd != null && dd != "") {
+
+            String date = dd;
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date testDate = null;
+            try {
+                testDate = formatter.parse(date);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("MMM dd");
+            serverFormatDate = sdf.format(testDate);
+            System.out.println(".....Date..." + serverFormatDate);
+        }
+        return serverFormatDate;
     }
 
 }

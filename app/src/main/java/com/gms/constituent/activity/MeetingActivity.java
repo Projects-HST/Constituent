@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -66,6 +67,7 @@ public class MeetingActivity extends AppCompatActivity implements View.OnClickLi
     private TextView request, schedule, complete;
     int colour;
     private int pos, meetingListCount;
+    GradientDrawable drawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,12 +89,17 @@ public class MeetingActivity extends AppCompatActivity implements View.OnClickLi
 
         meetings = new ArrayList<>();
 
+        drawable = new GradientDrawable();
+        drawable.setShape(GradientDrawable.RECTANGLE);
+        drawable.setColor(colour);
+        drawable.setCornerRadius(6);
+
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
 
         meetingLayout = (LinearLayout) findViewById(R.id.meeting_layout);
-        meetingLayout.setBackgroundColor(colour);
+        meetingLayout.setBackground(drawable);
 
         request = (TextView) findViewById(R.id.request);
         request.setBackground(ContextCompat.getDrawable(this, R.drawable.shadow_round));

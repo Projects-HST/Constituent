@@ -13,13 +13,16 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:background="@color/colorPrimary"
+            android:elevation="6dp"
             android:minHeight="60dp" />
 
         <ImageView
             android:id="@+id/img_back"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
+            android:elevation="6dp"
             android:layout_alignParentStart="true"
             android:minHeight="60dp"
             android:padding="20dp"
@@ -30,6 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/img_back"
+            android:elevation="6dp"
             android:gravity="center_vertical"
             android:minHeight="60dp"
             android:padding="5dp"
@@ -45,6 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_gravity="center"
+        app:tabIndicatorHeight="4dp"
         android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
         app:tabTextColor="@color/black" />

@@ -16,6 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/account"
+            android:fontFamily="@font/medium"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -26,7 +27,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_margin="10dp">
+            android:layout_marginVertical="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
 
             <ImageView
                 android:id="@+id/imgView_1"
@@ -39,8 +42,7 @@
                 android:id="@+id/changeUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="16dp"
                 android:layout_toEndOf="@id/imgView_1"
                 android:layout_centerVertical="true"
                 android:text="@string/change_user"
@@ -50,23 +52,14 @@
 
             <ImageView
                 android:id="@+id/userClick"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignTop="@id/imgView_1"
                 android:layout_alignBottom="@id/imgView_1"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:padding="5dp"
                 android:src="@drawable/ic_next_arrow_settings" />
-
-            <View
-                android:id="@+id/div_1"
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:layout_below="@id/imgView_1"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:background="@color/grey" />
 
         </RelativeLayout>
 
@@ -75,6 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/accountLayout"
+            android:fontFamily="@font/medium"
             android:text="@string/general"
             android:textAllCaps="false"
             android:textColor="@color/black"
@@ -109,8 +103,8 @@
 
             <ImageView
                 android:id="@+id/abtClick"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignTop="@id/imgView_2"
                 android:layout_alignBottom="@id/imgView_2"
                 android:layout_alignParentEnd="true"
@@ -123,7 +117,6 @@
                 android:layout_height="0.1dp"
                 android:layout_below="@id/imgView_2"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
                 android:background="@color/grey" />
 
             <ImageView
@@ -150,8 +143,8 @@
 
             <ImageView
                 android:id="@+id/termsClick"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignTop="@id/imgView_3"
                 android:layout_alignBottom="@id/imgView_3"
                 android:layout_alignParentEnd="true"
@@ -164,7 +157,6 @@
                 android:layout_height="0.1dp"
                 android:layout_below="@id/terms"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
                 android:background="@color/grey" />
 
 
@@ -192,8 +184,8 @@
 
             <ImageView
                 android:id="@+id/privacyClick"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignTop="@id/imgView_4"
                 android:layout_alignBottom="@id/imgView_4"
                 android:layout_alignParentEnd="true"
@@ -206,7 +198,6 @@
                 android:layout_height="0.1dp"
                 android:layout_below="@id/imgView_4"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
                 android:background="@color/grey" />
 
             <ImageView
@@ -233,8 +224,8 @@
 
             <ImageView
                 android:id="@+id/helpClick"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignTop="@id/imgView_5"
                 android:layout_alignBottom="@id/imgView_5"
                 android:layout_alignParentEnd="true"
@@ -247,7 +238,6 @@
                 android:layout_height="0.1dp"
                 android:layout_below="@id/imgView_5"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
                 android:background="@color/grey" />
 
 <!--            <ImageView-->
@@ -267,7 +257,7 @@
                 android:layout_marginTop="10dp"
                 android:paddingVertical="10dp"
                 android:drawableStart="@drawable/ic_logout"
-                android:drawablePadding="5dp"
+                android:drawablePadding="16dp"
                 android:gravity="center"
                 android:fontFamily="@font/medium"
                 android:text="@string/sign_out"

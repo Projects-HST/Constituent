@@ -18,7 +18,6 @@
             android:layout_gravity="center_vertical"
             android:scaleType="fitXY" />
 
-
         <ImageView
             android:id="@+id/img_back"
             android:layout_width="70dp"

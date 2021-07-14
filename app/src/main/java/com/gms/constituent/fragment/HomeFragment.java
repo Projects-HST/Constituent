@@ -67,7 +67,7 @@ public class HomeFragment extends Fragment implements IServiceListener, DialogCl
         rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
         constituent = rootView.findViewById(R.id.constituent);
-        constituent.setText(getString(R.string.hi) + " " + PreferenceStorage.getName(getContext()) + ",");
+        constituent.setText((getString(R.string.hi) + ", " + PreferenceStorage.getName(getContext())));
         grievance = rootView.findViewById(R.id.grievance);
         grievance.setOnClickListener(this);
         meeting = rootView.findViewById(R.id.meeting);

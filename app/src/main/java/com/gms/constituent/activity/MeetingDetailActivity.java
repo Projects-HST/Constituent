@@ -1,6 +1,7 @@
 package com.gms.constituent.activity;
 
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
@@ -23,18 +24,20 @@ import com.squareup.picasso.Picasso;
 public class MeetingDetailActivity extends AppCompatActivity implements View.OnClickListener, DialogClickListener {
 
     private static final String TAG = MeetingDetailActivity.class.getName();
-    //    private int colour = 0;
+
+    private int colour;
     private RelativeLayout toolbar;
     private Meeting meeting;
     private ImageView newsImage;
     private TextView meetingTitle, meetingDetail, requestDate, meetingDate, meetingStatus;
+    GradientDrawable drawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_detail);
 
-//        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(this));
+        colour = Color.parseColor(PreferenceStorage.getAppBaseColor(this));
 
         toolbar = (RelativeLayout) findViewById(R.id.toolbar_view);
 //        toolbar.setBackgroundColor(colour);
@@ -48,6 +51,9 @@ public class MeetingDetailActivity extends AppCompatActivity implements View.OnC
         });
         meeting = (Meeting) getIntent().getSerializableExtra("serviceObj");
 
+        drawable = new GradientDrawable();
+        drawable.setShape(GradientDrawable.RECTANGLE);
+        drawable.setCornerRadius(6);
         meetingTitle = (TextView) findViewById(R.id.meeting_title);
         meetingDetail = (TextView) findViewById(R.id.meeting_details);
         requestDate = (TextView) findViewById(R.id.created_on);
@@ -58,19 +64,23 @@ public class MeetingDetailActivity extends AppCompatActivity implements View.OnC
         meetingDetail.setText(capitalizeString(meeting.getmeeting_detail()));
         requestDate.setText(meeting.getcreated_at());
         meetingStatus.setText(capitalizeString(meeting.getmeeting_status()));
+        meetingStatus.setBackground(drawable);
 
         if (meeting.getmeeting_status().equalsIgnoreCase("REQUESTED")) {
             meetingDate.setVisibility(View.GONE);
-            meetingStatus.setBackgroundColor(ContextCompat.getColor(this, R.color.requested));
+            drawable.setColor(ContextCompat.getColor(this, R.color.requested));
+            meetingStatus.setBackground(drawable);
         } else {
             if (meeting.getmeeting_status().equalsIgnoreCase("SCHEDULED")) {
                 meetingDate.setVisibility(View.VISIBLE);
                 meetingDate.setText(("Meeting Date" + " : " + meeting.getmeeting_date()));
-                meetingStatus.setBackgroundColor(ContextCompat.getColor(this, R.color.scheduled));
+                drawable.setColor(ContextCompat.getColor(this, R.color.scheduled));
+                meetingStatus.setBackground(drawable);
             } else {
                 meetingDate.setVisibility(View.VISIBLE);
                 meetingDate.setText(("Meeting Date" + " : " + meeting.getmeeting_date()));
-                meetingStatus.setBackgroundColor(ContextCompat.getColor(this, R.color.completed_meeting));
+                drawable.setColor(ContextCompat.getColor(this, R.color.completed_meeting));
+                meetingStatus.setBackground(drawable);
             }
         }
     }

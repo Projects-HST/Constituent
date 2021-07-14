@@ -100,7 +100,7 @@ public class NewsListAdapter extends BaseAdapter {
         holder.txtNewsDetails.setText(HtmlCompat.fromHtml(news.get(position).getdetails(),
                 HtmlCompat.FROM_HTML_MODE_LEGACY));
 //        holder.txtNewsDetails.setEllipsize(TextUtils.TruncateAt.END);
-        holder.txtDaysAgo.setText(news.get(position).getnews_date());
+        holder.txtDaysAgo.setText(getserverdateformat(news.get(position).getnews_date()));
         if (GMSValidator.checkNullString(news.get(position).getimage_file_name())) {
             Picasso.get().load(news.get(position).getimage_file_name()).into(holder.newsImage);
         } else {
@@ -228,6 +228,25 @@ public class NewsListAdapter extends BaseAdapter {
             e.printStackTrace();
             return "error";
         }
+    }
+
+    private String getserverdateformat(String dd) {
+        String serverFormatDate = "";
+        if (dd != null && dd != "") {
+
+            String date = dd;
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date testDate = null;
+            try {
+                testDate = formatter.parse(date);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("MMM dd");
+            serverFormatDate = sdf.format(testDate);
+            System.out.println(".....Date..." + serverFormatDate);
+        }
+        return serverFormatDate;
     }
 
 }

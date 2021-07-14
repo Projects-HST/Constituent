@@ -12,7 +12,7 @@
         android:layout_height="200dp"
         android:layout_marginTop="10dp"
         android:scaleType="fitXY"
-        android:src="@drawable/dashboard_banner"/>
+        android:src="@drawable/constituent_id_bg"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,6 +28,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
                 android:gravity="center"
                 android:fontFamily="@font/bold"
                 android:text="@string/constituency_id"
@@ -53,6 +54,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="10dp"
                 android:hint="@string/constituency_id"
+                app:hintTextColor="@color/dark_bg"
                 app:boxStrokeColor="@color/text_box">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -62,7 +64,8 @@
                     android:inputType="text"
                     android:maxLength="20"
                     android:textColor="@color/black"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp"
+                    android:textCursorDrawable="@color/dark_bg"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -70,7 +73,8 @@
                 android:id="@+id/next"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="40dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/default_logo"
                 android:fontFamily="@font/bold"
                 android:gravity="center"

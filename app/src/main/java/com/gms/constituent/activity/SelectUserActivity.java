@@ -93,7 +93,6 @@ public class SelectUserActivity extends AppCompatActivity implements View.OnClic
 
         if (page.equalsIgnoreCase("verify")) {
 //            toolBar = (RelativeLayout) findViewById(R.id.toolbar_view);
-//            toolBar.setBackgroundColor(colour);
             findViewById(R.id.img_back).setVisibility(View.GONE);
             TextView titel = findViewById(R.id.tvtitletext);
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

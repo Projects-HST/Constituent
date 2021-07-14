@@ -165,10 +165,10 @@
                 android:id="@+id/number_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="75dp"
+                android:layout_marginStart="40dp"
                 android:layout_below="@+id/explain_text_one"
                 android:layout_marginTop="40dp"
-                android:layout_marginEnd="75dp"
+                android:layout_marginEnd="40dp"
                 android:background="@drawable/shadow_round"
                 android:elevation="10dp">
 
@@ -235,7 +235,7 @@
                 android:layout_height="40dp"
                 android:gravity="center"
                 android:fontFamily="@font/bold"
-                android:layout_marginHorizontal="70dp"
+                android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/default_logo"

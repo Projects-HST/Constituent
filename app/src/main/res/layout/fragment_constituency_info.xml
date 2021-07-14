@@ -12,122 +12,177 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:clickable="false"
+                android:focusable="false"
+                android:fontFamily="@font/regular"
+                android:maxLength="30"
+                android:singleLine="true"
+                android:text="@string/father_or_husband"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/constituency_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:fontFamily="@font/medium"
+                android:maxLength="30"
+                android:singleLine="true"
+                android:text="@string/constituency_name"
+                android:textColor="@color/dark_bg"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/line_grey" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textColorHint="@color/black">
+                android:fontFamily="@font/regular"
+                android:text="@string/ward"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp" />
 
-                <EditText
-                    android:id="@+id/constituency_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:hint="@string/constituency_name"
-                    android:inputType="text"
-                    android:maxLength="30"
-                    android:singleLine="true"
-                    android:textSize="16sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <TextView
+                android:id="@+id/ward"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textColorHint="@color/black">
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:fontFamily="@font/medium"
+                android:maxLength="30"
+                android:singleLine="true"
+                android:text="@string/ward"
+                android:textColor="@color/dark_bg"
+                android:textSize="14sp" />
 
-                <EditText
-                    android:id="@+id/ward"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:hint="@string/ward"
-                    android:inputType="text"
-                    android:maxLength="30"
-                    android:singleLine="true"
-                    android:textSize="16sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/line_grey" />
 
-            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textColorHint="@color/black">
+                android:fontFamily="@font/regular"
+                android:text="@string/booth"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp" />
 
-                <EditText
-                    android:id="@+id/booth_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:hint="@string/booth"
-                    android:inputType="textEmailAddress"
-                    android:maxLength="30"
-                    android:singleLine="true"
-                    android:textSize="16sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <TextView
+                android:id="@+id/booth_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textColorHint="@color/black">
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:clickable="false"
+                android:focusable="false"
+                android:fontFamily="@font/medium"
+                android:maxLength="30"
+                android:singleLine="true"
+                android:text="@string/booth"
+                android:textColor="@color/dark_bg"
+                android:textSize="14sp" />
 
-                <EditText
-                    android:id="@+id/booth_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:hint="@string/booth_address"
-                    android:inputType="textEmailAddress"
-                    android:maxLength="30"
-                    android:singleLine="true"
-                    android:textSize="16sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/line_grey" />
 
-            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textColorHint="@color/black">
+                android:fontFamily="@font/regular"
+                android:text="@string/booth_address"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp" />
 
-                <EditText
-                    android:id="@+id/serial_no"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:hint="@string/serial"
-                    android:inputType="textEmailAddress"
-                    android:maxLength="30"
-                    android:singleLine="true"
-                    android:textSize="16sp" />
+            <TextView
+                android:id="@+id/booth_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:fontFamily="@font/medium"
+                android:maxLength="30"
+                android:singleLine="true"
+                android:text="@string/booth_address"
+                android:textColor="@color/dark_bg"
+                android:textSize="14sp" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/line_grey" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/regular"
+                android:text="@string/serial"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/serial_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:fontFamily="@font/medium"
+                android:maxLength="30"
+                android:singleLine="true"
+                android:text="@string/serial"
+                android:textColor="@color/dark_bg"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/line_grey" />
 
 
         </LinearLayout>

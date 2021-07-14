@@ -26,25 +26,35 @@
                 android:maxLength="30"
                 android:singleLine="true"
                 android:text="@string/father_or_husband"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="@color/text_grey"
+                android:fontFamily="@font/regular"
+                android:textSize="14sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/father_husband_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:clickable="false"
                 android:enabled="false"
                 android:focusable="false"
-                android:hint="@string/father_or_husband"
-                android:inputType="text"
+                android:text="@string/father_or_husband"
                 android:maxLength="30"
                 android:singleLine="true"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textColor="@color/dark_bg"
+                android:fontFamily="@font/medium" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/line_grey"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"/>
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -57,25 +67,35 @@
                 android:maxLength="30"
                 android:singleLine="true"
                 android:text="@string/guardian"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="@color/text_grey"
+                android:fontFamily="@font/regular"
+                android:textSize="14sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/guardian_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:clickable="false"
                 android:enabled="false"
                 android:focusable="false"
-                android:hint="@string/guardian"
-                android:inputType="text"
+                android:text="@string/guardian"
                 android:maxLength="30"
                 android:singleLine="true"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textColor="@color/dark_bg"
+                android:fontFamily="@font/medium" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/line_grey"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"/>
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -88,24 +108,34 @@
                 android:maxLength="30"
                 android:singleLine="true"
                 android:text="@string/email"
-                android:textColor="@color/black"
                 android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="@color/text_grey"
+                android:fontFamily="@font/regular" />
 
-            <EditText
+            <TextView
                 android:id="@+id/email_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/dark_bg"
+                android:fontFamily="@font/medium"
                 android:layout_marginEnd="10dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:clickable="false"
                 android:enabled="false"
                 android:focusable="false"
-                android:inputType="textEmailAddress"
                 android:maxLength="30"
                 android:singleLine="true"
                 android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/line_grey"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"/>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -133,23 +163,31 @@
                         android:maxLength="30"
                         android:singleLine="true"
                         android:text="@string/phone"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_grey"
+                        android:fontFamily="@font/regular"
+                        android:textSize="14sp" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/phone_no"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
-                        android:backgroundTint="@color/colorPrimary"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/dark_bg"
+                        android:fontFamily="@font/medium"
                         android:clickable="false"
                         android:enabled="false"
                         android:focusable="false"
-                        android:inputType="phone"
                         android:maxLength="30"
                         android:singleLine="true"
                         android:textSize="14sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:background="@color/line_grey"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="5dp"/>
 
                 </LinearLayout>
 
@@ -169,23 +207,32 @@
                         android:maxLength="30"
                         android:singleLine="true"
                         android:text="@string/whatsapp"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_grey"
+                        android:fontFamily="@font/regular"
+                        android:textSize="14sp" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/whatsapp_no"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
-                        android:backgroundTint="@color/colorPrimary"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/dark_bg"
+                        android:fontFamily="@font/medium"
                         android:clickable="false"
                         android:enabled="false"
                         android:focusable="false"
-                        android:inputType="text"
                         android:maxLength="30"
                         android:singleLine="true"
                         android:textSize="14sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:background="@color/line_grey"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="5dp"/>
+
 
                 </LinearLayout>
 
@@ -217,23 +264,30 @@
                         android:maxLength="30"
                         android:singleLine="true"
                         android:text="@string/dob"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_grey"
+                        android:fontFamily="@font/regular"
+                        android:textSize="14sp" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/dob"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
-                        android:backgroundTint="@color/colorPrimary"
                         android:clickable="false"
                         android:enabled="false"
                         android:focusable="false"
-                        android:inputType="text"
                         android:maxLength="30"
                         android:singleLine="true"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/dark_bg"
+                        android:fontFamily="@font/medium"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:background="@color/line_grey"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="5dp"/>
 
                 </LinearLayout>
 
@@ -253,23 +307,31 @@
                         android:maxLength="30"
                         android:singleLine="true"
                         android:text="@string/gender"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_grey"
+                        android:fontFamily="@font/regular"
+                        android:textSize="14sp" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/gender"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
-                        android:backgroundTint="@color/colorPrimary"
                         android:clickable="false"
                         android:enabled="false"
                         android:focusable="false"
-                        android:inputType="text"
                         android:maxLength="30"
                         android:singleLine="true"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/dark_bg"
+                        android:fontFamily="@font/medium" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:background="@color/line_grey"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="5dp"/>
+
 
                 </LinearLayout>
 
@@ -280,61 +342,74 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:backgroundTint="@color/colorPrimary"
                 android:clickable="false"
                 android:focusable="false"
                 android:maxLength="30"
                 android:singleLine="true"
                 android:text="@string/religion"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="@color/text_grey"
+                android:fontFamily="@font/regular"
+                android:textSize="14sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/religion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:backgroundTint="@color/colorPrimary"
                 android:clickable="false"
                 android:enabled="false"
                 android:focusable="false"
-                android:inputType="text"
                 android:maxLength="30"
                 android:singleLine="true"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textColor="@color/dark_bg"
+                android:fontFamily="@font/medium" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/line_grey"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:backgroundTint="@color/colorPrimary"
                 android:clickable="false"
                 android:focusable="false"
                 android:maxLength="30"
                 android:singleLine="true"
                 android:text="@string/address"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="@color/text_grey"
+                android:fontFamily="@font/regular"
+                android:textSize="14sp"  />
 
-            <EditText
+            <TextView
                 android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginEnd="10dp"
-                android:backgroundTint="@color/colorPrimary"
+                android:layout_marginTop="10dp"
                 android:clickable="false"
                 android:enabled="false"
                 android:focusable="false"
-                android:inputType="text"
                 android:maxLength="30"
                 android:singleLine="true"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textColor="@color/dark_bg"
+                android:fontFamily="@font/medium" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/line_grey"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -347,24 +422,32 @@
                 android:maxLength="30"
                 android:singleLine="true"
                 android:text="@string/pin"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="@color/text_grey"
+                android:fontFamily="@font/regular"
+                android:textSize="14sp"  />
 
-            <EditText
+            <TextView
                 android:id="@+id/pincode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:backgroundTint="@color/colorPrimary"
                 android:clickable="false"
                 android:enabled="false"
                 android:focusable="false"
-                android:inputType="text"
                 android:maxLength="30"
                 android:singleLine="true"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textColor="@color/dark_bg"
+                android:fontFamily="@font/medium" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/line_grey"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -377,25 +460,33 @@
                 android:maxLength="30"
                 android:singleLine="true"
                 android:text="@string/voterid"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="@color/text_grey"
+                android:fontFamily="@font/regular"
+                android:textSize="14sp"  />
 
-            <EditText
+            <TextView
                 android:id="@+id/voter_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:backgroundTint="@color/colorPrimary"
                 android:clickable="false"
                 android:enabled="false"
                 android:focusable="false"
-                android:hint="@string/voterid"
-                android:inputType="text"
+                android:text="@string/voterid"
                 android:maxLength="30"
                 android:singleLine="true"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textColor="@color/dark_bg"
+                android:fontFamily="@font/medium" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/line_grey"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -408,25 +499,34 @@
                 android:maxLength="30"
                 android:singleLine="true"
                 android:text="@string/aadhaar"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="@color/text_grey"
+                android:fontFamily="@font/regular"
+                android:textSize="14sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/aadhaar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:backgroundTint="@color/colorPrimary"
                 android:clickable="false"
                 android:enabled="false"
                 android:focusable="false"
-                android:hint="@string/aadhaar"
-                android:inputType="text"
+                android:text="@string/aadhaar"
                 android:maxLength="30"
                 android:singleLine="true"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textColor="@color/dark_bg"
+                android:fontFamily="@font/medium" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/line_grey"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="5dp"/>
 
 
         </LinearLayout>

@@ -3,9 +3,11 @@ package com.gms.constituent.activity;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -84,18 +86,26 @@ public class MainActivity extends AppCompatActivity implements IServiceListener,
                         switch (item.getItemId()) {
 
                             case R.id.navigation_home:
+//                                item.setIcon(R.drawable.ic_home_selected);
                                 changeFragment(0);
 //                                notificationBadge.setVisibility(View.VISIBLE);
                                 break;
                             case R.id.navigation_news:
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                    item.setIconTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.bottom_nav_item_color));
+                                }
                                 changeFragment(1);
 //                                notificationBadge.setVisibility(View.VISIBLE);
                                 break;
                             case R.id.navigation_profile:
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                    item.setIconTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.bottom_nav_item_color));
+                                }
                                 changeFragment(2);
 //                                notificationBadge.setVisibility(View.VISIBLE);
                                 break;
                             case R.id.navigation_settings:
+//                                item.setIcon(R.drawable.ic_settings_selected);
                                 changeFragment(3);
 //                                notificationBadge.setVisibility(View.VISIBLE);
                                 break;
