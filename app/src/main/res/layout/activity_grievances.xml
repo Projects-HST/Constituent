@@ -13,7 +13,7 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="2dp"
             android:background="@color/colorPrimary"
             android:elevation="6dp"
             android:minHeight="60dp" />
@@ -52,6 +52,7 @@
         app:tabIndicatorHeight="4dp"
         android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
+        style="@style/MyCustomTabLayout"
         app:tabTextColor="@color/black" />
 
     <androidx.viewpager.widget.ViewPager

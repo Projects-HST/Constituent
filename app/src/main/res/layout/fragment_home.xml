@@ -114,10 +114,12 @@
                         android:id="@+id/grievance_count"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:text="@string/count"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/black" />
+                        android:fontFamily="@font/bold"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"/>
 
                     <ImageView
                         android:id="@+id/grievance"
@@ -155,10 +157,12 @@
                         android:id="@+id/meeting_count"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:text="@string/count"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/black" />
+                        android:fontFamily="@font/bold"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"/>
 
                     <ImageView
                         android:id="@+id/meeting"

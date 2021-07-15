@@ -69,13 +69,13 @@
         android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
         app:tabSelectedTextColor="@color/black"
+        style="@style/MyCustomTabLayout"
         app:tabTextColor="@color/text_grey" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="20dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 

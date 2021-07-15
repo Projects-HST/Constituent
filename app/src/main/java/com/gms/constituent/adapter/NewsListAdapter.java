@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -81,6 +82,7 @@ public class NewsListAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.list_item_news, parent, false);
 
             holder = new NewsListAdapter.ViewHolder();
+//            holder.newsFeedLayout = (RelativeLayout) convertView.findViewById(R.id.news_feed_layout);
             holder.txtNewsTitle = (TextView) convertView.findViewById(R.id.txt_news_name);
             holder.txtNewsDetails = (TextView) convertView.findViewById(R.id.txt_news);
             holder.txtDaysAgo = (TextView) convertView.findViewById(R.id.txt_news_date);
@@ -88,11 +90,11 @@ public class NewsListAdapter extends BaseAdapter {
             convertView.setTag(holder);
         } else {
             holder = (NewsListAdapter.ViewHolder) convertView.getTag();
+//            holder.newsFeedLayout = (RelativeLayout) convertView.findViewById(R.id.news_feed_layout);
             holder.txtNewsTitle = (TextView) convertView.findViewById(R.id.txt_news_name);
             holder.txtNewsDetails = (TextView) convertView.findViewById(R.id.txt_news);
             holder.txtDaysAgo = (TextView) convertView.findViewById(R.id.txt_news_date);
             holder.newsImage = (ImageView) convertView.findViewById(R.id.img_logo);
-
         }
         holder.txtNewsTitle.setText(capitalizeString(news.get(position).gettitle()));
         holder.txtNewsTitle.setEllipsize(TextUtils.TruncateAt.END);
@@ -145,6 +147,7 @@ public class NewsListAdapter extends BaseAdapter {
 
     public class ViewHolder {
         public TextView txtNewsTitle, txtNewsDetails, txtDaysAgo;
+        private RelativeLayout newsFeedLayout;
         private ImageView newsImage;
     }
 

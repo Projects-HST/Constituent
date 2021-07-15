@@ -243,9 +243,9 @@ public class NewsFragment extends Fragment implements IServiceListener, DialogCl
             } else {
                 JSONArray imgdata = null;
                 try {
-                    imgdata = response.getJSONArray("banner_image");
+                    imgdata = response.getJSONArray("banner_images");
                     for (int i = 0; i < imgdata.length(); i++) {
-                        imgUrl.add(imgdata.getJSONObject(i).getString("gallery_image"));
+                        imgUrl.add(imgdata.getJSONObject(i).getString("banner_image"));
                     }
                     for (int i = 0; i < imgUrl.size(); i++) {
                         // create dynamic image view and add them to ViewFlipper

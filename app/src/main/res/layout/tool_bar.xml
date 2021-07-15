@@ -7,7 +7,7 @@
     android:background="@color/colorPrimary"
     android:minHeight="@dimen/abc_action_bar_default_height_material"
     android:elevation="6dp"
-    android:layout_marginBottom="5dp"
+    android:layout_marginBottom="2dp"
     android:theme="@style/ThemeOverlay.MyApp.ActionBar">
 
 </androidx.appcompat.widget.Toolbar>

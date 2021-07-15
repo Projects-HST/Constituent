@@ -27,87 +27,95 @@
             android:padding="20dp"
             android:src="@drawable/ic_back" />
 
-
     </RelativeLayout>
 
-    <ScrollView
+    <TextView
+        android:id="@+id/txt_news_date"
+        android:layout_width="35dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="-20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/dark_bg"
+        android:layout_gravity="end"
+        android:text="25"
+        android:gravity="center"
+        android:fontFamily="@font/bold"
+        android:minLines="2"
+        android:textColor="@color/white"
+        android:textColorHint="@color/black"
+        android:textSize="12sp"
+        android:elevation="10dp"/>
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:overScrollMode="always">
+        android:layout_marginTop="-20dp">
 
-        <RelativeLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:overScrollMode="always">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="vertical">
-
+                android:layout_height="wrap_content">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp">
+                    android:background="@color/white"
+                    android:elevation="-10dp"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/txt_news_name"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@id/txt_news_date"
-                        android:layout_alignBottom="@id/txt_news_date"
-                        android:gravity="center_vertical"
-                        android:text="Mini Marathon Championship"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/bold" />
+                        android:layout_margin="20dp">
+
+                        <TextView
+                            android:id="@+id/txt_news_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/bold"
+                            android:gravity="center_vertical"
+                            android:text="Mini Marathon Championship"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
 
 
-                    <TextView
-                        android:id="@+id/txt_news_date"
-                        android:layout_width="35dp"
-                        android:layout_height="40dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/dark_bg"
-                        android:layout_alignParentEnd="true"
-                        android:text="25"
-                        android:gravity="center"
-                        android:fontFamily="@font/bold"
-                        android:minLines="2"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/black"
-                        android:textSize="12sp" />
-
-                    <View
-                        android:id="@+id/viewLine"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_below="@id/txt_news_date"
-                        android:background="@color/line_grey" />
+                        <View
+                            android:id="@+id/viewLine"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@id/txt_news_name"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/line_grey" />
 
 
-                    <TextView
-                        android:id="@+id/txt_news_detail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/viewLine"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
-                        android:linksClickable="true"
-                        android:fontFamily="@font/regular"
-                        android:textColor="@color/dark_bg"
-                        android:textColorHint="@color/black"
-                        android:textSize="12sp" />
+                        <TextView
+                            android:id="@+id/txt_news_detail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/viewLine"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="@font/regular"
+                            android:linksClickable="true"
+                            android:textColor="@color/dark_bg"
+                            android:textColorHint="@color/black"
+                            android:textSize="12sp" />
+
+                    </RelativeLayout>
 
                 </RelativeLayout>
 
             </RelativeLayout>
 
-        </RelativeLayout>
+        </ScrollView>
 
-    </ScrollView>
+    </RelativeLayout>
 
 </LinearLayout>

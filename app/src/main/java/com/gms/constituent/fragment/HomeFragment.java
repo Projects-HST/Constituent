@@ -26,6 +26,7 @@ import com.gms.constituent.activity.GrievanceActivity;
 import com.gms.constituent.activity.MeetingActivity;
 import com.gms.constituent.activity.NotificationActivity;
 import com.gms.constituent.activity.PlantDonationActivity;
+import com.gms.constituent.helper.AlertDialogHelper;
 import com.gms.constituent.helper.ProgressDialogHelper;
 import com.gms.constituent.interfaces.DialogClickListener;
 import com.gms.constituent.servicehelpers.ServiceHelper;
@@ -39,10 +40,11 @@ import org.json.JSONObject;
 import java.lang.reflect.Field;
 
 public class HomeFragment extends Fragment implements IServiceListener, DialogClickListener, View.OnClickListener {
+    private static final String TAG = ProfileFragment.class.getName();
 
     private View rootView;
-    private TextView constituent;
-    private ImageView grievance, meeting;
+    private TextView constituent, grievancesCount, meetingsCount;
+    private LinearLayout grievance, meeting;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
     private int ab = 0;
@@ -66,15 +68,21 @@ public class HomeFragment extends Fragment implements IServiceListener, DialogCl
 
         rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
+        serviceHelper = new ServiceHelper(getActivity());
+        serviceHelper.setServiceListener(this);
+        progressDialogHelper = new ProgressDialogHelper(getActivity());
+
         constituent = rootView.findViewById(R.id.constituent);
         constituent.setText((getString(R.string.hi) + ", " + PreferenceStorage.getName(getContext())));
-        grievance = rootView.findViewById(R.id.grievance);
+        grievancesCount = rootView.findViewById(R.id.grievance_count);
+        grievance = rootView.findViewById(R.id.grievance_layout);
         grievance.setOnClickListener(this);
-        meeting = rootView.findViewById(R.id.meeting);
+        meetingsCount = rootView.findViewById(R.id.meeting_count);
+        meeting = rootView.findViewById(R.id.meeting_layout);
         meeting.setOnClickListener(this);
 //        plantDonation = rootView.findViewById(R.id.plant_donation_layout);
 //        plantDonation.setOnClickListener(this);
-
+        getUserInfo();
         return rootView;
     }
 
@@ -124,6 +132,60 @@ public class HomeFragment extends Fragment implements IServiceListener, DialogCl
 
     }
 
+    private boolean validateResponse(JSONObject response) {
+        boolean signInSuccess = false;
+        if ((response != null)) {
+            try {
+                String status = response.getString("status");
+                String msg = response.getString(GMSConstants.PARAM_MESSAGE);
+                Log.d(TAG, "status val" + status + "msg" + msg);
+
+                if ((status != null)) {
+                    if (status.equalsIgnoreCase("success")) {
+                        signInSuccess = true;
+                    } else {
+                        signInSuccess = false;
+                        Log.d(TAG, "Show error dialog");
+                        AlertDialogHelper.showSimpleAlertDialog(getActivity(), msg);
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return signInSuccess;
+    }
+
+    public void getUserInfo() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put(GMSConstants.KEY_USER_ID, PreferenceStorage.getUserId(getActivity()));
+            jsonObject.put(GMSConstants.DYNAMIC_DATABASE, PreferenceStorage.getDynamicDb(getActivity()));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+        String url = GMSConstants.BUILD_URL + GMSConstants.GET_USER_DETAILS;
+        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+    }
+
+    private void getNewsBanner() {
+//        checkRes = "banner";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put(GMSConstants.KEY_USER_ID, PreferenceStorage.getUserId(getActivity()));
+            jsonObject.put(GMSConstants.DYNAMIC_DATABASE, PreferenceStorage.getDynamicDb(getActivity()));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+//        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+        String url = GMSConstants.BUILD_URL + GMSConstants.GET_NEWS_BANNER;
+        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+    }
 
     @Override
     public void onAlertPositiveClicked(int tag) {
@@ -137,7 +199,19 @@ public class HomeFragment extends Fragment implements IServiceListener, DialogCl
 
     @Override
     public void onResponse(JSONObject response) {
+        progressDialogHelper.hideProgressDialog();
+        if (validateResponse(response)) {
+            try {
+                JSONObject data = response.getJSONArray("user_details").getJSONObject(0);
+                String totalGrievances = data.getString("grievance_count");
+                String totalMeetings = data.getString("meeting_count");
 
+                grievancesCount.setText(totalGrievances);
+                meetingsCount.setText(totalMeetings);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
